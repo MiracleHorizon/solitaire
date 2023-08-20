@@ -19,6 +19,12 @@
       ],
       "@stores/*": [
         "src/stores/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@styles/*": [
+        "src/assets/styles/*"
       ]
     },
     /* Bundler mode */
