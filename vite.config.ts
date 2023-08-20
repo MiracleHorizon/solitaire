@@ -2,35 +2,37 @@ import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'url'
 import vue from '@vitejs/plugin-vue'
 
+function createFilePath(path: string) {
+  return fileURLToPath(new URL(path, import.meta.url))
+}
+
 export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: [
       {
         find: '@',
-        replacement: fileURLToPath(new URL('./src', import.meta.url))
+        replacement: createFilePath('./src')
       },
       {
         find: '@public',
-        replacement: fileURLToPath(new URL('./public', import.meta.url))
+        replacement: createFilePath('./public')
       },
       {
         find: '@components',
-        replacement: fileURLToPath(new URL('./src/components', import.meta.url))
+        replacement: createFilePath('./src/components')
       },
       {
         find: '@stores',
-        replacement: fileURLToPath(new URL('./src/stores', import.meta.url))
+        replacement: createFilePath('./src/stores')
       },
       {
         find: '@assets',
-        replacement: fileURLToPath(new URL('./src/assets', import.meta.url))
+        replacement: createFilePath('./src/assets')
       },
       {
         find: '@styles',
-        replacement: fileURLToPath(
-          new URL('./src/assets/styles', import.meta.url)
-        )
+        replacement: createFilePath('./src/assets/styles')
       }
     ]
   }
