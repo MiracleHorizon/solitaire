@@ -1,0 +1,63 @@
+// Global
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+// Media
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+// Links
+a {
+  &,
+  &:visited,
+  &:link {
+    text-decoration: none;
+  }
+}
+
+// Lists
+ol,
+ul {
+  list-style: none;
+}
+
+// Forms, inputs
+input,
+button {
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+// Text
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+// Form typography
+input,
+button {
+  font: inherit;
+}
