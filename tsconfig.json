@@ -26,11 +26,17 @@
       "@assets/*": [
         "src/assets/*"
       ],
+      "@static/*": [
+        "src/assets/static/*"
+      ],
       "@styles/*": [
         "src/assets/styles/*"
       ],
       "@shared/*": [
         "src/shared/*"
+      ],
+      "@utils/*": [
+        "src/shared/utils/*"
       ],
       "@entities/*": [
         "src/shared/entities/*"

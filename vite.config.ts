@@ -14,8 +14,10 @@ export const aliases: Alias[] = [
   { find: '@components', path: './src/components' },
   { find: '@stores', path: './src/stores' },
   { find: '@assets', path: './src/assets' },
+  { find: '@static', path: './src/assets/static' },
   { find: '@styles', path: './src/assets/styles' },
   { find: '@shared', path: './src/shared' },
+  { find: '@utils', path: './src/shared/utils' },
   { find: '@entities', path: './src/shared/entities' },
   { find: '@app-types', path: './src/shared/types' }
 ]
