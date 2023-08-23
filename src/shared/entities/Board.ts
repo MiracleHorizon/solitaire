@@ -17,7 +17,7 @@ export class Board {
     this.createFoundations()
   }
 
-  public get dealtCards(): Card[] {
+  public get undealtCards(): Card[] {
     return this.deck.cards.filter(card => !card.wasDealt)
   }
 
