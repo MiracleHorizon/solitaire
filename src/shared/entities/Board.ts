@@ -17,8 +17,8 @@ export class Board {
     this.createFoundations()
   }
 
-  public get unfolded(): Card[] {
-    return this.deck.cards.filter(card => !card.isFolded)
+  public get dealtCards(): Card[] {
+    return this.deck.cards.filter(card => !card.wasDealt)
   }
 
   public reset(): void {
@@ -39,7 +39,7 @@ export class Board {
       this.deck.cards.forEach(card => {
         if (cards.length >= columnSize || takenCards.has(card.id)) return
 
-        card.fold() // Отмечаем, что карта взята из колоды.
+        card.deal() // Отмечаем, что карта взята из колоды.
         card.setColumn(i)
 
         cards.push(card)

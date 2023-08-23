@@ -8,7 +8,7 @@ export class Card implements ICard {
   public readonly image: string
   public column: number | null
   public foundation: number | null
-  public isFolded: boolean
+  public wasDealt: boolean
   public isFlipped: boolean
 
   constructor({
@@ -17,7 +17,7 @@ export class Card implements ICard {
     rank,
     color,
     image,
-    isFolded,
+    wasDealt,
     isFlipped,
     foundation,
     column
@@ -27,7 +27,7 @@ export class Card implements ICard {
     this.rank = rank
     this.color = color
     this.image = image
-    this.isFolded = isFolded
+    this.wasDealt = wasDealt
     this.isFlipped = isFlipped
     this.foundation = foundation
     this.column = column
@@ -41,8 +41,8 @@ export class Card implements ICard {
     this.foundation = foundation
   }
 
-  public fold(): void {
-    this.isFolded = !this.isFlipped
+  public deal(): void {
+    this.wasDealt = true
   }
 
   public flip(): void {
