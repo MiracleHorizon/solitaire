@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "pinia": "^2.1.6",
+    "uuid": "^9.0.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {
     "@types/node": "^20.5.1",
+    "@types/uuid": "^9.0.2",
     "@vitejs/plugin-vue": "^4.2.3",
     "prettier": "^3.0.2",
     "sass": "^1.66.1",
