@@ -1,13 +1,9 @@
-import { Rank } from './Rank.ts'
-import { Suit } from './Suit.ts'
-import { Color } from './Color.ts'
+import type { ICardBase } from './CardBase.ts'
 
-export interface ICard {
+export interface ICard extends ICardBase {
   id: string
-  rank: Rank
-  suit: Suit
-  color: Color
-  image: string
   isFolded: boolean
   isFlipped: boolean
+  column: number | null
+  foundation: number | null
 }
