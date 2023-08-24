@@ -3,6 +3,6 @@ import { Card } from '@entities/Card.ts'
 
 export interface IFoundation {
   id: number
-  suit: Suit
+  suit: Suit | null
   cards: Card[]
 }
