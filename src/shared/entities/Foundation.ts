@@ -1,8 +1,9 @@
 import { Card } from './Card.ts'
-import { Suit } from '@app-types/card'
+import { Rank, Suit } from '@app-types/card'
 import type { IFoundation } from '@app-types/Foundation.ts'
 
 export class Foundation implements IFoundation {
+  public maxRank: Rank | null = null
   public suit: Suit | null = null
   public cards: Card[] = []
 
@@ -12,21 +13,17 @@ export class Foundation implements IFoundation {
     return this.cards.length === 0
   }
 
-  public setSuit(suit: Suit): void {
-    this.suit = suit
-  }
-
-  public removeSuit(): void {
-    this.suit = null
-  }
-
   public addCard(card: Card): void {
     if (!this.suit) {
       this.setSuit(card.suit)
     }
+    if (!this.maxRank) {
+      this.setMaxRank(card.rank)
+    }
 
     card.setFoundation(this.id)
     card.setColumn(null)
+
     this.cards.push(card)
   }
 
@@ -35,7 +32,24 @@ export class Foundation implements IFoundation {
 
     if (this.cards.length === 0) {
       this.removeSuit()
+      this.removeMaxRank()
     }
+  }
+
+  private setSuit(suit: Suit): void {
+    this.suit = suit
+  }
+
+  private setMaxRank(rank: Rank): void {
+    this.maxRank = rank
+  }
+
+  private removeSuit(): void {
+    this.suit = null
+  }
+
+  private removeMaxRank(): void {
+    this.maxRank = null
   }
 
   public tryToGetLastCard(): Card | null {
