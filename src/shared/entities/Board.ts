@@ -56,4 +56,92 @@ export class Board {
       this.foundations.push(foundation)
     }
   }
+
+  public addCardToFoundation(foundationId: number, cardId: string): void {
+    for (const card of this.deck.cards) {
+      if (card.id !== cardId) continue
+
+      // Если карта перемещается из столбца, то она из него исключается.
+      if (card.inColumn) {
+        console.log(card)
+
+        for (const column of this.columns) {
+          if (column.id !== card.column) continue
+
+          column.removeCard(card.id)
+          break
+        }
+      }
+
+      for (const foundation of this.foundations) {
+        // Если карта перемещается из другого основания, то она из него исключается.
+        if (foundation.hasCard(card.id)) {
+          foundation.removeCard(card.id)
+        }
+
+        if (foundation.id === foundationId) {
+          foundation.addCard(card)
+        }
+      }
+
+      // Если карта перемещается из резерва колоды, то "раздаем" ее.
+      if (!card.wasDealt) {
+        card.deal()
+      }
+
+      if (!card.isFlipped) {
+        card.flip()
+      }
+
+      break
+    }
+  }
+
+  public addOneCardToColumn(columnId: number, cardId: string): void {
+    for (const card of this.deck.cards) {
+      if (card.id !== cardId) continue
+
+      // Если карта перемещается из основания, то она из него исключается.
+      if (card.inFoundation) {
+        for (const foundation of this.foundations) {
+          if (foundation.id !== card.foundation) continue
+
+          foundation.removeCard(card.id)
+          break
+        }
+      }
+
+      for (const column of this.columns) {
+        // Если карта перемещается из другого столбца, то она из него исключается.
+        if (column.hasCard(card.id)) {
+          column.removeCard(card.id)
+        }
+
+        if (column.id === columnId) {
+          column.addCard(card)
+        }
+      }
+
+      // Если карта перемещается из резерва колоды, то "раздаем" ее.
+      if (!card.wasDealt) {
+        card.deal()
+      }
+
+      if (!card.isFlipped) {
+        card.flip()
+      }
+
+      break
+    }
+  }
+
+  public addManyCardsToColumn(columnId: number, cardsIds: string[]): void {
+    const arr = [...this.deck.cards].sort(
+      (cardA, cardB) => cardB.rank - cardA.rank
+    )
+    for (const card of arr) {
+      if (!cardsIds.includes(card.id)) continue
+      this.addOneCardToColumn(columnId, card.id)
+    }
+  }
 }
