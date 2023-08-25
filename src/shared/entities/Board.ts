@@ -21,19 +21,13 @@ export class Board {
     return this.deck.cards.filter(card => !card.wasDealt)
   }
 
-  public reset(): void {
-    this.deck.shuffle()
-    this.createColumns()
-    this.createFoundations()
-  }
-
   private createColumns(): void {
     this.columns.length = 0
 
     const takenCards: Set<string> = new Set()
 
     for (let i = 1; i <= this.TOTAL_COLUMNS; i++) {
-      const columnSize = i + 1 // Количество карт в столбце равняется его номеру на столе.
+      const columnSize = i // Количество карт в столбце равняется его номеру на столе.
       const cards: Card[] = []
 
       this.deck.cards.forEach(card => {
