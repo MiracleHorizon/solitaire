@@ -6,3 +6,17 @@ $board-green: #2c733bff;
 
 // Sizes
 $header-height: 70px;
+
+$content-width: 90vw;
+$column-gap: 20px;
+$column-gap-small-screen: 8px;
+$columns: 7;
+
+$card-width: calc($content-width / $columns - $column-gap);
+$card-width-small-screen: calc(
+  $content-width / $columns - $column-gap-small-screen
+);
+$height: calc(($content-width / $columns - $column-gap) * 1.4);
+$height-small: calc(
+  ($content-width / $columns - $column-gap-small-screen) * 1.4
+);
