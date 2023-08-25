@@ -23,7 +23,7 @@ export class Deck {
   private createCard(cardBase: ICardBase): Card {
     return new Card({
       id: v4(),
-      isFolded: false,
+      wasDealt: false,
       isFlipped: false,
       foundation: null,
       column: null,

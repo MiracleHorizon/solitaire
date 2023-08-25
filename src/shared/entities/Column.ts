@@ -13,9 +13,13 @@ export class Column implements IColumn {
 
   private flipLastCard(): void {
     for (const card of this.cards) {
-      const lastCard = [...this.cards].pop()
+      const lastCard = this.tryToGetLastCard()
       if (lastCard && lastCard.id === card.id) card.flip()
     }
+  }
+
+  public hasCard(cardId: string): boolean {
+    return Boolean(this.cards.find(card => card.id === cardId))
   }
 
   public isEmpty(): boolean {
@@ -30,12 +34,18 @@ export class Column implements IColumn {
 
   public removeCard(cardId: string): void {
     this.cards = this.cards.filter(card => card.id !== cardId)
+
     const lastCard = [...this.cards].pop()
     if (!lastCard) return
+
     for (const card of this.cards) {
       if (card.id === lastCard.id) {
         card.flip()
       }
     }
+  }
+
+  public tryToGetLastCard(): Card | null {
+    return this.cards[this.cards.length - 1] ?? null
   }
 }

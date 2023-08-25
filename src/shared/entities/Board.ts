@@ -17,14 +17,8 @@ export class Board {
     this.createFoundations()
   }
 
-  public get unfolded(): Card[] {
-    return this.deck.cards.filter(card => !card.isFolded)
-  }
-
-  public reset(): void {
-    this.deck.shuffle()
-    this.createColumns()
-    this.createFoundations()
+  public get undealtCards(): Card[] {
+    return this.deck.cards.filter(card => !card.wasDealt)
   }
 
   private createColumns(): void {
@@ -33,13 +27,13 @@ export class Board {
     const takenCards: Set<string> = new Set()
 
     for (let i = 1; i <= this.TOTAL_COLUMNS; i++) {
-      const columnSize = i + 1 // Количество карт в столбце равняется его номеру на столе.
+      const columnSize = i // Количество карт в столбце равняется его номеру на столе.
       const cards: Card[] = []
 
       this.deck.cards.forEach(card => {
         if (cards.length >= columnSize || takenCards.has(card.id)) return
 
-        card.fold() // Отмечаем, что карта взята из колоды.
+        card.deal() // Отмечаем, что карта взята из колоды.
         card.setColumn(i)
 
         cards.push(card)
@@ -60,6 +54,94 @@ export class Board {
     for (let i = 1; i <= this.TOTAL_FOUNDATIONS; i++) {
       const foundation = new Foundation(i)
       this.foundations.push(foundation)
+    }
+  }
+
+  public addCardToFoundation(foundationId: number, cardId: string): void {
+    for (const card of this.deck.cards) {
+      if (card.id !== cardId) continue
+
+      // Если карта перемещается из столбца, то она из него исключается.
+      if (card.inColumn) {
+        console.log(card)
+
+        for (const column of this.columns) {
+          if (column.id !== card.column) continue
+
+          column.removeCard(card.id)
+          break
+        }
+      }
+
+      for (const foundation of this.foundations) {
+        // Если карта перемещается из другого основания, то она из него исключается.
+        if (foundation.hasCard(card.id)) {
+          foundation.removeCard(card.id)
+        }
+
+        if (foundation.id === foundationId) {
+          foundation.addCard(card)
+        }
+      }
+
+      // Если карта перемещается из резерва колоды, то "раздаем" ее.
+      if (!card.wasDealt) {
+        card.deal()
+      }
+
+      if (!card.isFlipped) {
+        card.flip()
+      }
+
+      break
+    }
+  }
+
+  public addOneCardToColumn(columnId: number, cardId: string): void {
+    for (const card of this.deck.cards) {
+      if (card.id !== cardId) continue
+
+      // Если карта перемещается из основания, то она из него исключается.
+      if (card.inFoundation) {
+        for (const foundation of this.foundations) {
+          if (foundation.id !== card.foundation) continue
+
+          foundation.removeCard(card.id)
+          break
+        }
+      }
+
+      for (const column of this.columns) {
+        // Если карта перемещается из другого столбца, то она из него исключается.
+        if (column.hasCard(card.id)) {
+          column.removeCard(card.id)
+        }
+
+        if (column.id === columnId) {
+          column.addCard(card)
+        }
+      }
+
+      // Если карта перемещается из резерва колоды, то "раздаем" ее.
+      if (!card.wasDealt) {
+        card.deal()
+      }
+
+      if (!card.isFlipped) {
+        card.flip()
+      }
+
+      break
+    }
+  }
+
+  public addManyCardsToColumn(columnId: number, cardsIds: string[]): void {
+    const arr = [...this.deck.cards].sort(
+      (cardA, cardB) => cardB.rank - cardA.rank
+    )
+    for (const card of arr) {
+      if (!cardsIds.includes(card.id)) continue
+      this.addOneCardToColumn(columnId, card.id)
     }
   }
 }

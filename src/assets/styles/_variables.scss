@@ -1,2 +1,22 @@
-$black-primary: #252525;
-$board-green: rgb(44, 115, 59);
+// Colors
+$white: #f5f5f5;
+$gray: #808080ff;
+$black: #181818;
+$board-green: #2c733bff;
+
+// Sizes
+$header-height: 70px;
+
+$content-width: 90vw;
+$column-gap: 20px;
+$column-gap-small-screen: 8px;
+$columns: 7;
+
+$card-width: calc($content-width / $columns - $column-gap);
+$card-width-small-screen: calc(
+  $content-width / $columns - $column-gap-small-screen
+);
+$height: calc(($content-width / $columns - $column-gap) * 1.4);
+$height-small: calc(
+  ($content-width / $columns - $column-gap-small-screen) * 1.4
+);
