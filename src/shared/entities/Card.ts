@@ -37,6 +37,10 @@ export class Card implements ICard {
     return this.column !== null
   }
 
+  public get inFoundation(): boolean {
+    return this.foundation !== null
+  }
+
   public setColumn(column: number | null): void {
     this.column = column
   }
