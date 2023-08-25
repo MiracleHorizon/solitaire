@@ -13,6 +13,10 @@ export class Foundation implements IFoundation {
     return this.cards.length === 0
   }
 
+  public hasCard(cardId: string): boolean {
+    return Boolean(this.cards.find(card => card.id === cardId))
+  }
+
   public addCard(card: Card): void {
     if (!this.suit) {
       this.setSuit(card.suit)
