@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NewGame from '@components/NewGame.vue'
 import { useGameStore } from '@stores/useGameStore.ts'
 
 const gameStore = useGameStore()
@@ -10,6 +11,7 @@ const gameStore = useGameStore()
       <li>
         Счетчик ходов:<span>{{ gameStore.movesCount }}</span>
       </li>
+      <NewGame :class="$style.newGame" />
     </ul>
   </header>
 </template>
@@ -37,6 +39,7 @@ const gameStore = useGameStore()
     }
 
     li {
+      @include no-select;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -51,5 +54,9 @@ const gameStore = useGameStore()
       }
     }
   }
+}
+
+.newGame {
+  margin-left: 12px;
 }
 </style>
