@@ -11,19 +11,22 @@ export class Column implements IColumn {
     this.flipLastCard()
   }
 
+  public get isEmpty(): boolean {
+    return this.cards.length === 0
+  }
+
   private flipLastCard(): void {
     for (const card of this.cards) {
       const lastCard = this.tryToGetLastCard()
-      if (lastCard && lastCard.id === card.id) card.flip()
+
+      if (lastCard && lastCard.id === card.id && !lastCard.isFlipped) {
+        card.flip()
+      }
     }
   }
 
   public hasCard(cardId: string): boolean {
     return Boolean(this.cards.find(card => card.id === cardId))
-  }
-
-  public isEmpty(): boolean {
-    return this.cards.length === 0
   }
 
   public addCard(card: Card): void {
@@ -34,15 +37,7 @@ export class Column implements IColumn {
 
   public removeCard(cardId: string): void {
     this.cards = this.cards.filter(card => card.id !== cardId)
-
-    const lastCard = [...this.cards].pop()
-    if (!lastCard) return
-
-    for (const card of this.cards) {
-      if (card.id === lastCard.id) {
-        card.flip()
-      }
-    }
+    this.flipLastCard()
   }
 
   public tryToGetLastCard(): Card | null {

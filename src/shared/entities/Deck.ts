@@ -31,7 +31,7 @@ export class Deck {
     })
   }
 
-  public shuffle(): void {
+  private shuffle(): void {
     this.cards = this.shuffler.shuffle(this.cards)
   }
 }

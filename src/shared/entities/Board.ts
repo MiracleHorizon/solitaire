@@ -63,8 +63,6 @@ export class Board {
 
       // Если карта перемещается из столбца, то она из него исключается.
       if (card.inColumn) {
-        console.log(card)
-
         for (const column of this.columns) {
           if (column.id !== card.column) continue
 
@@ -79,6 +77,7 @@ export class Board {
           foundation.removeCard(card.id)
         }
 
+        // Добавляем карту на основание.
         if (foundation.id === foundationId) {
           foundation.addCard(card)
         }
@@ -136,10 +135,11 @@ export class Board {
   }
 
   public addManyCardsToColumn(columnId: number, cardsIds: string[]): void {
-    const arr = [...this.deck.cards].sort(
-      (cardA, cardB) => cardB.rank - cardA.rank
-    )
-    for (const card of arr) {
+    const sortedByRank = this.deck.cards
+      .slice(0)
+      .sort((cardA, cardB) => cardB.rank - cardA.rank)
+
+    for (const card of sortedByRank) {
       if (!cardsIds.includes(card.id)) continue
       this.addOneCardToColumn(columnId, card.id)
     }

@@ -1,0 +1,45 @@
+<script setup lang="ts">
+import Play from '@ui/icons/Play.vue'
+import { useGameStore } from '@stores/useGameStore.ts'
+
+const gameStore = useGameStore()
+</script>
+
+<template>
+  <button :class="$style.root" @click="gameStore.$reset()">
+    <span :class="$style.icon">
+      <Play />
+    </span>
+    <span :class="$style.text">Новая игра</span>
+  </button>
+</template>
+
+<style module lang="scss">
+@import '@styles/variables';
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 10px;
+
+  &:hover {
+    .icon,
+    .text {
+      color: $white;
+    }
+  }
+}
+
+.icon {
+  display: inline-block;
+  margin-right: 6px;
+  color: $gray;
+}
+
+.text {
+  font-size: 18px;
+  color: $gray;
+}
+</style>

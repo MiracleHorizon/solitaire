@@ -21,7 +21,7 @@ export class Foundation implements IFoundation {
     if (!this.suit) {
       this.setSuit(card.suit)
     }
-    if (!this.maxRank) {
+    if (!this.maxRank || this.maxRank < card.rank) {
       this.setMaxRank(card.rank)
     }
 
