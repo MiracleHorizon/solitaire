@@ -14,9 +14,6 @@
       "@public/*": [
         "public/*"
       ],
-      "@images/*": [
-        "public/images/*"
-      ],
       "@components/*": [
         "src/components/*"
       ],
@@ -32,6 +29,9 @@
       "@static/*": [
         "src/assets/static/*"
       ],
+      "@images/*": [
+        "src/assets/static/images/*"
+      ],
       "@styles/*": [
         "src/assets/styles/*"
       ],
@@ -46,7 +46,7 @@
       ],
       "@app-types/*": [
         "src/shared/types/*"
-      ],
+      ]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",
