@@ -11,6 +11,10 @@ export class Column implements IColumn {
     this.flipLastCard()
   }
 
+  public get isEmpty(): boolean {
+    return this.cards.length === 0
+  }
+
   private flipLastCard(): void {
     for (const card of this.cards) {
       const lastCard = this.tryToGetLastCard()
@@ -23,10 +27,6 @@ export class Column implements IColumn {
 
   public hasCard(cardId: string): boolean {
     return Boolean(this.cards.find(card => card.id === cardId))
-  }
-
-  public isEmpty(): boolean {
-    return this.cards.length === 0
   }
 
   public addCard(card: Card): void {
