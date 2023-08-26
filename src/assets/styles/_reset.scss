@@ -39,6 +39,10 @@ ul {
 // Forms, inputs
 input,
 button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+
   &:focus,
   &:active {
     outline: none;
