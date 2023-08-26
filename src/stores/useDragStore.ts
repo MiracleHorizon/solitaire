@@ -35,7 +35,6 @@ export const useDragStore = defineStore('drag', {
     setColumnId(id: number): void {
       this.columnId = id
     },
-
     resetColumnId(): void {
       this.columnId = null
     },
