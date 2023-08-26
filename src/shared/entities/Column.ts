@@ -14,7 +14,10 @@ export class Column implements IColumn {
   private flipLastCard(): void {
     for (const card of this.cards) {
       const lastCard = this.tryToGetLastCard()
-      if (lastCard && lastCard.id === card.id) card.flip()
+
+      if (lastCard && lastCard.id === card.id && !lastCard.isFlipped) {
+        card.flip()
+      }
     }
   }
 
@@ -34,15 +37,7 @@ export class Column implements IColumn {
 
   public removeCard(cardId: string): void {
     this.cards = this.cards.filter(card => card.id !== cardId)
-
-    const lastCard = [...this.cards].pop()
-    if (!lastCard) return
-
-    for (const card of this.cards) {
-      if (card.id === lastCard.id) {
-        card.flip()
-      }
-    }
+    this.flipLastCard()
   }
 
   public tryToGetLastCard(): Card | null {
