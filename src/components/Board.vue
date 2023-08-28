@@ -1,9 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TopSection from './sections/TopSection/TopSection.vue'
+import BottomSection from './sections/BottomSection/BottomSection.vue'
+</script>
 
 <template>
   <main :class="$style.root">
-    <section></section>
-    <section></section>
+    <TopSection />
+    <BottomSection />
   </main>
 </template>
 
@@ -18,6 +21,25 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+  padding-top: 24px;
+  padding-left: 18px;
+  padding-right: 18px;
   background: url('@static/images/board_bg.png') $board-green;
+
+  @media screen and (max-width: $tablet) {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  @media screen and (max-width: $mobileLg) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  section {
+    width: 90vw;
+    max-width: 1200px;
+    height: max-content;
+  }
 }
 </style>

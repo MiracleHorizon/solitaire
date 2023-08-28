@@ -10,12 +10,12 @@ interface Alias {
 export const aliases: Alias[] = [
   { find: '@', path: './' },
   { find: '@public', path: './public' },
-  { find: '@images', path: './public/images' },
   { find: '@components', path: './src/components' },
   { find: '@ui', path: './src/components/ui' },
   { find: '@stores', path: './src/stores' },
   { find: '@assets', path: './src/assets' },
   { find: '@static', path: './src/assets/static' },
+  { find: '@images', path: './src/assets/static/images' },
   { find: '@styles', path: './src/assets/styles' },
   { find: '@shared', path: './src/shared' },
   { find: '@utils', path: './src/shared/utils' },

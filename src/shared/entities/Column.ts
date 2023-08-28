@@ -1,5 +1,9 @@
-import { Card } from './Card.ts'
-import type { IColumn } from '@app-types/Column.ts'
+import type { Card } from './Card.ts'
+
+interface IColumn {
+  id: number
+  cards: Card[]
+}
 
 export class Column implements IColumn {
   public readonly id: number
@@ -31,7 +35,6 @@ export class Column implements IColumn {
 
   public addCard(card: Card): void {
     card.setColumn(this.id)
-    card.setFoundation(null)
     this.cards.push(card)
   }
 

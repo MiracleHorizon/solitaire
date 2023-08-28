@@ -25,7 +25,7 @@ export class Deck {
       id: v4(),
       wasDealt: false,
       isFlipped: false,
-      foundation: null,
+      basis: null,
       column: null,
       ...cardBase
     })
