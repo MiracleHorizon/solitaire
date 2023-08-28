@@ -1,9 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TopSection from './sections/TopSection/TopSection.vue'
+</script>
 
 <template>
   <main :class="$style.root">
-    <section></section>
-    <section></section>
+    <TopSection />
   </main>
 </template>
 
@@ -31,6 +32,12 @@
   @media screen and (max-width: $mobileLg) {
     padding-left: 10px;
     padding-right: 10px;
+  }
+
+  section {
+    width: 90vw;
+    max-width: 1200px;
+    height: max-content;
   }
 }
 </style>
