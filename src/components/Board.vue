@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import TopSection from './sections/TopSection/TopSection.vue'
+import BottomSection from './sections/BottomSection/BottomSection.vue'
 </script>
 
 <template>
   <main :class="$style.root">
     <TopSection />
+    <BottomSection />
   </main>
 </template>
 
