@@ -1,3 +1,4 @@
+import { Shuffler } from '@utils/Shuffler.ts'
 import { Deck } from './Deck.ts'
 import { Column } from './Column.ts'
 import { Basis } from './Basis.ts'
@@ -6,6 +7,7 @@ import type { Card } from './Card.ts'
 export class Board {
   private readonly TOTAL_BASES: number = 4
   private readonly TOTAL_COLUMNS: number = 7
+  private readonly shuffler: Shuffler = new Shuffler()
 
   public readonly deck: Deck
   public readonly bases: Basis[] = []
@@ -13,6 +15,7 @@ export class Board {
 
   constructor() {
     this.deck = new Deck()
+    this.shuffleDeck()
     this.createBases()
     this.createColumns()
   }
@@ -143,5 +146,9 @@ export class Board {
       if (!cardsIds.includes(card.id)) continue
       this.addOneCardToColumn(columnId, card.id)
     }
+  }
+
+  private shuffleDeck(): void {
+    this.deck.cards = this.shuffler.shuffle(this.deck.cards)
   }
 }
