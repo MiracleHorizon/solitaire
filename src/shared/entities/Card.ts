@@ -1,4 +1,12 @@
-import { Color, type ICard, Rank, Suit } from '@app-types/card'
+import { Color, type ICardBase, Rank, Suit } from '@app-types/card'
+
+interface ICard extends ICardBase {
+  id: string
+  wasDealt: boolean
+  isFlipped: boolean
+  column: number | null
+  basis: number | null
+}
 
 export class Card implements ICard {
   public readonly id: string
@@ -7,7 +15,7 @@ export class Card implements ICard {
   public readonly color: Color
   public readonly image: string
   public column: number | null
-  public foundation: number | null
+  public basis: number | null
   public wasDealt: boolean
   public isFlipped: boolean
 
@@ -19,7 +27,7 @@ export class Card implements ICard {
     image,
     wasDealt,
     isFlipped,
-    foundation,
+    basis,
     column
   }: ICard) {
     this.id = id
@@ -29,7 +37,7 @@ export class Card implements ICard {
     this.image = image
     this.wasDealt = wasDealt
     this.isFlipped = isFlipped
-    this.foundation = foundation
+    this.basis = basis
     this.column = column
   }
 
@@ -37,16 +45,18 @@ export class Card implements ICard {
     return this.column !== null
   }
 
-  public get inFoundation(): boolean {
-    return this.foundation !== null
+  public get inBasis(): boolean {
+    return this.basis !== null
   }
 
   public setColumn(column: number | null): void {
     this.column = column
+    this.basis = null
   }
 
-  public setFoundation(foundation: number | null): void {
-    this.foundation = foundation
+  public setBasis(basis: number | null): void {
+    this.basis = basis
+    this.column = null
   }
 
   public deal(): void {

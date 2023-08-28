@@ -1,11 +1,17 @@
-import { Card } from './Card.ts'
 import { Rank, Suit } from '@app-types/card'
-import type { IFoundation } from '@app-types/Foundation.ts'
+import type { Card } from './Card.ts'
 
-export class Foundation implements IFoundation {
-  public maxRank: Rank | null = null
-  public suit: Suit | null = null
+export interface IBasis {
+  id: number
+  maxRank: Rank | null
+  suit: Suit | null
+  cards: Card[]
+}
+
+export class Basis implements IBasis {
   public cards: Card[] = []
+  public suit: Suit | null = null
+  public maxRank: Rank | null = null
 
   constructor(public readonly id: number) {}
 
@@ -21,13 +27,12 @@ export class Foundation implements IFoundation {
     if (!this.suit) {
       this.setSuit(card.suit)
     }
+
     if (!this.maxRank || this.maxRank < card.rank) {
       this.setMaxRank(card.rank)
     }
 
-    card.setFoundation(this.id)
-    card.setColumn(null)
-
+    card.setBasis(this.id)
     this.cards.push(card)
   }
 

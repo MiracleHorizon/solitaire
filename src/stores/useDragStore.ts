@@ -6,7 +6,7 @@ interface State {
   card: Card | null
   cards: Card[]
   columnId: number | null
-  foundationId: number | null
+  basisId: number | null
 }
 
 export const useDragStore = defineStore('drag', {
@@ -14,7 +14,7 @@ export const useDragStore = defineStore('drag', {
     card: null,
     cards: [],
     columnId: null,
-    foundationId: null
+    basisId: null
   }),
 
   actions: {
@@ -39,11 +39,11 @@ export const useDragStore = defineStore('drag', {
       this.columnId = null
     },
 
-    setFoundationId(id: number): void {
-      this.foundationId = id
+    setBasisId(id: number): void {
+      this.basisId = id
     },
-    resetFoundationId(): void {
-      this.foundationId = null
+    resetBasisId(): void {
+      this.basisId = null
     }
   }
 })

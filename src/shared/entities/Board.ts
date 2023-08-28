@@ -1,23 +1,23 @@
-import { Card } from './Card.ts'
 import { Deck } from './Deck.ts'
 import { Column } from './Column.ts'
-import { Foundation } from './Foundation.ts'
+import { Basis } from './Basis.ts'
+import type { Card } from './Card.ts'
 
 export class Board {
+  private readonly TOTAL_BASES: number = 4
   private readonly TOTAL_COLUMNS: number = 7
-  private readonly TOTAL_FOUNDATIONS: number = 4
 
   public readonly deck: Deck
-  public columns: Column[] = []
-  public foundations: Foundation[] = []
+  public readonly bases: Basis[] = []
+  public readonly columns: Column[] = []
 
   constructor() {
     this.deck = new Deck()
+    this.createBases()
     this.createColumns()
-    this.createFoundations()
   }
 
-  public get undealtCards(): Card[] {
+  public get cardsReserve(): Card[] {
     return this.deck.cards.filter(card => !card.wasDealt)
   }
 
@@ -48,16 +48,16 @@ export class Board {
     }
   }
 
-  private createFoundations(): void {
-    this.foundations.length = 0
+  private createBases(): void {
+    this.bases.length = 0
 
-    for (let i = 1; i <= this.TOTAL_FOUNDATIONS; i++) {
-      const foundation = new Foundation(i)
-      this.foundations.push(foundation)
+    for (let i = 1; i <= this.TOTAL_BASES; i++) {
+      const basis = new Basis(i)
+      this.bases.push(basis)
     }
   }
 
-  public addCardToFoundation(foundationId: number, cardId: string): void {
+  public addCardToBasis(basisId: number, cardId: string): void {
     for (const card of this.deck.cards) {
       if (card.id !== cardId) continue
 
@@ -71,15 +71,15 @@ export class Board {
         }
       }
 
-      for (const foundation of this.foundations) {
+      for (const basis of this.bases) {
         // Если карта перемещается из другого основания, то она из него исключается.
-        if (foundation.hasCard(card.id)) {
-          foundation.removeCard(card.id)
+        if (basis.hasCard(card.id)) {
+          basis.removeCard(card.id)
         }
 
         // Добавляем карту на основание.
-        if (foundation.id === foundationId) {
-          foundation.addCard(card)
+        if (basis.id === basisId) {
+          basis.addCard(card)
         }
       }
 
@@ -101,11 +101,11 @@ export class Board {
       if (card.id !== cardId) continue
 
       // Если карта перемещается из основания, то она из него исключается.
-      if (card.inFoundation) {
-        for (const foundation of this.foundations) {
-          if (foundation.id !== card.foundation) continue
+      if (card.inBasis) {
+        for (const basis of this.bases) {
+          if (basis.id !== card.basis) continue
 
-          foundation.removeCard(card.id)
+          basis.removeCard(card.id)
           break
         }
       }

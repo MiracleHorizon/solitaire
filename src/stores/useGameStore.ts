@@ -7,7 +7,7 @@ import { RECORD_FIELD_NAME } from '@shared/constants/storages.ts'
 import { Board } from '@entities/Board.ts'
 import type { Card } from '@entities/Card.ts'
 import type { Column } from '@entities/Column.ts'
-import type { Foundation } from '@entities/Foundation.ts'
+import type { Basis } from '@entities/Basis.ts'
 import { Rank } from '@app-types/card'
 
 interface State {
@@ -39,13 +39,13 @@ export const useGameStore = defineStore('game', {
 
   getters: {
     columns: state => state.board.columns as Column[],
-    foundations: state => state.board.foundations as Foundation[],
-    undealtCards: state => state.board.undealtCards as Card[]
+    bases: state => state.board.bases as Basis[],
+    cardsReserve: state => state.board.cardsReserve as Card[]
   },
 
   actions: {
-    addCardToFoundation(foundationId: number, cardId: string): void {
-      this.board.addCardToFoundation(foundationId, cardId)
+    addCardToBasis(basisId: number, cardId: string): void {
+      this.board.addCardToBasis(basisId, cardId)
       this.makeMove()
     },
 
@@ -70,8 +70,8 @@ export const useGameStore = defineStore('game', {
     },
 
     checkGameState(): void {
-      const isVictory = !this.foundations
-        .map(foundation => foundation.maxRank === Rank.KING)
+      const isVictory = !this.bases
+        .map(basis => basis.maxRank === Rank.KING)
         .includes(false)
 
       if (!isVictory) return
