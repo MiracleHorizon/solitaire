@@ -62,47 +62,52 @@ export const useGameStore = defineStore('game', {
 
     makeMove(): void {
       this.movesCount += 1
-      this.checkGameState()
+      this._checkGameState()
     },
 
     makeManyMoves(movesCount: number): void {
       this.movesCount += movesCount
-      this.checkGameState()
+      this._checkGameState()
     },
 
-    checkGameState(): void {
+    _checkGameState(): void {
       const isVictory = !this.bases
         .map(basis => basis.maxRank === Rank.KING)
         .includes(false)
 
       if (!isVictory) return
 
+      this.isVictory = true
+      this._updateSessionRecord()
+      this._updatePersonalRecord()
+      this._playVictorySound()
+    },
+
+    _playVictorySound(): void {
       const victoryAudio = new Audio(victorySound)
       victoryAudio.play()
-
-      this.isVictory = true
-      this.updateSessionRecord()
-      this.updatePersonalRecord()
     },
 
-    updateSessionRecord(): void {
-      if (!this.sessionRecord) {
-        this.sessionRecord = this.movesCount
-        sessionStorageHandler.set(RECORD_FIELD_NAME, this.sessionRecord)
-      } else if (this.sessionRecord > this.movesCount) {
-        this.sessionRecord = this.movesCount
-        sessionStorageHandler.set(RECORD_FIELD_NAME, this.sessionRecord)
+    _updateSessionRecord(): void {
+      if (!this.sessionRecord || this.sessionRecord > this.movesCount) {
+        this._setSessionRecord()
       }
     },
 
-    updatePersonalRecord(): void {
-      if (!this.personalRecord) {
-        this.personalRecord = this.movesCount
-        localStorageHandler.set(RECORD_FIELD_NAME, this.personalRecord)
-      } else if (this.personalRecord > this.movesCount) {
-        this.personalRecord = this.movesCount
-        localStorageHandler.set(RECORD_FIELD_NAME, this.personalRecord)
+    _setSessionRecord(): void {
+      this.sessionRecord = this.movesCount
+      sessionStorageHandler.set(RECORD_FIELD_NAME, this.sessionRecord)
+    },
+
+    _updatePersonalRecord(): void {
+      if (!this.personalRecord || this.personalRecord > this.movesCount) {
+        this._setPersonalRecord()
       }
+    },
+
+    _setPersonalRecord(): void {
+      this.personalRecord = this.movesCount
+      localStorageHandler.set(RECORD_FIELD_NAME, this.personalRecord)
     }
   }
 })
