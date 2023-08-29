@@ -60,6 +60,25 @@ export const useGameStore = defineStore('game', {
       this.makeMove()
     },
 
+    isDropToBasisAvailable(basisId: number, card: Card): boolean {
+      for (const basis of this.bases) {
+        if (basis.id !== basisId) continue
+
+        const upperCard = basis.tryToGetLastCard()
+
+        if (!upperCard) {
+          return card.rank === Rank.ACE
+        }
+
+        const isRankAvailable = upperCard.rank + 1 === card.rank
+        const isSuitAvailable = upperCard.suit === card.suit
+
+        return isRankAvailable && isSuitAvailable
+      }
+
+      return false
+    },
+
     makeMove(): void {
       this.movesCount += 1
       this._checkGameState()
