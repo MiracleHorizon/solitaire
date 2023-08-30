@@ -24,7 +24,7 @@ import BottomSection from './sections/BottomSection/BottomSection.vue'
   padding-top: 24px;
   padding-left: 18px;
   padding-right: 18px;
-  background: url('@static/images/board_bg.png') $board-green;
+  background: url('@images/board_bg.png') $board-green;
 
   @media screen and (max-width: $tablet) {
     padding-left: 14px;

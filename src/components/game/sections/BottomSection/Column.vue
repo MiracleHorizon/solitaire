@@ -35,7 +35,7 @@ const handleColumnDragOver = (ev: DragEvent) => {
   if (!dragCard && dragCards.length === 0) return
 
   const isColumnEmpty = props.column.isEmpty
-  const lastColumnCard = props.column.tryToGetLastCard()
+  const lastColumnCard = props.column.getUpperCard()
 
   const firstDragCard = dragCards[0]
 
@@ -82,7 +82,7 @@ const handleColumnDrop = () => {
   if (!dragCard && dragCards.length === 0) return
 
   const isColumnEmpty = props.column.isEmpty
-  const lastColumnCard = props.column.tryToGetLastCard()
+  const lastColumnCard = props.column.getUpperCard()
 
   const dragCardsIds = dragCards.map(card => card.id)
   const firstDragCard = dragCards[0]

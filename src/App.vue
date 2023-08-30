@@ -1,12 +1,8 @@
-<script setup lang="ts">
-import Header from '@components/Header.vue'
-import Board from '@components/Board.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div :class="$style.root">
-    <Header />
-    <Board />
+    <router-view />
   </div>
 </template>
 

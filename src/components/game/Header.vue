@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NewGame from '@components/NewGame.vue'
+import NewGame from './NewGame.vue'
 import { useGameStore } from '@stores/game.ts'
 
 const gameStore = useGameStore()
