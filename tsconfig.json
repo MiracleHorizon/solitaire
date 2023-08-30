@@ -17,8 +17,14 @@
       "@components/*": [
         "src/components/*"
       ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
       "@ui/*": [
         "src/components/ui/*"
+      ],
+      "@router/*": [
+        "src/router/*"
       ],
       "@stores/*": [
         "src/stores/*"
