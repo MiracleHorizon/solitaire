@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { LocalStorageHandler } from '@utils/storages/LocalStorageHandler.ts'
 import { SessionStorageHandler } from '@utils/storages/SessionStorageHandler.ts'
 import { RECORD_FIELD_NAME } from '@shared/constants/storages.ts'
+import victorySound from '@public/audio/victory.mp3'
 
 import { Board } from '@entities/Board.ts'
 import type { Card } from '@entities/Card.ts'
@@ -59,17 +60,36 @@ export const useGameStore = defineStore('game', {
       this.makeMove()
     },
 
+    isDropToBasisAvailable(basisId: number, card: Card): boolean {
+      for (const basis of this.bases) {
+        if (basis.id !== basisId) continue
+
+        const upperCard = basis.tryToGetLastCard()
+
+        if (!upperCard) {
+          return card.rank === Rank.ACE
+        }
+
+        const isRankAvailable = upperCard.rank + 1 === card.rank
+        const isSuitAvailable = upperCard.suit === card.suit
+
+        return isRankAvailable && isSuitAvailable
+      }
+
+      return false
+    },
+
     makeMove(): void {
       this.movesCount += 1
-      this.checkGameState()
+      this._checkGameState()
     },
 
     makeManyMoves(movesCount: number): void {
       this.movesCount += movesCount
-      this.checkGameState()
+      this._checkGameState()
     },
 
-    checkGameState(): void {
+    _checkGameState(): void {
       const isVictory = !this.bases
         .map(basis => basis.maxRank === Rank.KING)
         .includes(false)
@@ -77,28 +97,36 @@ export const useGameStore = defineStore('game', {
       if (!isVictory) return
 
       this.isVictory = true
-      this.updateSessionRecord()
-      this.updatePersonalRecord()
+      this._updateSessionRecord()
+      this._updatePersonalRecord()
+      this._playVictorySound()
     },
 
-    updateSessionRecord(): void {
-      if (!this.sessionRecord) {
-        this.sessionRecord = this.movesCount
-        sessionStorageHandler.set(RECORD_FIELD_NAME, this.sessionRecord)
-      } else if (this.sessionRecord > this.movesCount) {
-        this.sessionRecord = this.movesCount
-        sessionStorageHandler.set(RECORD_FIELD_NAME, this.sessionRecord)
+    _playVictorySound(): void {
+      const victoryAudio = new Audio(victorySound)
+      victoryAudio.play()
+    },
+
+    _updateSessionRecord(): void {
+      if (!this.sessionRecord || this.sessionRecord > this.movesCount) {
+        this._setSessionRecord()
       }
     },
 
-    updatePersonalRecord(): void {
-      if (!this.personalRecord) {
-        this.personalRecord = this.movesCount
-        localStorageHandler.set(RECORD_FIELD_NAME, this.personalRecord)
-      } else if (this.personalRecord > this.movesCount) {
-        this.personalRecord = this.movesCount
-        localStorageHandler.set(RECORD_FIELD_NAME, this.personalRecord)
+    _setSessionRecord(): void {
+      this.sessionRecord = this.movesCount
+      sessionStorageHandler.set(RECORD_FIELD_NAME, this.sessionRecord)
+    },
+
+    _updatePersonalRecord(): void {
+      if (!this.personalRecord || this.personalRecord > this.movesCount) {
+        this._setPersonalRecord()
       }
+    },
+
+    _setPersonalRecord(): void {
+      this.personalRecord = this.movesCount
+      localStorageHandler.set(RECORD_FIELD_NAME, this.personalRecord)
     }
   }
 })
