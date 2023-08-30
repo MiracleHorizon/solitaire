@@ -3,8 +3,8 @@ import { computed } from 'vue'
 
 import Card from '@ui/Card.vue'
 import CardCover from '@ui/CardCover.vue'
-import { useGameStore } from '@stores/useGameStore.ts'
-import { useDragStore } from '@stores/useDragStore.ts'
+import { useGameStore } from '@stores/game.ts'
+import { useDragStore } from '@stores/drag.ts'
 import { Card as CardImpl } from '@entities/Card.ts'
 
 const gameStore = useGameStore()

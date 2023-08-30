@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Basis from './Basis.vue'
-import { useGameStore } from '@stores/useGameStore.ts'
+import { useGameStore } from '@stores/game.ts'
 
 const gameStore = useGameStore()
 </script>

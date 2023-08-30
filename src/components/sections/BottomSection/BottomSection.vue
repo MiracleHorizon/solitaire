@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Column from './Column.vue'
-import { useGameStore } from '@stores/useGameStore.ts'
+import { useGameStore } from '@stores/game.ts'
 
 const gameStore = useGameStore()
 </script>

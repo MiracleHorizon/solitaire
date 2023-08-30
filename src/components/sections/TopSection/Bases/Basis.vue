@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import Card from '@ui/Card.vue'
 import CardCover from '@ui/CardCover.vue'
-import { useDragStore } from '@stores/useDragStore.ts'
-import { useGameStore } from '@stores/useGameStore.ts'
+import { useDragStore } from '@stores/drag.ts'
+import { useGameStore } from '@stores/game.ts'
 import type { Basis } from '@entities/Basis.ts'
 
 const props = defineProps<{ basis: Basis }>()
