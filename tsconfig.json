@@ -14,11 +14,14 @@
       "@public/*": [
         "public/*"
       ],
-      "@components/*": [
-        "src/components/*"
-      ],
       "@pages/*": [
         "src/pages/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
+      "@components/*": [
+        "src/components/*"
       ],
       "@ui/*": [
         "src/components/ui/*"

@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import Board from './Board.vue'
+import Header from './Header/Header.vue'
 </script>
 
 <template>
   <div :class="$style.root">
-    <Board />
+    <Header />
+    <slot />
   </div>
 </template>
 
@@ -12,7 +13,8 @@ import Board from './Board.vue'
 @import '@styles/variables';
 
 .root {
-  width: 100%;
-  height: calc(100% - $header-height);
+  width: 100vw;
+  height: 100vh;
+  background: url('@images/board_bg.png') $board-green;
 }
 </style>

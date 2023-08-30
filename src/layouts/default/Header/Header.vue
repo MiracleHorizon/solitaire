@@ -1,13 +1,17 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
+
 import NewGame from './NewGame.vue'
 import { useGameStore } from '@stores/game.ts'
+import { Routes } from '@router/routes.ts'
 
+const route = useRoute()
 const gameStore = useGameStore()
 </script>
 
 <template>
   <header :class="$style.root">
-    <ul>
+    <ul v-if="route.path === Routes.GAME">
       <li>
         Счетчик ходов:<span>{{ gameStore.movesCount }}</span>
       </li>

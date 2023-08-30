@@ -11,12 +11,11 @@ import BottomSection from './sections/BottomSection/BottomSection.vue'
 </template>
 
 <style module lang="scss">
-@import '@styles/variables';
 @import '@styles/breakpoints';
 
 .root {
   width: 100%;
-  height: calc(100% - $header-height);
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -24,7 +23,6 @@ import BottomSection from './sections/BottomSection/BottomSection.vue'
   padding-top: 24px;
   padding-left: 18px;
   padding-right: 18px;
-  background: url('@images/board_bg.png') $board-green;
 
   @media screen and (max-width: $tablet) {
     padding-left: 14px;

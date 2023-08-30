@@ -1,12 +1,9 @@
-<template>
-  <div :class="$style.root">
-    <router-view />
-  </div>
-</template>
+<script setup lang="ts">
+import DefaultLayout from '@layouts/default/default.vue'
+</script>
 
-<style module lang="scss">
-.root {
-  width: 100vw;
-  height: 100vh;
-}
-</style>
+<template>
+  <DefaultLayout>
+    <RouterView />
+  </DefaultLayout>
+</template>

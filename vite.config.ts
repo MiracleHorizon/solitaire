@@ -11,6 +11,7 @@ const aliases: Alias[] = [
   { find: '@', path: './' },
   { find: '@public', path: './public' },
   { find: '@pages', path: './src/pages' },
+  { find: '@layouts', path: './src/layouts' },
   { find: '@components', path: './src/components' },
   { find: '@ui', path: './src/components/ui' },
   { find: '@router', path: './src/router' },
