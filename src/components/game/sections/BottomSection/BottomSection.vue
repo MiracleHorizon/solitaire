@@ -17,7 +17,7 @@ const gameStore = useGameStore()
 
 <style module lang="scss">
 .root {
-  height: max-content;
+  height: -webkit-fill-available;
   display: flex;
   justify-content: space-between;
   margin-top: 40px;

@@ -4,7 +4,7 @@ import Board from './Board.vue'
 
 <template>
   <div :class="$style.root">
-    <Board />
+    <Board @contextmenu.prevent />
   </div>
 </template>
 

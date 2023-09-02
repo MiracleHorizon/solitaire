@@ -1,10 +1,62 @@
 <script setup lang="ts">
 import TopSection from './sections/TopSection/TopSection.vue'
 import BottomSection from './sections/BottomSection/BottomSection.vue'
+import { useDragStore } from '@stores/drag.ts'
+
+const dragStore = useDragStore()
+
+const handleMouseMove = (ev: MouseEvent) => {
+  if (!dragStore.card) return
+  handler(ev.clientX, ev.clientY)
+}
+
+const handleTouchMove = (ev: TouchEvent) => {
+  if (!dragStore.card) return
+
+  const touches = ev.touches
+  const firstTouch = touches.item(0)
+
+  if (!firstTouch) return
+
+  handler(firstTouch.clientX, firstTouch.clientY)
+}
+
+const handler = (x: number, y: number) => {
+  const elementsBelow = document.elementsFromPoint(x, y)
+
+  for (const element of elementsBelow as HTMLElement[]) {
+    const droppable = element.dataset.droppable
+    if (!droppable) continue
+
+    const baseId = element.dataset.baseId
+    const columnId = element.dataset.columnId
+    if (!baseId && !columnId) continue
+
+    if (baseId && dragStore.baseId !== Number(baseId)) {
+      dragStore.setBaseId(Number(baseId))
+      dragStore.resetColumnId()
+      break
+    }
+
+    if (columnId && dragStore.columnId !== Number(columnId)) {
+      dragStore.setColumnId(Number(columnId))
+      dragStore.resetBaseId()
+      break
+    }
+  }
+
+  dragStore.setOffset(x, y)
+}
 </script>
 
 <template>
-  <main :class="$style.root">
+  <main
+    :class="$style.root"
+    @mousemove="handleMouseMove"
+    @touchmove.passive="handleTouchMove"
+    @touchend="dragStore.resetCard(), dragStore.resetOffset()"
+    @touchcancel="dragStore.resetOffset()"
+  >
     <TopSection />
     <BottomSection />
   </main>
@@ -37,7 +89,6 @@ import BottomSection from './sections/BottomSection/BottomSection.vue'
   section {
     width: 90vw;
     max-width: 1200px;
-    height: max-content;
   }
 }
 </style>

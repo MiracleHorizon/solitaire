@@ -1,46 +1,15 @@
 <script setup lang="ts">
-import Card from '@ui/Card.vue'
+import Card from '@components/game/Card.vue'
 import CardCover from '@ui/CardCover.vue'
-import { useDragStore } from '@stores/drag.ts'
-import { useGameStore } from '@stores/game.ts'
 import type { Base } from '@entities/Base.ts'
 
-const props = defineProps<{ base: Base }>()
-const baseId = props.base.id
-
-const gameStore = useGameStore()
-const dragStore = useDragStore()
-
-const isDropAvailable = () => {
-  const card = dragStore.card
-
-  if (!card) return
-
-  return gameStore.isDropToBasisAvailable(baseId, card)
-}
-
-const handleDrop = () => {
-  if (!dragStore.card || !isDropAvailable()) return
-  gameStore.addCardToBasis(baseId, dragStore.card.id)
-}
+defineProps<{ base: Base }>()
 </script>
 
 <template>
-  <div
-    :class="$style.root"
-    @dragenter="dragStore.setBasisId(baseId), dragStore.resetColumnId()"
-    @dragleave="dragStore.resetBasisId"
-    @dragover="isDropAvailable() && $event.preventDefault()"
-    @drop.prevent="handleDrop"
-  >
+  <div :data-base-id="base.id" :data-droppable="true" :class="$style.root">
     <CardCover />
-    <Card
-      v-for="card of base.cards"
-      :card="card"
-      :draggable="true"
-      :class="$style.card"
-      @dragstart.stop="dragStore.setCard(card)"
-    />
+    <Card v-for="card of base.cards" :card="card" :class="$style.card" />
   </div>
 </template>
 

@@ -5,7 +5,7 @@ interface ICard extends ICardBase {
   wasDealt: boolean
   isFlipped: boolean
   column: number | null
-  basis: number | null
+  base: number | null
 }
 
 export class Card implements ICard {
@@ -15,9 +15,17 @@ export class Card implements ICard {
   public readonly color: Color
   public readonly image: string
   public column: number | null
-  public basis: number | null
+  public base: number | null
   public wasDealt: boolean
   public isFlipped: boolean
+
+  public get inColumn(): boolean {
+    return this.column !== null
+  }
+
+  public get inBase(): boolean {
+    return this.base !== null
+  }
 
   constructor({
     id,
@@ -27,7 +35,7 @@ export class Card implements ICard {
     image,
     wasDealt,
     isFlipped,
-    basis,
+    base,
     column
   }: ICard) {
     this.id = id
@@ -37,25 +45,17 @@ export class Card implements ICard {
     this.image = image
     this.wasDealt = wasDealt
     this.isFlipped = isFlipped
-    this.basis = basis
+    this.base = base
     this.column = column
-  }
-
-  public get inColumn(): boolean {
-    return this.column !== null
-  }
-
-  public get inBasis(): boolean {
-    return this.basis !== null
   }
 
   public setColumn(column: number | null): void {
     this.column = column
-    this.basis = null
+    this.base = null
   }
 
-  public setBasis(basis: number | null): void {
-    this.basis = basis
+  public setBase(base: number | null): void {
+    this.base = base
     this.column = null
   }
 
