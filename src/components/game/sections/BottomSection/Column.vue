@@ -1,5 +1,3 @@
-<!--TODO: CardCover v-if="props.column.cards.length <= 1"-->
-
 <script setup lang="ts">
 import Card from '@components/game/Card.vue'
 import CardCover from '@ui/CardCover.vue'
@@ -10,7 +8,7 @@ defineProps<{ column: Column }>()
 
 <template>
   <div :data-column-id="column.id" :data-droppable="true" :class="$style.root">
-    <CardCover :style="{ position: 'absolute' }" />
+    <CardCover v-if="column.cards.length <= 1" :class="$style.cardCover" />
     <Card v-if="column.cards.length > 0" :card="column.cards[0]" />
   </div>
 </template>
@@ -24,5 +22,9 @@ defineProps<{ column: Column }>()
   display: flex;
   flex-direction: column;
   row-gap: 10px;
+}
+
+.cardCover {
+  position: absolute;
 }
 </style>

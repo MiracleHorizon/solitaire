@@ -4,12 +4,10 @@ import { computed, ref, StyleValue } from 'vue'
 import Card from './Card.vue'
 import { useGameStore } from '@stores/game.ts'
 import { useDragStore } from '@stores/drag.ts'
-import { StringTransformer } from '@utils/StringTransformer'
 import type { Card as CardImpl } from '@entities/Card.ts'
 import cardBack from '@images/cards/card_back.png'
 
 const props = defineProps<{ card: CardImpl; top?: string }>()
-
 const rootNodeRef = ref(null)
 
 const gameStore = useGameStore()
@@ -23,7 +21,7 @@ const nextCard = computed(() => {
   return gameStore.getNextCardInColumn(props.card.column, props.card.id)
 })
 
-const cardIndex = computed(() => {
+const cardIndexInColumn = computed(() => {
   if (!props.card.column) {
     return null
   }
@@ -31,38 +29,75 @@ const cardIndex = computed(() => {
   return gameStore.getCardIndexInColumn(props.card.column, props.card.id)
 })
 
-const style = computed(() => {
+const draggingStyles = computed(() => {
   const nodeRef = rootNodeRef.value as HTMLDivElement | null
 
-  if (!nodeRef || !dragStore.card || dragStore.card.id !== props.card.id) {
-    return
-  }
+  if (!nodeRef || !dragStore.isCardDragging(props.card.id)) return
 
   const offsetX = dragStore.offsetX
   const offsetY = dragStore.offsetY
 
-  if (offsetX === 0 && offsetY === 0) {
-    return
-  }
+  if (offsetX === 0 && offsetY === 0) return
 
-  const rect = nodeRef.getBoundingClientRect()
+  const nodeRect = nodeRef.getBoundingClientRect()
 
   return {
     position: 'fixed',
-    left: offsetX - rect.width / 2 + 'px',
-    top: offsetY - rect.height / 2 + 'px',
     cursor: 'grabbing',
-    zIndex: gameStore.board.deck.cards.length + 1,
-    transform: 'translateX(0px)'
+    left: offsetX - nodeRect.width / 2 + 'px',
+    top: offsetY - nodeRect.height / 2 + 'px',
+    zIndex: gameStore.cards.length + 1,
+    transform: 'translateX(0)'
   } as StyleValue
 })
+
+const handlePosition = () => {
+  if (!props.card.inColumn) {
+    return 'absolute'
+  }
+
+  if (cardIndexInColumn.value === null) {
+    return 'static'
+  }
+
+  return cardIndexInColumn.value === 0 ? 'relative' : 'absolute'
+}
+
+const handleTopPosition = () => {
+  if (props.top) {
+    return props.top
+  }
+
+  if (cardIndexInColumn.value === null) return
+
+  if (props.card.column) {
+    const indexInFlippedCards = gameStore.getCardIndexInColumnFlipped(
+      props.card.column,
+      props.card.id
+    )
+
+    if (indexInFlippedCards === 0 && cardIndexInColumn.value > 0) {
+      return '20%'
+    }
+  }
+
+  if (cardIndexInColumn.value > 0) {
+    return (props.card.isFlipped ? 30 : 20) + '%'
+  }
+}
+
+const startActionHandler = (x: number, y: number) => {
+  if (dragStore.card) return // TODO: Посмотреть
+  dragStore.setOffset(x, y)
+  dragStore.setCard(props.card)
+}
 
 const handleMouseDown = (ev: MouseEvent) => {
   ev.stopPropagation()
 
   if (!props.card.isFlipped) return
 
-  handler(ev.clientX, ev.clientY)
+  startActionHandler(ev.clientX, ev.clientY)
 }
 
 const handleTouchStart = (ev: TouchEvent) => {
@@ -73,13 +108,7 @@ const handleTouchStart = (ev: TouchEvent) => {
 
   if (!props.card.isFlipped || !firstTouch) return
 
-  handler(firstTouch.clientX, firstTouch.clientY)
-}
-
-const handler = (x: number, y: number) => {
-  if (dragStore.card) return // TODO: Посмотреть
-  dragStore.setOffset(x, y)
-  dragStore.setCard(props.card)
+  startActionHandler(firstTouch.clientX, firstTouch.clientY)
 }
 
 const handleBaseDrop = (baseId: number) => {
@@ -122,58 +151,19 @@ const handleMouseUp = () => {
 
   dragStore.$reset()
 }
-
-const handleTopOffset = () => {
-  if (props.top) {
-    return props.top
-  }
-
-  const index = cardIndex.value
-
-  if (index === null) {
-    return
-  }
-
-  if (props.card.column) {
-    const indexInFlipped = gameStore.getCardIndexInColumnFlipped(
-      props.card.column,
-      props.card.id
-    )
-
-    if (indexInFlipped === 0 && index > 0) {
-      return '20%'
-    }
-  }
-
-  if (index > 0) {
-    return (props.card.isFlipped ? 30 : 20) + '%'
-  }
-}
-
-const handlePosition = () => {
-  if (!props.card.inColumn) {
-    return 'absolute'
-  }
-
-  return cardIndex.value !== null
-    ? cardIndex.value > 0
-      ? 'absolute'
-      : 'relative'
-    : 'static'
-}
 </script>
 
 <template>
   <div
     ref="rootNodeRef"
-    :class="$style.root"
+    :class="{
+      [$style.root]: true,
+      [$style.inColumn]: card.inColumn
+    }"
     :style="
-      dragStore.card?.id === card.id
-        ? style
-        : {
-            top: handleTopOffset(),
-            position: handlePosition()
-          }
+      dragStore.isCardDragging(card.id)
+        ? draggingStyles
+        : { top: handleTopPosition(), position: handlePosition() }
     "
     @mousedown="handleMouseDown"
     @mouseup="handleMouseUp"
@@ -182,13 +172,10 @@ const handlePosition = () => {
   >
     <img
       :src="card.isFlipped ? card.image : cardBack"
-      :alt="
-        card.isFlipped
-          ? [StringTransformer.capitalizeWord(card.suit), card.rank].join(' ')
-          : 'Playing card'
-      "
+      :class="$style.image"
+      alt="'Playing card'"
     />
-    <Card v-if="nextCard" :card="nextCard" />
+    <Card v-if="nextCard" :card="nextCard" :key="nextCard.id" />
   </div>
 </template>
 
@@ -200,13 +187,17 @@ const handlePosition = () => {
   cursor: pointer;
   width: $card-width;
   border-radius: 5px;
+  touch-action: none;
+}
+
+.image {
+  @include no-select;
+  pointer-events: none;
+}
+
+.inColumn {
   box-shadow:
     rgba(60, 64, 67, 0.3) 0 1px 2px 0,
     rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
-
-  img {
-    @include no-select;
-    pointer-events: none;
-  }
 }
 </style>

@@ -24,20 +24,13 @@ const handleFlipAll = () => {
 
 <template>
   <div :class="$style.root">
-    <CardCover
-      :style="{ cursor: 'pointer' }"
-      :class="[$style.card, $style.left]"
-      @click="handleFlipAll"
-    />
-    <CardCover :class="[$style.card, $style.flipped]" />
+    <CardCover :class="$style.cardCover" @click="handleFlipAll" />
+    <CardCover :class="[$style.cardCover, $style.flipped]" />
     <Card
       v-for="(card, index) of reserve"
       :card="card"
-      :style="{
-        zIndex: card.isFlipped ? reserve.length + 1 - index : 1,
-        boxShadow: 'none'
-      }"
-      :class="[$style.card, card.isFlipped && $style.flipped]"
+      :style="{ zIndex: card.isFlipped ? reserve.length + 1 - index : 1 }"
+      :class="[card.isFlipped && $style.flipped]"
       @click="handleClickCard(card)"
     />
   </div>
@@ -45,31 +38,21 @@ const handleFlipAll = () => {
 
 <style module lang="scss">
 @import '@styles/variables';
-@import '@styles/breakpoints';
 
 .root {
   position: relative;
   height: $height;
-
-  @media screen and (max-width: $tablet) {
-    height: $height-small;
-  }
 }
 
-.card {
+.cardCover {
   position: absolute;
-  width: $card-width;
 
-  @media screen and (max-width: $tablet) {
-    width: $card-width-small-screen;
+  &:first-of-type {
+    cursor: pointer;
   }
 }
 
 .flipped {
   transform: translateX(calc($card-width + $column-gap));
-
-  @media screen and (max-width: $tablet) {
-    left: calc($card-width-small-screen + $column-gap-small-screen);
-  }
 }
 </style>

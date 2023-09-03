@@ -41,6 +41,7 @@ export const useGameStore = defineStore('game', {
   getters: {
     columns: state => state.board.columns as Column[],
     bases: state => state.board.bases as Base[],
+    cards: state => state.board.deck.cards as Card[],
     cardsReserve: state => state.board.cardsReserve as Card[]
   },
 

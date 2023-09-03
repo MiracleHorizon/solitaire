@@ -48,6 +48,10 @@ export const useDragStore = defineStore('drag', {
     },
     resetBaseId(): void {
       this.baseId = null
+    },
+
+    isCardDragging(cardId: string): boolean {
+      return this.card?.id === cardId
     }
   }
 })
