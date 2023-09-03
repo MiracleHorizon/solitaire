@@ -10,8 +10,10 @@ import cardCover from '@images/cards/card_cover.png'
 
 <style module lang="scss">
 @import '@styles/mixins';
+@import '@styles/variables';
 
 .root {
+  width: $card-width;
   z-index: 0;
   opacity: 0.4;
 

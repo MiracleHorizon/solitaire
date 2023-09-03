@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Column from './Column.vue'
-import { useGameStore } from '@stores/useGameStore.ts'
+import { useGameStore } from '@stores/game.ts'
 
 const gameStore = useGameStore()
 </script>
@@ -17,7 +17,7 @@ const gameStore = useGameStore()
 
 <style module lang="scss">
 .root {
-  height: max-content;
+  height: -webkit-fill-available;
   display: flex;
   justify-content: space-between;
   margin-top: 40px;

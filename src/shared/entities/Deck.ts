@@ -18,11 +18,12 @@ export class Deck {
   }
 
   private createCard(cardBase: ICardBase): Card {
+    // TODO: BaseCard
     return new Card({
       id: v4(),
       wasDealt: false,
       isFlipped: false,
-      basis: null,
+      base: null,
       column: null,
       ...cardBase
     })

@@ -14,11 +14,20 @@
       "@public/*": [
         "public/*"
       ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
       "@components/*": [
         "src/components/*"
       ],
       "@ui/*": [
         "src/components/ui/*"
+      ],
+      "@router/*": [
+        "src/router/*"
       ],
       "@stores/*": [
         "src/stores/*"

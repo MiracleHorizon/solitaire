@@ -1,27 +1,24 @@
 import { Rank, Suit } from '@app-types/card'
+import type { PlacementEntity } from '@app-types/PlacementEntity.ts'
 import type { Card } from './Card.ts'
 
-export interface IBasis {
+export interface IBase {
   id: number
-  maxRank: Rank | null
   suit: Suit | null
+  maxRank: Rank | null
   cards: Card[]
 }
 
-export class Basis implements IBasis {
-  public cards: Card[] = []
+export class Base implements IBase, PlacementEntity {
   public suit: Suit | null = null
   public maxRank: Rank | null = null
-
-  constructor(public readonly id: number) {}
+  public cards: Card[] = []
 
   public get isEmpty(): boolean {
     return this.cards.length === 0
   }
 
-  public hasCard(cardId: string): boolean {
-    return Boolean(this.cards.find(card => card.id === cardId))
-  }
+  constructor(public readonly id: number) {}
 
   public addCard(card: Card): void {
     if (!this.suit) {
@@ -32,7 +29,7 @@ export class Basis implements IBasis {
       this.setMaxRank(card.rank)
     }
 
-    card.setBasis(this.id)
+    card.setBase(this.id)
     this.cards.push(card)
   }
 
@@ -45,23 +42,27 @@ export class Basis implements IBasis {
     }
   }
 
-  private setSuit(suit: Suit): void {
-    this.suit = suit
+  public getUpperCard(): Card {
+    return this.cards[this.cards.length - 1]
   }
 
-  private setMaxRank(rank: Rank): void {
-    this.maxRank = rank
+  public isHasCardWithId(cardId: string): boolean {
+    return Boolean(this.cards.find(card => card.id === cardId))
+  }
+
+  private setSuit(suit: Suit): void {
+    this.suit = suit
   }
 
   private removeSuit(): void {
     this.suit = null
   }
 
-  private removeMaxRank(): void {
-    this.maxRank = null
+  private setMaxRank(rank: Rank): void {
+    this.maxRank = rank
   }
 
-  public tryToGetLastCard(): Card | null {
-    return this.cards[this.cards.length - 1] ?? null
+  private removeMaxRank(): void {
+    this.maxRank = null
   }
 }

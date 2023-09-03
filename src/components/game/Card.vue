@@ -1,0 +1,203 @@
+<script setup lang="ts">
+import { computed, ref, StyleValue } from 'vue'
+
+import Card from './Card.vue'
+import { useGameStore } from '@stores/game.ts'
+import { useDragStore } from '@stores/drag.ts'
+import type { Card as CardImpl } from '@entities/Card.ts'
+import cardBack from '@images/cards/card_back.png'
+
+const props = defineProps<{ card: CardImpl; top?: string }>()
+const rootNodeRef = ref(null)
+
+const gameStore = useGameStore()
+const dragStore = useDragStore()
+
+const nextCard = computed(() => {
+  if (!props.card.column) {
+    return null
+  }
+
+  return gameStore.getNextCardInColumn(props.card.column, props.card.id)
+})
+
+const cardIndexInColumn = computed(() => {
+  if (!props.card.column) {
+    return null
+  }
+
+  return gameStore.getCardIndexInColumn(props.card.column, props.card.id)
+})
+
+const draggingStyles = computed(() => {
+  const nodeRef = rootNodeRef.value as HTMLDivElement | null
+
+  if (!nodeRef || !dragStore.isCardDragging(props.card.id)) return
+
+  const offsetX = dragStore.offsetX
+  const offsetY = dragStore.offsetY
+
+  if (offsetX === 0 && offsetY === 0) return
+
+  const nodeRect = nodeRef.getBoundingClientRect()
+
+  return {
+    position: 'fixed',
+    cursor: 'grabbing',
+    left: offsetX - nodeRect.width / 2 + 'px',
+    top: offsetY - nodeRect.height / 2 + 'px',
+    zIndex: gameStore.cards.length + 1,
+    transform: 'translateX(0)'
+  } as StyleValue
+})
+
+const handlePosition = () => {
+  if (!props.card.inColumn) {
+    return 'absolute'
+  }
+
+  if (cardIndexInColumn.value === null) {
+    return 'static'
+  }
+
+  return cardIndexInColumn.value === 0 ? 'relative' : 'absolute'
+}
+
+const handleTopPosition = () => {
+  if (props.top) {
+    return props.top
+  }
+
+  if (cardIndexInColumn.value === null) return
+
+  if (props.card.column) {
+    const indexInFlippedCards = gameStore.getCardIndexInColumnFlipped(
+      props.card.column,
+      props.card.id
+    )
+
+    if (indexInFlippedCards === 0 && cardIndexInColumn.value > 0) {
+      return '20%'
+    }
+  }
+
+  if (cardIndexInColumn.value > 0) {
+    return (props.card.isFlipped ? 30 : 20) + '%'
+  }
+}
+
+const startActionHandler = (x: number, y: number) => {
+  if (dragStore.card) return // TODO: Посмотреть
+  dragStore.setOffset(x, y)
+  dragStore.setCard(props.card)
+}
+
+const handleMouseDown = (ev: MouseEvent) => {
+  ev.stopPropagation()
+
+  if (!props.card.isFlipped) return
+
+  startActionHandler(ev.clientX, ev.clientY)
+}
+
+const handleTouchStart = (ev: TouchEvent) => {
+  ev.stopPropagation()
+
+  const touches = ev.touches
+  const firstTouch = touches.item(0)
+
+  if (!props.card.isFlipped || !firstTouch) return
+
+  startActionHandler(firstTouch.clientX, firstTouch.clientY)
+}
+
+const handleBaseDrop = (baseId: number) => {
+  if (!dragStore.card) return
+  if (!gameStore.isDropToBaseAvailable(baseId, dragStore.card)) return
+  gameStore.addCardToBase(baseId, dragStore.card.id)
+}
+
+const handleColumnDrop = (columnId: number) => {
+  if (!dragStore.card) return
+  if (!gameStore.isDropToColumnAvailable(columnId, dragStore.card)) return
+  gameStore.addCardsToColumn(columnId, dragStore.card)
+}
+
+const handleMouseUp = () => {
+  const elementsBelow = document.elementsFromPoint(
+    dragStore.offsetX,
+    dragStore.offsetY
+  )
+
+  const isHasDroppableElementBelow = Boolean(
+    elementsBelow.find(element => {
+      const el = element as HTMLElement
+      return el.dataset.droppable
+    })
+  )
+
+  if (!isHasDroppableElementBelow) {
+    dragStore.$reset()
+    return
+  }
+
+  if (dragStore.baseId) {
+    handleBaseDrop(dragStore.baseId)
+  }
+
+  if (dragStore.columnId) {
+    handleColumnDrop(dragStore.columnId)
+  }
+
+  dragStore.$reset()
+}
+</script>
+
+<template>
+  <div
+    ref="rootNodeRef"
+    :class="{
+      [$style.root]: true,
+      [$style.inColumn]: card.inColumn
+    }"
+    :style="
+      dragStore.isCardDragging(card.id)
+        ? draggingStyles
+        : { top: handleTopPosition(), position: handlePosition() }
+    "
+    @mousedown="handleMouseDown"
+    @mouseup="handleMouseUp"
+    @touchstart.passive="handleTouchStart"
+    @touchend="handleMouseUp"
+  >
+    <img
+      :src="card.isFlipped ? card.image : cardBack"
+      :class="$style.image"
+      alt="'Playing card'"
+    />
+    <Card v-if="nextCard" :card="nextCard" :key="nextCard.id" />
+  </div>
+</template>
+
+<style module lang="scss">
+@import '@styles/mixins';
+@import '@styles/variables';
+
+.root {
+  cursor: pointer;
+  width: $card-width;
+  border-radius: 5px;
+  touch-action: none;
+}
+
+.image {
+  @include no-select;
+  pointer-events: none;
+}
+
+.inColumn {
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0 1px 2px 0,
+    rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
+}
+</style>

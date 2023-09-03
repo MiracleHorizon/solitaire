@@ -1,3 +1,4 @@
+import type { PlacementEntity } from '@app-types/PlacementEntity.ts'
 import type { Card } from './Card.ts'
 
 interface IColumn {
@@ -5,32 +6,29 @@ interface IColumn {
   cards: Card[]
 }
 
-export class Column implements IColumn {
+export class Column implements IColumn, PlacementEntity {
   public readonly id: number
   public cards: Card[]
-
-  constructor({ id, cards }: IColumn) {
-    this.id = id
-    this.cards = cards
-    this.flipLastCard()
-  }
 
   public get isEmpty(): boolean {
     return this.cards.length === 0
   }
 
-  private flipLastCard(): void {
-    for (const card of this.cards) {
-      const lastCard = this.tryToGetLastCard()
-
-      if (lastCard && lastCard.id === card.id && !lastCard.isFlipped) {
-        card.flip()
-      }
-    }
+  constructor({ id, cards }: IColumn) {
+    this.id = id
+    this.cards = cards
+    this.flipUpperCard()
   }
 
-  public hasCard(cardId: string): boolean {
-    return Boolean(this.cards.find(card => card.id === cardId))
+  private flipUpperCard(): void {
+    if (this.isEmpty) return
+
+    const upperCard = this.getUpperCard()
+
+    for (const card of this.cards) {
+      if (upperCard.id !== card.id) continue
+      if (!upperCard.isFlipped) card.flip()
+    }
   }
 
   public addCard(card: Card): void {
@@ -40,10 +38,14 @@ export class Column implements IColumn {
 
   public removeCard(cardId: string): void {
     this.cards = this.cards.filter(card => card.id !== cardId)
-    this.flipLastCard()
+    this.flipUpperCard()
   }
 
-  public tryToGetLastCard(): Card | null {
-    return this.cards[this.cards.length - 1] ?? null
+  public getUpperCard(): Card {
+    return this.cards[this.cards.length - 1]
+  }
+
+  public isHasCardWithId(cardId: string): boolean {
+    return Boolean(this.cards.find(card => card.id === cardId))
   }
 }
