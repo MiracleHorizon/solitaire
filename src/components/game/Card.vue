@@ -30,22 +30,24 @@ const cardIndexInColumn = computed(() => {
 })
 
 const draggingStyles = computed(() => {
-  const nodeRef = rootNodeRef.value as HTMLDivElement | null
+  if (!dragStore.isCardDragging(props.card.id)) return
 
-  if (!nodeRef || !dragStore.isCardDragging(props.card.id)) return
-
-  const offsetX = dragStore.offsetX
-  const offsetY = dragStore.offsetY
+  const offsetX = dragStore.moveOffsetX
+  const offsetY = dragStore.moveOffsetY
 
   if (offsetX === 0 && offsetY === 0) return
 
-  const nodeRect = nodeRef.getBoundingClientRect()
+  const deltaX = offsetX - dragStore.initialCursorX
+  const deltaY = offsetY - dragStore.initialCursorY
+
+  const left = dragStore.initialCardX + deltaX + 'px'
+  const top = dragStore.initialCardY + deltaY + 'px'
 
   return {
     position: 'fixed',
     cursor: 'grabbing',
-    left: offsetX - nodeRect.width / 2 + 'px',
-    top: offsetY - nodeRect.height / 2 + 'px',
+    left,
+    top,
     zIndex: gameStore.cards.length + 1,
     transform: 'translateX(0)'
   } as StyleValue
@@ -86,9 +88,16 @@ const handleTopPosition = () => {
   }
 }
 
-const startActionHandler = (x: number, y: number) => {
+const handleStartAction = (x: number, y: number) => {
   if (dragStore.card) return // TODO: Посмотреть
-  dragStore.setOffset(x, y)
+  const nodeRef = rootNodeRef.value as HTMLDivElement | null
+
+  if (!nodeRef) return
+  const nodeRect = nodeRef.getBoundingClientRect()
+
+  dragStore.setMoveOffset(x, y)
+  dragStore.setInitialCursorCoords(x, y)
+  dragStore.setInitialCoords(nodeRect.left, nodeRect.top)
   dragStore.setCard(props.card)
 }
 
@@ -97,7 +106,7 @@ const handleMouseDown = (ev: MouseEvent) => {
 
   if (!props.card.isFlipped) return
 
-  startActionHandler(ev.clientX, ev.clientY)
+  handleStartAction(ev.clientX, ev.clientY)
 }
 
 const handleTouchStart = (ev: TouchEvent) => {
@@ -108,7 +117,7 @@ const handleTouchStart = (ev: TouchEvent) => {
 
   if (!props.card.isFlipped || !firstTouch) return
 
-  startActionHandler(firstTouch.clientX, firstTouch.clientY)
+  handleStartAction(firstTouch.clientX, firstTouch.clientY)
 }
 
 const handleBaseDrop = (baseId: number) => {
@@ -123,10 +132,10 @@ const handleColumnDrop = (columnId: number) => {
   gameStore.addCardsToColumn(columnId, dragStore.card)
 }
 
-const handleMouseUp = () => {
+const handleMouseUpAndTouchEnd = () => {
   const elementsBelow = document.elementsFromPoint(
-    dragStore.offsetX,
-    dragStore.offsetY
+    dragStore.moveOffsetX,
+    dragStore.moveOffsetY
   )
 
   const isHasDroppableElementBelow = Boolean(
@@ -137,8 +146,7 @@ const handleMouseUp = () => {
   )
 
   if (!isHasDroppableElementBelow) {
-    dragStore.$reset()
-    return
+    return dragStore.$reset()
   }
 
   if (dragStore.baseId) {
@@ -166,9 +174,10 @@ const handleMouseUp = () => {
         : { top: handleTopPosition(), position: handlePosition() }
     "
     @mousedown="handleMouseDown"
-    @mouseup="handleMouseUp"
+    @mouseup="handleMouseUpAndTouchEnd"
     @touchstart.passive="handleTouchStart"
-    @touchend="handleMouseUp"
+    @touchend="handleMouseUpAndTouchEnd"
+    @touchcancel="dragStore.$reset()"
   >
     <img
       :src="card.isFlipped ? card.image : cardBack"

@@ -6,8 +6,12 @@ interface State {
   card: Card | null
   columnId: number | null
   baseId: number | null
-  offsetX: number
-  offsetY: number
+  moveOffsetX: number
+  moveOffsetY: number
+  initialCardX: number
+  initialCardY: number
+  initialCursorX: number
+  initialCursorY: number
 }
 
 export const useDragStore = defineStore('drag', {
@@ -15,25 +19,29 @@ export const useDragStore = defineStore('drag', {
     card: null,
     columnId: null,
     baseId: null,
-    offsetY: 0,
-    offsetX: 0
+    moveOffsetX: 0,
+    moveOffsetY: 0,
+    initialCardX: 0,
+    initialCardY: 0,
+    initialCursorX: 0,
+    initialCursorY: 0
   }),
 
   actions: {
-    setOffset(x: number, y: number): void {
-      this.offsetX = x
-      this.offsetY = y
+    setMoveOffset(x: number, y: number): void {
+      this.moveOffsetX = x
+      this.moveOffsetY = y
     },
-    resetOffset(): void {
-      this.offsetX = 0
-      this.offsetY = 0
+    setInitialCoords(x: number, y: number): void {
+      this.initialCardX = x
+      this.initialCardY = y
     },
-
+    setInitialCursorCoords(x: number, y: number): void {
+      this.initialCursorX = x
+      this.initialCursorY = y
+    },
     setCard(card: Card): void {
       this.card = card
-    },
-    resetCard(): void {
-      this.card = null
     },
 
     setColumnId(id: number): void {
