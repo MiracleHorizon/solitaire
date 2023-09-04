@@ -14,6 +14,7 @@
       "@public/*": [
         "public/*"
       ],
+      // Components
       "@pages/*": [
         "src/pages/*"
       ],
@@ -26,14 +27,19 @@
       "@ui/*": [
         "src/components/ui/*"
       ],
+      // Base
       "@router/*": [
         "src/router/*"
       ],
       "@stores/*": [
         "src/stores/*"
       ],
+      // Assets
       "@assets/*": [
         "src/assets/*"
+      ],
+      "@audio/*": [
+        "src/assets/audio/*"
       ],
       "@images/*": [
         "src/assets/images/*"
@@ -41,6 +47,7 @@
       "@styles/*": [
         "src/assets/styles/*"
       ],
+      // Shared
       "@shared/*": [
         "src/shared/*"
       ],
