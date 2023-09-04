@@ -1,7 +1,7 @@
 import { v4 } from 'uuid'
 
 import { Card } from './Card.ts'
-import { cardsStatic } from '@static/cards.ts'
+import { cardsStatic } from '@shared/cards.ts'
 import type { ICardBase } from '@app-types/card'
 
 export class Deck {

@@ -35,11 +35,8 @@
       "@assets/*": [
         "src/assets/*"
       ],
-      "@static/*": [
-        "src/assets/static/*"
-      ],
       "@images/*": [
-        "src/assets/static/images/*"
+        "src/assets/images/*"
       ],
       "@styles/*": [
         "src/assets/styles/*"

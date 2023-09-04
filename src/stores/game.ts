@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { LocalStorageHandler } from '@utils/storages/LocalStorageHandler.ts'
 import { SessionStorageHandler } from '@utils/storages/SessionStorageHandler.ts'
 import { RECORD_FIELD_NAME } from '@shared/constants/storages.ts'
-import victorySound from '@public/audio/victory.mp3'
+import victorySound from '@assets/audio/victory.mp3'
 
 import { Board } from '@entities/Board.ts'
 import type { Card } from '@entities/Card.ts'
