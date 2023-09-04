@@ -23,23 +23,22 @@ const gameStore = useGameStore()
   justify-content: center;
   padding: 8px 12px;
   border-radius: 10px;
+  opacity: 0.8;
+  transition: opacity 50ms ease-in-out;
+  color: $white;
 
   &:hover {
-    .icon,
-    .text {
-      color: $white;
-    }
+    opacity: 1;
   }
 }
 
 .icon {
   display: inline-block;
   margin-right: 6px;
-  color: $gray;
 }
 
 .text {
-  font-size: 18px;
-  color: $gray;
+  font-weight: 500;
+  font-size: 17px;
 }
 </style>
