@@ -24,7 +24,7 @@ import UserRecords from './UserRecords/UserRecords.vue'
 .records {
   margin-right: 20px;
 
-  @media screen and (max-width: $mobileLg) {
+  @media screen and (max-width: $tablet) {
     display: none;
   }
 }
