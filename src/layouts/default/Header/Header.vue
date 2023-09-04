@@ -1,66 +1,56 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
+import { computed } from 'vue'
 
-import NewGame from './NewGame.vue'
-import { useGameStore } from '@stores/game.ts'
+import GameInfo from './GameInfo.vue'
+import NewGameButton from './buttons/NewGameButton.vue'
+import ToggleSoundButton from './buttons/ToggleSoundButton.vue'
 import { Routes } from '@router/routes.ts'
 
 const route = useRoute()
-const gameStore = useGameStore()
+
+const isGameRoute = computed(() => route.path === Routes.GAME)
 </script>
 
 <template>
   <header :class="$style.root">
-    <ul v-if="route.path === Routes.GAME">
-      <li>
-        Счетчик ходов:<span>{{ gameStore.movesCount }}</span>
-      </li>
-      <NewGame :class="$style.newGame" />
-    </ul>
+    <GameInfo v-if="isGameRoute" />
+    <NewGameButton v-if="isGameRoute" :class="$style.newGame" />
+    <ToggleSoundButton :class="$style.toggleSound" />
   </header>
 </template>
 
 <style module lang="scss">
-@import '@styles/mixins';
 @import '@styles/variables';
 @import '@styles/breakpoints';
 
 .root {
   width: 100%;
   height: $header-height;
+  display: flex;
+  align-items: center;
   background-color: $black;
+  padding: 0 18px;
 
-  ul {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0 24px;
-
-    @media screen and (max-width: $tablet) {
-      padding: 0 16px;
-    }
-
-    li {
-      @include no-select;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      color: $gray;
-
-      span {
-        font-size: 20px;
-        font-weight: 500;
-        margin-left: 6px;
-        color: $white;
-      }
-    }
+  @media screen and (max-width: $mobileLg) {
+    padding: 0 12px;
   }
 }
 
+// Buttons
 .newGame {
   margin-left: 12px;
+
+  @media screen and (max-width: 600px) {
+    margin-left: auto;
+  }
+}
+
+.toggleSound {
+  margin-left: auto;
+
+  @media screen and (max-width: 600px) {
+    margin-left: 0;
+  }
 }
 </style>
