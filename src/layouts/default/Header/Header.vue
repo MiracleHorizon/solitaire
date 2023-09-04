@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
+import { computed } from 'vue'
 
 import GameInfo from './GameInfo.vue'
 import NewGameButton from './buttons/NewGameButton.vue'
@@ -7,12 +8,14 @@ import ToggleSoundButton from './buttons/ToggleSoundButton.vue'
 import { Routes } from '@router/routes.ts'
 
 const route = useRoute()
+
+const isGameRoute = computed(() => route.path === Routes.GAME)
 </script>
 
 <template>
   <header :class="$style.root">
-    <GameInfo v-if="route.path === Routes.GAME" />
-    <NewGameButton :class="$style.newGame" />
+    <GameInfo v-if="isGameRoute" />
+    <NewGameButton v-if="isGameRoute" :class="$style.newGame" />
     <ToggleSoundButton :class="$style.toggleSound" />
   </header>
 </template>
