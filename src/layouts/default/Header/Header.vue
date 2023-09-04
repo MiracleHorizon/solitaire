@@ -2,6 +2,7 @@
 import { useRoute } from 'vue-router'
 
 import GameInfo from './GameInfo.vue'
+import ToggleSound from './ToggleSound.vue'
 import { Routes } from '@router/routes.ts'
 
 const route = useRoute()
@@ -10,6 +11,7 @@ const route = useRoute()
 <template>
   <header :class="$style.root">
     <GameInfo v-if="route.path === Routes.GAME" />
+    <ToggleSound :class="$style.toggleSound" />
   </header>
 </template>
 
@@ -23,5 +25,9 @@ const route = useRoute()
   align-items: center;
   background-color: $black;
   padding: 0 18px;
+}
+
+.toggleSound {
+  margin-left: auto;
 }
 </style>
