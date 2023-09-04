@@ -51,7 +51,43 @@ export const useGameStore = defineStore('game', {
       this.makeMove()
     },
 
-    isCardLastFlippedInColumn(columnId: number, cardId: string): boolean {
+    addCardsToColumn(columnId: number, dragCard: Card): void {
+      if (columnId === dragCard.column) return // TODO: посмотреть
+
+      const cardId = dragCard.id
+      const cardColumn = dragCard.column
+
+      if (!cardColumn) {
+        // Если переносится с основания или из резерва
+        // Может быть только одна карта
+        this.board.addOneCardToColumn(columnId, cardId)
+        this.makeMove()
+        return
+      }
+
+      // Если переносится из другого столбца
+      // Может быть несколько карт
+      const isCardLastFlipped = this._isCardLastFlippedInColumn(
+        cardColumn,
+        cardId
+      )
+
+      if (!isCardLastFlipped) {
+        const nextFlippedCards = this._getNextFlippedCardsInColumn(
+          cardColumn,
+          cardId
+        )
+        const nextFlippedCardsIds = nextFlippedCards.map(card => card.id)
+
+        this.board.addManyCardsToColumn(columnId, nextFlippedCardsIds)
+      } else {
+        this.board.addOneCardToColumn(columnId, cardId)
+      }
+
+      this.makeMove()
+    },
+
+    _isCardLastFlippedInColumn(columnId: number, cardId: string): boolean {
       for (const column of this.columns) {
         if (column.id !== columnId) continue
 
@@ -67,7 +103,7 @@ export const useGameStore = defineStore('game', {
       return false
     },
 
-    isCardFirstFlippedInColumn(columnId: number, cardId: string): boolean {
+    _isCardFirstFlippedInColumn(columnId: number, cardId: string): boolean {
       for (const column of this.columns) {
         if (column.id !== columnId) continue
 
@@ -151,12 +187,12 @@ export const useGameStore = defineStore('game', {
       if (card.column) {
         const column = this.columns.find(col => col.id === card.column)
 
-        const isCardFirstFlippedInColumn = this.isCardFirstFlippedInColumn(
+        const isCardFirstFlippedInColumn = this._isCardFirstFlippedInColumn(
           card.column,
           card.id
         )
 
-        const isCardLastFlippedInColumn = this.isCardLastFlippedInColumn(
+        const isCardLastFlippedInColumn = this._isCardLastFlippedInColumn(
           card.column,
           card.id
         )
@@ -211,42 +247,6 @@ export const useGameStore = defineStore('game', {
       return false
     },
 
-    addCardsToColumn(columnId: number, dragCard: Card): void {
-      if (columnId === dragCard.column) return // TODO: посмотреть
-
-      const cardId = dragCard.id
-      const cardColumn = dragCard.column
-
-      if (!cardColumn) {
-        // Если переносится с основания или из резерва
-        // Может быть только одна карта
-        this.board.addOneCardToColumn(columnId, cardId)
-        this.makeMove()
-        return
-      }
-
-      // Если переносится из другого столбца
-      // Может быть несколько карт
-      const isCardLastFlipped = this.isCardLastFlippedInColumn(
-        cardColumn,
-        cardId
-      )
-
-      if (!isCardLastFlipped) {
-        const nextFlippedCards = this._getNextFlippedCardsInColumn(
-          cardColumn,
-          cardId
-        )
-        const nextFlippedCardsIds = nextFlippedCards.map(card => card.id)
-
-        this.board.addManyCardsToColumn(columnId, nextFlippedCardsIds)
-      } else {
-        this.board.addOneCardToColumn(columnId, cardId)
-      }
-
-      this.makeMove()
-    },
-
     makeMove(): void {
       this.movesCount += 1
       this._checkGameState()
@@ -268,6 +268,10 @@ export const useGameStore = defineStore('game', {
       this._updateSessionRecord()
       this._updatePersonalRecord()
       this._playVictorySound()
+
+      for (const card of this.cards) {
+        Object.freeze(card)
+      }
     },
 
     _playVictorySound(): void {

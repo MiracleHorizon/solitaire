@@ -5,23 +5,7 @@ import { useDragStore } from '@stores/drag.ts'
 
 const dragStore = useDragStore()
 
-const handleMouseMove = (ev: MouseEvent) => {
-  if (!dragStore.card) return
-  handler(ev.clientX, ev.clientY)
-}
-
-const handleTouchMove = (ev: TouchEvent) => {
-  if (!dragStore.card) return
-
-  const touches = ev.touches
-  const firstTouch = touches.item(0)
-
-  if (!firstTouch) return
-
-  handler(firstTouch.clientX, firstTouch.clientY)
-}
-
-const handler = (x: number, y: number) => {
+const handleMove = (x: number, y: number) => {
   const elementsBelow = document.elementsFromPoint(x, y)
 
   for (const element of elementsBelow as HTMLElement[]) {
@@ -45,7 +29,23 @@ const handler = (x: number, y: number) => {
     }
   }
 
-  dragStore.setOffset(x, y)
+  dragStore.setMoveOffset(x, y)
+}
+
+const handleMouseMove = (ev: MouseEvent) => {
+  if (!dragStore.card) return
+  handleMove(ev.clientX, ev.clientY)
+}
+
+const handleTouchMove = (ev: TouchEvent) => {
+  if (!dragStore.card) return
+
+  const touches = ev.touches
+  const firstTouch = touches.item(0)
+
+  if (!firstTouch) return
+
+  handleMove(firstTouch.clientX, firstTouch.clientY)
 }
 </script>
 
@@ -54,8 +54,6 @@ const handler = (x: number, y: number) => {
     :class="$style.root"
     @mousemove="handleMouseMove"
     @touchmove.passive="handleTouchMove"
-    @touchend="dragStore.resetCard(), dragStore.resetOffset()"
-    @touchcancel="dragStore.resetOffset()"
   >
     <TopSection />
     <BottomSection />
