@@ -22,6 +22,7 @@ const isGameRoute = computed(() => route.path === Routes.GAME)
 
 <style module lang="scss">
 @import '@styles/variables';
+@import '@styles/breakpoints';
 
 .root {
   width: 100%;
@@ -30,6 +31,10 @@ const isGameRoute = computed(() => route.path === Routes.GAME)
   align-items: center;
   background-color: $black;
   padding: 0 18px;
+
+  @media screen and (max-width: $mobileLg) {
+    padding: 0 12px;
+  }
 }
 
 // Buttons
