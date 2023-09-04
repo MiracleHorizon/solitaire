@@ -8,17 +8,23 @@ interface Alias {
 }
 
 const aliases: Alias[] = [
+  // Root
   { find: '@', path: './' },
   { find: '@public', path: './public' },
+  // Base
+  { find: '@router', path: './src/router' },
+  { find: '@stores', path: './src/stores' },
+  // Components
   { find: '@pages', path: './src/pages' },
   { find: '@layouts', path: './src/layouts' },
   { find: '@components', path: './src/components' },
   { find: '@ui', path: './src/components/ui' },
-  { find: '@router', path: './src/router' },
-  { find: '@stores', path: './src/stores' },
+  // Assets
   { find: '@assets', path: './src/assets' },
   { find: '@images', path: './src/assets/images' },
+  { find: '@audio', path: './src/assets/images' },
   { find: '@styles', path: './src/assets/styles' },
+  // Shared
   { find: '@shared', path: './src/shared' },
   { find: '@utils', path: './src/shared/utils' },
   { find: '@entities', path: './src/shared/entities' },
