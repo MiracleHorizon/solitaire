@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import NewGame from './NewGame.vue'
 import MovesCount from './MovesCount.vue'
 </script>
 
 <template>
-  <ul :class="$style.root">
+  <div :class="$style.root">
     <MovesCount />
-    <NewGame :class="$style.newGame" />
-  </ul>
+  </div>
 </template>
 
 <style module lang="scss">
@@ -20,9 +18,5 @@ import MovesCount from './MovesCount.vue'
   display: flex;
   align-items: center;
   justify-content: flex-start;
-}
-
-.newGame {
-  margin-left: 12px;
 }
 </style>

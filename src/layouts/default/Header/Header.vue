@@ -2,7 +2,8 @@
 import { useRoute } from 'vue-router'
 
 import GameInfo from './GameInfo.vue'
-import ToggleSound from './ToggleSound.vue'
+import NewGameButton from './buttons/NewGameButton.vue'
+import ToggleSoundButton from './buttons/ToggleSoundButton.vue'
 import { Routes } from '@router/routes.ts'
 
 const route = useRoute()
@@ -11,7 +12,8 @@ const route = useRoute()
 <template>
   <header :class="$style.root">
     <GameInfo v-if="route.path === Routes.GAME" />
-    <ToggleSound :class="$style.toggleSound" />
+    <NewGameButton :class="$style.newGame" />
+    <ToggleSoundButton :class="$style.toggleSound" />
   </header>
 </template>
 
@@ -27,7 +29,20 @@ const route = useRoute()
   padding: 0 18px;
 }
 
+// Buttons
+.newGame {
+  margin-left: 12px;
+
+  @media screen and (max-width: 500px) {
+    margin-left: auto;
+  }
+}
+
 .toggleSound {
   margin-left: auto;
+
+  @media screen and (max-width: 500px) {
+    margin-left: 0;
+  }
 }
 </style>
