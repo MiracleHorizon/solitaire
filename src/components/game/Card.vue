@@ -70,12 +70,14 @@ const handleTopPosition = () => {
     return props.top
   }
 
+  const card = props.card
+
   if (cardIndexInColumn.value === null) return
 
-  if (props.card.column) {
+  if (card.column) {
     const indexInFlippedCards = gameStore.getCardIndexInColumnFlipped(
-      props.card.column,
-      props.card.id
+      card.column,
+      card.id
     )
 
     if (indexInFlippedCards === 0 && cardIndexInColumn.value > 0) {
@@ -84,7 +86,7 @@ const handleTopPosition = () => {
   }
 
   if (cardIndexInColumn.value > 0) {
-    return (props.card.isFlipped ? 30 : 20) + '%'
+    return (card.isFlipped ? 30 : 20) + '%'
   }
 }
 
@@ -197,6 +199,10 @@ const handleMouseUpAndTouchEnd = () => {
   width: $card-width;
   border-radius: 5px;
   touch-action: none;
+
+  @media screen and (max-width: $small-content-max-width-bp) {
+    width: $small-card-width;
+  }
 }
 
 .image {

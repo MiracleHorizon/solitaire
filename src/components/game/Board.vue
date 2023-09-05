@@ -61,7 +61,7 @@ const handleTouchMove = (ev: TouchEvent) => {
 </template>
 
 <style module lang="scss">
-@import '@styles/breakpoints';
+@import '@styles/variables';
 
 .root {
   width: 100%;
@@ -70,23 +70,13 @@ const handleTouchMove = (ev: TouchEvent) => {
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  padding-top: 24px;
-  padding-left: 18px;
-  padding-right: 18px;
-
-  @media screen and (max-width: $tablet) {
-    padding-left: 14px;
-    padding-right: 14px;
-  }
-
-  @media screen and (max-width: $mobileLg) {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
 
   section {
-    width: 90vw;
-    max-width: 1200px;
+    width: $large-screen-content-width;
+
+    @media screen and (max-width: $small-content-max-width-bp) {
+      width: $small-screen-content-width;
+    }
   }
 }
 </style>

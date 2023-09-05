@@ -13,7 +13,7 @@ import cardCover from '@images/cards/card_cover.png'
 @import '@styles/variables';
 
 .root {
-  width: $card-width;
+  width: 100%;
   z-index: 0;
   opacity: 0.4;
 

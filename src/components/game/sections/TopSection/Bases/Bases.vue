@@ -12,9 +12,13 @@ const gameStore = useGameStore()
 </template>
 
 <style module lang="scss">
+@import '@styles/variables';
+
+$gap-fix: 2px;
+
 .root {
   display: flex;
-  align-items: center;
-  column-gap: 20px;
+  align-items: flex-start;
+  column-gap: calc($card-x-gap + $gap-fix);
 }
 </style>
