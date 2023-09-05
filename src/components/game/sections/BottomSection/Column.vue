@@ -8,7 +8,7 @@ defineProps<{ column: Column }>()
 
 <template>
   <div :data-column-id="column.id" :data-droppable="true" :class="$style.root">
-    <CardCover v-if="column.cards.length <= 1" :class="$style.cardCover" />
+    <CardCover :class="$style.cardCover" />
     <Card v-if="column.cards.length > 0" :card="column.cards[0]" />
   </div>
 </template>

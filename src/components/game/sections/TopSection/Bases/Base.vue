@@ -16,14 +16,19 @@ defineProps<{ base: Base }>()
 <style module lang="scss">
 @import '@styles/variables';
 
+$width: $card-width;
+$small-width: $small-card-width;
+
 .root {
   position: relative;
   width: $card-width;
+
+  @media screen and (max-width: $small-content-max-width-bp) {
+    width: $small-width;
+  }
 }
 
 .card {
-  position: absolute;
-  left: 0;
   top: 0;
 }
 </style>

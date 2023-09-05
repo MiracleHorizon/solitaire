@@ -16,15 +16,17 @@ const gameStore = useGameStore()
 </template>
 
 <style module lang="scss">
+@import '@styles/variables';
+
 .root {
   height: -webkit-fill-available;
   display: flex;
   justify-content: space-between;
-  margin-top: 40px;
-  column-gap: 20px;
+  column-gap: $card-x-gap;
+  margin-top: 20px;
 
-  @media screen and (max-width: 550px) {
-    column-gap: 8px;
+  @media screen and (max-width: $small-content-max-width-bp) {
+    margin-top: 10px;
   }
 }
 </style>

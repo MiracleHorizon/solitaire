@@ -11,8 +11,19 @@ import Bases from './Bases/Bases.vue'
 </template>
 
 <style module lang="scss">
+@import '@styles/variables';
+
+$height: $card-height;
+
 .root {
+  height: $height;
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
+
+  @media screen and (max-width: $small-content-max-width-bp) {
+    height: $small-card-height;
+    margin-top: 10px;
+  }
 }
 </style>
