@@ -27,6 +27,7 @@ const aliases: Alias[] = [
   // Shared
   { find: '@shared', path: './src/shared' },
   { find: '@utils', path: './src/shared/utils' },
+  { find: '@helpers', path: './src/shared/helpers' },
   { find: '@entities', path: './src/shared/entities' },
   { find: '@app-types', path: './src/shared/types' }
 ]
@@ -40,5 +41,14 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: aliases.map(alias => createAlias(alias))
+  },
+  server: {
+    port: 3000,
+    strictPort: false
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {}
+    }
   }
 })
