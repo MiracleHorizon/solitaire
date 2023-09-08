@@ -1,4 +1,5 @@
-import { Shuffler } from '@utils/Shuffler.ts'
+import shuffle from 'lodash.shuffle'
+
 import { Deck } from './Deck.ts'
 import { Column } from './Column.ts'
 import { Base } from './Base.ts'
@@ -7,7 +8,6 @@ import type { Card } from './Card.ts'
 export class Board {
   private readonly TOTAL_BASES: number = 4
   private readonly TOTAL_COLUMNS: number = 7
-  private readonly shuffler: Shuffler = new Shuffler()
 
   public readonly deck: Deck
   public readonly bases: Base[] = []
@@ -149,6 +149,6 @@ export class Board {
   }
 
   private shuffleDeck(): void {
-    this.deck.cards = this.shuffler.shuffle(this.deck.cards)
+    this.deck.cards = shuffle(this.deck.cards)
   }
 }
