@@ -5,5 +5,5 @@ export interface PlacementEntity {
   addCard(card: Card): void
   removeCard(cardId: string): void
   isHasCardWithId(cardId: string): boolean
-  getUpperCard(): Card
+  getUpperCardOrNull(): Card | null
 }

@@ -25,6 +25,8 @@ export class Base implements IBase, PlacementEntity {
       this.setSuit(card.suit)
     }
 
+    if (this.suit !== card.suit) return
+
     if (!this.maxRank || this.maxRank < card.rank) {
       this.setMaxRank(card.rank)
     }
@@ -42,8 +44,17 @@ export class Base implements IBase, PlacementEntity {
     }
   }
 
-  public getUpperCard(): Card {
-    return this.cards[this.cards.length - 1]
+  public clearCards(): void {
+    // TODO: Доделать
+    // for (const card of this.cards) {
+    // }
+
+    this.cards.length = 0
+  }
+
+  public getUpperCardOrNull(): Card | null {
+    const upperCard = [...this.cards].pop()
+    return upperCard ? upperCard : null
   }
 
   public isHasCardWithId(cardId: string): boolean {
