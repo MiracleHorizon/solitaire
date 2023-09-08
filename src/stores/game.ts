@@ -217,7 +217,11 @@ export const useGameStore = defineStore('game', {
           return card.rank === Rank.ACE
         }
 
-        const upperCard = base.getUpperCard()
+        const upperCard = base.getUpperCardOrNull()
+        if (!upperCard) {
+          return false
+        }
+
         const isRankAvailable = upperCard.rank + 1 === card.rank
         const isSuitAvailable = upperCard.suit === card.suit
 
@@ -237,7 +241,11 @@ export const useGameStore = defineStore('game', {
         }
 
         // Если не пустой
-        const upperCard = column.getUpperCard()
+        const upperCard = column.getUpperCardOrNull()
+        if (!upperCard) {
+          return false
+        }
+
         const isRankAvailable = upperCard.rank - 1 === card.rank
         const isColorAvailable = upperCard.color !== card.color
 

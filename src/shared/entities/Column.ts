@@ -21,9 +21,8 @@ export class Column implements IColumn, PlacementEntity {
   }
 
   private flipUpperCard(): void {
-    if (this.isEmpty) return
-
-    const upperCard = this.getUpperCard()
+    const upperCard = this.getUpperCardOrNull()
+    if (!upperCard) return
 
     for (const card of this.cards) {
       if (upperCard.id !== card.id) continue
@@ -41,8 +40,13 @@ export class Column implements IColumn, PlacementEntity {
     this.flipUpperCard()
   }
 
-  public getUpperCard(): Card {
-    return this.cards[this.cards.length - 1]
+  public clearCards(): void {
+    this.cards.length = 0
+  }
+
+  public getUpperCardOrNull(): Card | null {
+    const upperCard = this.cards[this.cards.length - 1]
+    return upperCard ? upperCard : null
   }
 
   public isHasCardWithId(cardId: string): boolean {

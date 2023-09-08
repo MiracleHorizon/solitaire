@@ -23,7 +23,7 @@ export class Card implements ICard {
     return this.column !== null
   }
 
-  public get inBase(): boolean {
+  public get onBase(): boolean {
     return this.base !== null
   }
 
@@ -49,12 +49,12 @@ export class Card implements ICard {
     this.column = column
   }
 
-  public setColumn(column: number | null): void {
+  public setColumn(column: number): void {
     this.column = column
     this.base = null
   }
 
-  public setBase(base: number | null): void {
+  public setBase(base: number): void {
     this.base = base
     this.column = null
   }

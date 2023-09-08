@@ -104,7 +104,7 @@ export class Board {
       if (card.id !== cardId) continue
 
       // Если карта перемещается из основания, то она из него исключается.
-      if (card.inBase) {
+      if (card.onBase) {
         for (const base of this.bases) {
           if (base.id !== card.base) continue
 
