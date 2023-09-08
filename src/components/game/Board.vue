@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted } from 'vue'
+
 import TopSection from './sections/TopSection/TopSection.vue'
 import BottomSection from './sections/BottomSection/BottomSection.vue'
 import { useDragStore } from '@stores/drag.ts'
@@ -47,6 +49,18 @@ const handleTouchMove = (ev: TouchEvent) => {
 
   handleMove(firstTouch.clientX, firstTouch.clientY)
 }
+
+const handleMouseUpOutsideOfViewport = () => {
+  dragStore.card && dragStore.$reset()
+}
+
+onMounted(() => {
+  window.addEventListener('mouseup', handleMouseUpOutsideOfViewport)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('mouseup', handleMouseUpOutsideOfViewport)
+})
 </script>
 
 <template>

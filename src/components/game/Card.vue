@@ -134,7 +134,7 @@ const handleColumnDrop = (columnId: number) => {
   gameStore.addCardsToColumn(columnId, dragStore.card)
 }
 
-const handleMouseUpAndTouchEnd = () => {
+const handleMouseOrAndTouchEnd = () => {
   const elementsBelow = document.elementsFromPoint(
     dragStore.moveOffsetX,
     dragStore.moveOffsetY
@@ -176,9 +176,9 @@ const handleMouseUpAndTouchEnd = () => {
         : { top: handleTopPosition(), position: handlePosition() }
     "
     @mousedown="handleMouseDown"
-    @mouseup="handleMouseUpAndTouchEnd"
+    @mouseup="handleMouseOrAndTouchEnd"
     @touchstart.passive="handleTouchStart"
-    @touchend="handleMouseUpAndTouchEnd"
+    @touchend="handleMouseOrAndTouchEnd"
     @touchcancel="dragStore.$reset()"
   >
     <img
