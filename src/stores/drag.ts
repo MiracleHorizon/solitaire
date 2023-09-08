@@ -4,60 +4,68 @@ import type { Card } from '@entities/Card.ts'
 
 interface State {
   card: Card | null
-  columnId: number | null
   baseId: number | null
-  moveOffsetX: number
-  moveOffsetY: number
+  columnId: number | null
   initialCardX: number
   initialCardY: number
   initialCursorX: number
   initialCursorY: number
+  moveOffsetX: number
+  moveOffsetY: number
 }
+
+export const BASE_POSITION_VALUE = 0
 
 export const useDragStore = defineStore('drag', {
   state: (): State => ({
     card: null,
-    columnId: null,
     baseId: null,
-    moveOffsetX: 0,
-    moveOffsetY: 0,
-    initialCardX: 0,
-    initialCardY: 0,
-    initialCursorX: 0,
-    initialCursorY: 0
+    columnId: null,
+    moveOffsetX: BASE_POSITION_VALUE,
+    moveOffsetY: BASE_POSITION_VALUE,
+    initialCardX: BASE_POSITION_VALUE,
+    initialCardY: BASE_POSITION_VALUE,
+    initialCursorX: BASE_POSITION_VALUE,
+    initialCursorY: BASE_POSITION_VALUE
   }),
 
   actions: {
-    setMoveOffset(x: number, y: number): void {
-      this.moveOffsetX = x
-      this.moveOffsetY = y
-    },
-    setInitialCoords(x: number, y: number): void {
-      this.initialCardX = x
-      this.initialCardY = y
+    setInitialCardCoords(x: number, y: number): void {
+      this.initialCardX = x > 0 ? x : BASE_POSITION_VALUE
+      this.initialCardY = y > 0 ? y : BASE_POSITION_VALUE
     },
     setInitialCursorCoords(x: number, y: number): void {
-      this.initialCursorX = x
-      this.initialCursorY = y
+      this.initialCursorX = x > 0 ? x : BASE_POSITION_VALUE
+      this.initialCursorY = y > 0 ? y : BASE_POSITION_VALUE
     },
-    setCard(card: Card): void {
-      this.card = card
+    setMoveOffset(x: number, y: number): void {
+      this.moveOffsetX = x > 0 ? x : BASE_POSITION_VALUE
+      this.moveOffsetY = y > 0 ? y : BASE_POSITION_VALUE
     },
 
-    setColumnId(id: number): void {
-      this.columnId = id
+    setColumnId(columnId: number): void {
+      if (columnId < 0) {
+        return this.resetColumnId()
+      }
+      this.columnId = columnId
     },
     resetColumnId(): void {
       this.columnId = null
     },
 
-    setBaseId(id: number): void {
-      this.baseId = id
+    setBaseId(baseId: number): void {
+      if (baseId < 0) {
+        return this.resetBaseId()
+      }
+      this.baseId = baseId
     },
     resetBaseId(): void {
       this.baseId = null
     },
 
+    setCard(card: Card): void {
+      this.card = card
+    },
     isCardDragging(cardId: string): boolean {
       return this.card?.id === cardId
     }

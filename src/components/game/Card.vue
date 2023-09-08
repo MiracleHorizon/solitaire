@@ -99,7 +99,7 @@ const handleStartAction = (x: number, y: number) => {
 
   dragStore.setMoveOffset(x, y)
   dragStore.setInitialCursorCoords(x, y)
-  dragStore.setInitialCoords(nodeRect.left, nodeRect.top)
+  dragStore.setInitialCardCoords(nodeRect.left, nodeRect.top)
   dragStore.setCard(props.card)
 }
 
