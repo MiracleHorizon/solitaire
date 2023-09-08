@@ -13,7 +13,7 @@ const handleClickCard = (card: CardImpl) => {
   if (card.isFlipped) return
 
   card.flip()
-  gameStore.makeMove()
+  gameStore.makeOneMove()
 }
 
 const handleFlipAll = () => {

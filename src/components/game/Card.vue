@@ -23,7 +23,7 @@ const nextCard = computed(() => {
 
 const cardIndexInColumn = computed(() => {
   if (!props.card.column) {
-    return null
+    return -1
   }
 
   return gameStore.getCardIndexInColumn(props.card.column, props.card.id)
@@ -58,7 +58,7 @@ const handlePosition = () => {
     return 'absolute'
   }
 
-  if (cardIndexInColumn.value === null) {
+  if (cardIndexInColumn.value < 0) {
     return 'static'
   }
 
@@ -72,10 +72,10 @@ const handleTopPosition = () => {
 
   const card = props.card
 
-  if (cardIndexInColumn.value === null) return
+  if (cardIndexInColumn.value < 0) return
 
   if (card.column) {
-    const indexInFlippedCards = gameStore.getCardIndexInColumnFlipped(
+    const indexInFlippedCards = gameStore.getCardIndexInColumnFlippedCards(
       card.column,
       card.id
     )
