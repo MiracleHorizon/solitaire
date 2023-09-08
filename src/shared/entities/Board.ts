@@ -67,10 +67,10 @@ export class Board {
       // Если карта перемещается из столбца, то она из него исключается.
       if (card.inColumn) {
         for (const column of this.columns) {
-          if (column.id !== card.column) continue
-
-          column.removeCard(card.id)
-          break
+          if (column.id === card.column) {
+            column.removeCard(card.id)
+            break
+          }
         }
       }
 
@@ -106,10 +106,10 @@ export class Board {
       // Если карта перемещается из основания, то она из него исключается.
       if (card.onBase) {
         for (const base of this.bases) {
-          if (base.id !== card.base) continue
-
-          base.removeCard(card.id)
-          break
+          if (base.id === card.base) {
+            base.removeCard(card.id)
+            break
+          }
         }
       }
 
