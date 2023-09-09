@@ -4,34 +4,21 @@ import { computed } from 'vue'
 import Card from '@components/game/Card.vue'
 import CardCover from '@ui/CardCover.vue'
 import { useGameStore } from '@stores/game.ts'
-import { Card as CardImpl } from '@entities/Card.ts'
 
 const gameStore = useGameStore()
-const reserve = computed(() => gameStore.cardsReserve)
-
-const handleClickCard = (card: CardImpl) => {
-  if (card.isFlipped) return
-
-  card.flip()
-  gameStore.makeOneMove()
-}
-
-const handleFlipAll = () => {
-  reserve.value.forEach(card => card.flip())
-  gameStore.makeManyMoves(reserve.value.length)
-}
+const reserve = computed(() => gameStore.reserve)
 </script>
 
 <template>
   <div :class="$style.root">
-    <CardCover :class="$style.cardCover" @click="handleFlipAll" />
+    <CardCover :class="$style.cardCover" @click="gameStore.flipReserve()" />
     <CardCover :class="[$style.cardCover, $style.flippedCard]" />
     <Card
       v-for="(card, index) of reserve"
       :card="card"
       :style="{ zIndex: card.isFlipped ? reserve.length + 1 - index : 1 }"
       :class="[card.isFlipped && $style.flippedCard]"
-      @click="handleClickCard(card)"
+      @click="gameStore.flipCard(card.id)"
     />
   </div>
 </template>

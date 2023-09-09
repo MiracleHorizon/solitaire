@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@jest/globals'
+import { describe, expect, it, beforeEach } from '@jest/globals'
 
 import { Board } from '@entities/Board.ts'
 
@@ -13,13 +13,13 @@ describe('Board.ts', () => {
     expect(board.columns.length).toBeGreaterThan(0)
     expect(board.bases.length).toBeGreaterThan(0)
     expect(board.deck.cards.length).toBeGreaterThan(0)
-    expect(board.cardsReserve.length).toBeGreaterThan(0)
+    expect(board.reserve.length).toBeGreaterThan(0)
   })
 
   it('should add the card to the base from reserve', () => {
     const base = board.bases[0]
     expect(base).toBeDefined()
-    const card = board.cardsReserve[0]
+    const card = board.reserve[0]
     expect(card).toBeDefined()
 
     const baseId = base.id
@@ -28,13 +28,13 @@ describe('Board.ts', () => {
     board.addCardToBase(baseId, cardId)
     expect(card.base).toBe(baseId)
     expect(base.isHasCardWithId(card.id)).toBeTruthy()
-    expect(board.cardsReserve).not.toContainEqual(card)
+    expect(board.reserve).not.toContainEqual(card)
   })
 
   it('should add one card to column from reserve', () => {
     const column = board.columns[0]
     expect(column).toBeDefined()
-    const card = board.cardsReserve[0]
+    const card = board.reserve[0]
     expect(card).toBeDefined()
 
     const columnId = column.id
@@ -43,7 +43,7 @@ describe('Board.ts', () => {
     board.addOneCardToColumn(columnId, cardId)
     expect(card.column).toBe(columnId)
     expect(column.isHasCardWithId(card.id)).toBeTruthy()
-    expect(board.cardsReserve).not.toContainEqual(card)
+    expect(board.reserve).not.toContainEqual(card)
   })
 
   it('should move the card from the column to the base', () => {
@@ -51,7 +51,7 @@ describe('Board.ts', () => {
     expect(base).toBeDefined()
     const column = board.columns[0]
     expect(column).toBeDefined()
-    const card = board.cardsReserve[0]
+    const card = board.reserve[0]
     expect(card).toBeDefined()
 
     const baseId = base.id
@@ -71,7 +71,7 @@ describe('Board.ts', () => {
     expect(baseFrom).toBeDefined()
     const baseTo = board.bases[1]
     expect(baseTo).toBeDefined()
-    const card = board.cardsReserve[0]
+    const card = board.reserve[0]
     expect(card).toBeDefined()
 
     const baseFromId = baseFrom.id
@@ -91,7 +91,7 @@ describe('Board.ts', () => {
     expect(base).toBeDefined()
     const column = board.columns[0]
     expect(column).toBeDefined()
-    const card = board.cardsReserve[0]
+    const card = board.reserve[0]
     expect(card).toBeDefined()
 
     const columnId = column.id
@@ -114,7 +114,7 @@ describe('Board.ts', () => {
     expect(columnFrom).toBeDefined()
     const columnTo = board.columns[1]
     expect(columnTo).toBeDefined()
-    const card = board.cardsReserve[0]
+    const card = board.reserve[0]
     expect(card).toBeDefined()
 
     const columnFromId = columnFrom.id
@@ -134,7 +134,7 @@ describe('Board.ts', () => {
   it('should add many cards from reserve to the column', () => {
     const column = board.columns[0]
     expect(column).toBeDefined()
-    const cards = board.cardsReserve.slice(0, 2)
+    const cards = board.reserve.slice(0, 2)
     expect(cards.length).toBe(2)
 
     const columnId = column.id

@@ -20,7 +20,7 @@ export class Board {
     this.createColumns()
   }
 
-  public get cardsReserve(): Card[] {
+  public get reserve(): Card[] {
     return this.deck.cards.filter(card => !card.wasDealt)
   }
 
