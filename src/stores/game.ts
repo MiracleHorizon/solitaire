@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
-import { LocalStorageHandler } from '@utils/storages/LocalStorageHandler.ts'
-import { SessionStorageHandler } from '@utils/storages/SessionStorageHandler.ts'
+import { sessionStorageProvider } from '@utils/storages/SessionStorageProvider.ts'
+import { localStorageProvider } from '@utils/storages/LocalStorageProvider.ts'
 import { RECORD_FIELD_NAME } from '@shared/constants/storages.ts'
 
 import { Board } from '@entities/Board.ts'
@@ -18,12 +18,9 @@ interface State {
   isVictory: boolean
 }
 
-const sessionStorageHandler = new SessionStorageHandler()
-const localStorageHandler = new LocalStorageHandler()
-
 const getInitialState = (): State => {
-  const sessionRecordItem = sessionStorageHandler.extract(RECORD_FIELD_NAME)
-  const personalRecordItem = localStorageHandler.extract(RECORD_FIELD_NAME)
+  const sessionRecordItem = sessionStorageProvider.get(RECORD_FIELD_NAME)
+  const personalRecordItem = localStorageProvider.get(RECORD_FIELD_NAME)
 
   return {
     board: new Board(),
@@ -316,7 +313,7 @@ export const useGameStore = defineStore('game', {
 
     _setSessionRecord(): void {
       this.sessionRecord = this.movesCount
-      sessionStorageHandler.set(RECORD_FIELD_NAME, this.sessionRecord)
+      sessionStorageProvider.set(RECORD_FIELD_NAME, this.sessionRecord)
     },
 
     _updatePersonalRecord(): void {
@@ -327,7 +324,7 @@ export const useGameStore = defineStore('game', {
 
     _setPersonalRecord(): void {
       this.personalRecord = this.movesCount
-      localStorageHandler.set(RECORD_FIELD_NAME, this.personalRecord)
+      localStorageProvider.set(RECORD_FIELD_NAME, this.personalRecord)
     }
   }
 })
