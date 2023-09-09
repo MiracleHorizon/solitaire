@@ -18,7 +18,10 @@ const nextCard = computed(() => {
     return null
   }
 
-  return gameStore.getNextCardInColumn(props.card.column, props.card.id)
+  return gameStore.solitaire.getNextCardInColumn(
+    props.card.column,
+    props.card.id
+  )
 })
 
 const cardIndexInColumn = computed(() => {
@@ -26,7 +29,10 @@ const cardIndexInColumn = computed(() => {
     return -1
   }
 
-  return gameStore.getCardIndexInColumn(props.card.column, props.card.id)
+  return gameStore.solitaire.getCardIndexInColumn(
+    props.card.column,
+    props.card.id
+  )
 })
 
 const draggingStyles = computed(() => {
@@ -75,10 +81,8 @@ const handleTopPosition = () => {
   if (cardIndexInColumn.value < 0) return
 
   if (card.column) {
-    const indexInFlippedCards = gameStore.getCardIndexInColumnFlippedCards(
-      card.column,
-      card.id
-    )
+    const indexInFlippedCards =
+      gameStore.solitaire.getCardIndexInColumnFlippedCards(card.column, card.id)
 
     if (indexInFlippedCards === 0 && cardIndexInColumn.value > 0) {
       return '20%'
