@@ -27,7 +27,7 @@ export const useInterfaceStore = defineStore('ui', {
     toggleSound(): void {
       this.isSoundEnabled = !this.isSoundEnabled
       localStorageProvider.set(SOUND_FIELD_NAME, {
-        sound: this.isSoundEnabled
+        enabled: this.isSoundEnabled
       })
     }
   }
