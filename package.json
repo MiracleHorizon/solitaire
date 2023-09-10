@@ -9,8 +9,7 @@
     "preview": "vite preview",
     "test": "jest",
     "lint": "eslint \"src/**/*.{ts,vue}\"",
-    "format": "eslint --fix \"src/**/*.{ts,vue}\"",
-    "prepare": "yarn format && yarn lint && yarn test && yarn build"
+    "format": "eslint --fix \"src/**/*.{ts,vue}\""
   },
   "dependencies": {
     "lodash.shuffle": "^4.2.0",
