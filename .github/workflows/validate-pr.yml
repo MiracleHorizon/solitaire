@@ -31,3 +31,6 @@ jobs:
 
       - name: Test project
         run: yarn test
+
+      - name: Lint project
+        run: yarn lint
