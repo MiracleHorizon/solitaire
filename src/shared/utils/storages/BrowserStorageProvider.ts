@@ -31,6 +31,7 @@ export abstract class BrowserStorageProvider
     data.forEach(({ key, value }) => this.set(key, value))
   }
 
+  // @ts-expect-error: noImplicitReturns.
   public get(key: string): unknown | null {
     const item = this.storage.getItem(key)
 

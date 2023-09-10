@@ -21,7 +21,9 @@ describe('Base.ts', () => {
     const currentSuit = base.suit
     const currentMaxRank = base.maxRank
 
-    // There is an attempt to add a card with a different suit.
+    /**
+     * There is an attempt to add a card with a different suit.
+     */
     base.addCard(diamondsKing)
     expect(base.suit).toBe(currentSuit)
     expect(base.maxRank).toBe(currentMaxRank)

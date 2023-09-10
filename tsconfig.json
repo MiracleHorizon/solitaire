@@ -1,89 +1,59 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "baseUrl": ".",
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "useDefineForClassFields": true,
     "esModuleInterop": true,
-    "module": "ESNext",
-    "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable"
-    ],
     "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@public/*": [
-        "public/*"
-      ],
-      // Components
-      "@pages/*": [
-        "src/pages/*"
-      ],
-      "@layouts/*": [
-        "src/layouts/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@ui/*": [
-        "src/components/ui/*"
-      ],
-      // Base
-      "@router/*": [
-        "src/router/*"
-      ],
-      "@stores/*": [
-        "src/stores/*"
-      ],
-      // Assets
-      "@assets/*": [
-        "src/assets/*"
-      ],
-      "@audio/*": [
-        "src/assets/audio/*"
-      ],
-      "@images/*": [
-        "src/assets/images/*"
-      ],
-      "@styles/*": [
-        "src/assets/styles/*"
-      ],
-      // Shared
-      "@shared/*": [
-        "src/shared/*"
-      ],
-      "@utils/*": [
-        "src/shared/utils/*"
-      ],
-      "@helpers/*": [
-        "src/shared/helpers/*"
-      ],
-      "@entities/*": [
-        "src/shared/entities/*"
-      ],
-      "@app-types/*": [
-        "src/shared/types/*"
-      ]
-    },
-    /* Bundler mode */
+    "incremental": true,
+    "allowJs": false,
+    "strict": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": false,
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "preserve",
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    /* Aliases */
+    "paths": {
+      "@public/*": ["public/*"],
+      // Components
+      "@pages/*": ["src/pages/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@components/*": ["src/components/*"],
+      "@ui/*": ["src/components/ui/*"],
+      // Base
+      "@router/*": ["src/router/*"],
+      "@stores/*": ["src/stores/*"],
+      // Assets
+      "@assets/*": ["src/assets/*"],
+      "@audio/*": ["src/assets/audio/*"],
+      "@images/*": ["src/assets/images/*"],
+      "@styles/*": ["src/assets/styles/*"],
+      // Shared
+      "@shared/*": ["src/shared/*"],
+      "@utils/*": ["src/shared/utils/*"],
+      "@helpers/*": ["src/shared/helpers/*"],
+      "@entities/*": ["src/shared/entities/*"],
+      "@app-types/*": ["src/shared/types/*"]
+    }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"],
   "references": [
     {
       "path": "./tsconfig.node.json"
