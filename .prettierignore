@@ -1,0 +1,14 @@
+/node_modules
+/.idea
+/.git
+./github
+/dist
+/coverage
+
+.eslintrc
+.eslintignore
+vite.config.ts
+tsconfig.json
+tsconfig.node.json
+package.json
+*.log
