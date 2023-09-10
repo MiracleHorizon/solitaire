@@ -7,7 +7,7 @@ const gameStore = useGameStore()
 
 <template>
   <div :class="$style.root">
-    <Base v-for="base of gameStore.bases" :key="base.id" :base="base" />
+    <Base v-for="base in gameStore.bases" :key="base.id" :base="base" />
   </div>
 </template>
 

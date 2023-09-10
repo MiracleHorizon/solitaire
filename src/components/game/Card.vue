@@ -192,7 +192,7 @@ const handleMouseOrAndTouchEnd = () => {
       :class="$style.image"
       alt="'Playing card'"
     />
-    <Card v-if="nextCard" :card="nextCard" :key="nextCard.id" />
+    <Card v-if="nextCard" :key="nextCard.id" :card="nextCard" />
   </div>
 </template>
 

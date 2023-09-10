@@ -10,6 +10,7 @@ export interface IBase {
 }
 
 export class Base implements IBase, PlacementEntity {
+  public readonly id: number
   public suit: Suit | null = null
   public maxRank: Rank | null = null
   public cards: Card[] = []
@@ -18,7 +19,9 @@ export class Base implements IBase, PlacementEntity {
     return this.cards.length === 0
   }
 
-  constructor(public readonly id: number) {}
+  constructor(id: number) {
+    this.id = id
+  }
 
   public addCard(card: Card): void {
     if (!this.suit) {
@@ -45,10 +48,7 @@ export class Base implements IBase, PlacementEntity {
   }
 
   public clearCards(): void {
-    // TODO: Доделать
-    // for (const card of this.cards) {
-    // }
-
+    // TODO: Доделать. Удаление из карт данных об основании
     this.cards.length = 0
   }
 

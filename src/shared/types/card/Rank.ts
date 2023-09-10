@@ -1,3 +1,4 @@
+/* eslint no-unused-vars: 0 */
 export enum Rank {
   ACE = 1,
   DEUCE = 2,

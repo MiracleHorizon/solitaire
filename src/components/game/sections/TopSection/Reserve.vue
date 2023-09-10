@@ -14,7 +14,8 @@ const reserve = computed(() => gameStore.reserve)
     <CardCover :class="$style.cardCover" @click="gameStore.flipReserve()" />
     <CardCover :class="[$style.cardCover, $style.flippedCard]" />
     <Card
-      v-for="(card, index) of reserve"
+      v-for="(card, index) in reserve"
+      :key="card.id"
       :card="card"
       :style="{ zIndex: card.isFlipped ? reserve.length + 1 - index : 1 }"
       :class="[card.isFlipped && $style.flippedCard]"

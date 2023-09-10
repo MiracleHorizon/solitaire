@@ -1,0 +1,221 @@
+{
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "./"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/vue3-recommended",
+    "@vue/typescript/recommended",
+    "@vue/eslint-config-prettier",
+    "prettier"
+  ],
+  "plugins": [
+    "import"
+  ],
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "rules": {
+    /* Basic */
+    "no-console": "error",
+    "no-debugger": "error",
+    "no-unused-vars": "error",
+    "indent": [
+      "error",
+      2
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "func-style": [
+      "error",
+      "expression"
+    ],
+    "for-direction": "warn",
+    "no-unmodified-loop-condition": "error",
+    "no-unreachable-loop": "error",
+    "no-unused-expressions": "error",
+    "constructor-super": "error",
+    "getter-return": "error",
+    "no-setter-return": "error",
+    "no-class-assign": "error",
+    "no-dupe-class-members": "error",
+    "no-constructor-return": "error",
+    "no-this-before-super": "error",
+    "no-unused-private-class-members": "error",
+    "accessor-pairs": [
+      "error",
+      {
+        "getWithoutSet": true,
+        "enforceForClassMembers": false
+      }
+    ],
+    "grouped-accessor-pairs": [
+      "error",
+      "setBeforeGet"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "no-irregular-whitespace": [
+      "error",
+      {
+        "skipComments": true,
+        "skipRegExps": true
+      }
+    ],
+    "no-template-curly-in-string": "error",
+    "no-unexpected-multiline": "error",
+    "no-async-promise-executor": "off",
+    "no-await-in-loop": "error",
+    "no-promise-executor-return": "error",
+    "vars-on-top": "error",
+    "no-const-assign": "error",
+    "no-constant-binary-expression": "warn",
+    "no-self-assign": "error",
+    "no-undef": "off",
+    "block-scoped-var": "error",
+    "no-dupe-args": "error",
+    "no-func-assign": "error",
+    "arrow-body-style": "warn",
+    "default-param-last": "error",
+    "func-name-matching": "warn",
+    "func-names": [
+      "warn",
+      "as-needed"
+    ],
+    "no-dupe-keys": "error",
+    "no-empty-pattern": "error",
+    "no-obj-calls": "error",
+    "no-new-symbol": "error",
+    "no-new-object": "error",
+    "no-new-func": "error",
+    "no-new-native-nonconstructor": "error",
+    "no-prototype-builtins": "error",
+    "dot-notation": "off",
+    "no-sparse-arrays": "warn",
+    "array-callback-return": "error",
+    "eqeqeq": "error",
+    "no-cond-assign": [
+      "error",
+      "always"
+    ],
+    "no-constant-condition": "error",
+    "no-compare-neg-zero": "error",
+    "no-dupe-else-if": "error",
+    "no-inner-declarations": "warn",
+    "no-self-compare": "error",
+    "no-unsafe-negation": "error",
+    "no-unsafe-optional-chaining": "error",
+    "valid-typeof": "error",
+    "no-duplicate-imports": "error",
+    "no-import-assign": "error",
+    "no-ex-assign": "error",
+    "no-duplicate-case": "error",
+    "no-fallthrough": "error",
+    "default-case": "off",
+    "default-case-last": "error",
+    "capitalized-comments": "warn",
+    "no-loss-of-precision": "error",
+    "no-unreachable": "error",
+    "no-unsafe-finally": "error",
+    "require-atomic-updates": "error",
+    "use-isnan": "error",
+    "camelcase": [
+      "error",
+      {
+        "properties": "always"
+      }
+    ],
+    /* Vue */
+    "vue/no-unused-components": "error",
+    "vue/multi-word-component-names": "off",
+    "vue/html-indent": [
+      "error",
+      2
+    ],
+    "vue/require-prop-types": "error",
+    "vue/require-default-prop": "error",
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/multiline-html-element-content-newline": "error",
+    "vue/html-self-closing": "off",
+    "vue/v-on-function-call": [
+      "error",
+      "never"
+    ],
+    "vue/no-lone-template": "error",
+    "vue/no-mutating-props": "error",
+    "vue/no-parsing-error": "error",
+    "vue/v-bind-style": [
+      "error",
+      "shorthand"
+    ],
+    "vue/v-on-style": [
+      "error",
+      "shorthand"
+    ],
+    "vue/prop-name-casing": [
+      "error",
+      "camelCase"
+    ],
+    "vue/valid-v-pre": "error",
+    "vue/require-v-for-key": "error",
+    "vue/valid-v-slot": "error",
+    "vue/no-use-v-if-with-v-for": "error",
+    "vue/array-bracket-spacing": "error",
+    "vue/arrow-spacing": "error",
+    "vue/block-spacing": "error",
+    "vue/brace-style": "error",
+    "vue/camelcase": "error",
+    "vue/comma-dangle": "error",
+    "vue/component-name-in-template-casing": "error",
+    "vue/eqeqeq": "error",
+    "vue/key-spacing": "error",
+    "vue/match-component-file-name": "error",
+    "vue/no-boolean-default": "error",
+    "vue/no-deprecated-data-object-declaration": "error",
+    "vue/no-empty-pattern": "error",
+    "vue/no-multiple-slot-args": "error",
+    "vue/no-reserved-component-names": "error",
+    "vue/no-restricted-syntax": "error",
+    "vue/no-static-inline-styles": "error",
+    "vue/no-template-key": "error",
+    "vue/no-textarea-mustache": "error",
+    "vue/no-unused-vars": "error",
+    "vue/no-useless-concat": "error",
+    "vue/no-useless-mustaches": "error",
+    "vue/no-v-for-template-key": "error",
+    "vue/no-watch-after-await": "error",
+    "vue/padding-line-between-blocks": "error",
+    "vue/require-name-property": "error",
+    "vue/script-indent": "error",
+    "vue/static-class-names-order": "error",
+    "vue/v-for-delimiter-style": "error",
+    "vue/v-on-event-hyphenation": "error",
+    "vue/v-slot-style": "error",
+    "vue/valid-next-tick": "error",
+    "vue/valid-v-bind-sync": "error",
+    "vue/valid-v-else": "error",
+    "vue/valid-v-else-if": "error",
+    "vue/valid-v-for": "error",
+    "vue/valid-v-html": "error",
+    "vue/valid-v-if": "error",
+    "vue/valid-v-is": "error",
+    "vue/valid-v-model": "error",
+    "vue/valid-v-on": "error",
+    "vue/valid-v-once": "error",
+    "vue/valid-v-show": "error",
+    "vue/valid-v-text": "error"
+  }
+}

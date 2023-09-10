@@ -1,0 +1,5 @@
+.eslintrc
+.prettierrc
+.prettierignore
+vite.config.ts
+jest.config.cjs

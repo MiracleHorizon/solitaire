@@ -5,5 +5,3 @@ import { Routes } from '@router/routes.ts'
 <template>
   <RouterLink :to="Routes.GAME">Начать игру</RouterLink>
 </template>
-
-<style scoped lang="scss"></style>

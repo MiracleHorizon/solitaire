@@ -9,7 +9,12 @@ defineProps<{ base: Base }>()
 <template>
   <div :data-base-id="base.id" :data-droppable="true" :class="$style.root">
     <CardCover />
-    <Card v-for="card of base.cards" :card="card" :class="$style.card" />
+    <Card
+      v-for="card in base.cards"
+      :key="card.id"
+      :card="card"
+      :class="$style.card"
+    />
   </div>
 </template>
 
