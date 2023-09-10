@@ -7,7 +7,7 @@ const gameStore = useGameStore()
 </script>
 
 <template>
-  <HeaderButton @click="gameStore.$reset()" title="Новая игра">
+  <HeaderButton title="Новая игра" @click="gameStore.$reset()">
     <Play />
   </HeaderButton>
 </template>

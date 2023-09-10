@@ -8,7 +8,7 @@ const gameStore = useGameStore()
 <template>
   <section :class="$style.root">
     <Column
-      v-for="column of gameStore.columns"
+      v-for="column in gameStore.columns"
       :key="column.id"
       :column="column"
     />

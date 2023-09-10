@@ -5,6 +5,7 @@ module.exports = {
   moduleFileExtensions: ['js', 'ts', 'vue'],
   collectCoverage: true,
   resetMocks: false,
+  cache: true,
   setupFiles: ['jest-localstorage-mock'],
   moduleNameMapper: {
     '^@stores(.*)$': '<rootDir>/src/stores$1',

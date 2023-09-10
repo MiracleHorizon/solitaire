@@ -1,25 +1,18 @@
-interface IBrowserStorageProvider {
-  get length(): number
-  set: (key: string, payload: NonNullable<unknown>) => void
-  multiplySet: (data: StorageItem[]) => void
-  get: (key: string) => unknown | null
-  remove: (key: string) => void
-  clear: VoidFunction
-}
-
 interface StorageItem {
   key: string
   value: NonNullable<unknown>
 }
 
-export abstract class BrowserStorageProvider
-  implements IBrowserStorageProvider
-{
+export abstract class BrowserStorageProvider {
+  private readonly storage: Storage
+
   public get length(): number {
     return this.storage.length
   }
 
-  protected constructor(private readonly storage: Storage) {}
+  protected constructor(storage: Storage) {
+    this.storage = storage
+  }
 
   public set<T extends NonNullable<unknown>>(key: string, payload: T): void {
     const isObject = typeof payload === 'object' && payload !== null
@@ -31,6 +24,7 @@ export abstract class BrowserStorageProvider
     data.forEach(({ key, value }) => this.set(key, value))
   }
 
+  /* @ts-expect-error: noImplicitReturns */
   public get(key: string): unknown | null {
     const item = this.storage.getItem(key)
 

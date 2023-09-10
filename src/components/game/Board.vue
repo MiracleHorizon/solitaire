@@ -51,7 +51,7 @@ const handleTouchMove = (ev: TouchEvent) => {
 }
 
 const handleMouseUpOutsideOfViewport = () => {
-  dragStore.card && dragStore.$reset()
+  if (dragStore.card) dragStore.$reset()
 }
 
 onMounted(() => {

@@ -15,8 +15,8 @@ interface DynamicFields {
   base?: number | null
 }
 
-export const generateCard = (args?: Arguments): Card => {
-  return new Card({
+export const generateCard = (args?: Arguments): Card =>
+  new Card({
     id: v4(),
     wasDealt: false,
     isFlipped: false,
@@ -28,4 +28,3 @@ export const generateCard = (args?: Arguments): Card => {
     image: 'spades ace image',
     ...args
   })
-}

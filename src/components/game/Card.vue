@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, StyleValue } from 'vue'
+import { computed, ref, type StyleValue } from 'vue'
 
 import Card from './Card.vue'
 import { useGameStore } from '@stores/game.ts'
@@ -92,6 +92,8 @@ const handleTopPosition = () => {
   if (cardIndexInColumn.value > 0) {
     return (card.isFlipped ? 30 : 20) + '%'
   }
+
+  return
 }
 
 const handleStartAction = (x: number, y: number) => {
@@ -190,7 +192,7 @@ const handleMouseOrAndTouchEnd = () => {
       :class="$style.image"
       alt="'Playing card'"
     />
-    <Card v-if="nextCard" :card="nextCard" :key="nextCard.id" />
+    <Card v-if="nextCard" :key="nextCard.id" :card="nextCard" />
   </div>
 </template>
 

@@ -15,7 +15,7 @@ const records = computed(() => [
 <template>
   <ul>
     <UserRecordItem
-      v-for="{ title, value } of records"
+      v-for="{ title, value } in records"
       :key="title"
       :title="title"
       :value="value"
