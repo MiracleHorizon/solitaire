@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeAll } from '@jest/globals'
 
-import { getMockCards } from '@helpers/getMockCards.ts'
 import { Column } from '@entities/Column.ts'
+import { getMockCards } from '__setup__/helpers/getMockCards.ts'
 
 describe('Column.ts', () => {
   const column = new Column({

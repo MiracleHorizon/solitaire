@@ -2,7 +2,7 @@ import { beforeEach, beforeAll, describe, expect, it } from '@jest/globals'
 import { createPinia, setActivePinia } from 'pinia'
 
 import { BASE_POSITION_VALUE, useDragStore } from '@stores/drag.ts'
-import { generateCard } from '@helpers/generateCard.ts'
+import { generateCard } from '__setup__/helpers/generateCard.ts'
 
 describe('drag.ts', () => {
   const card = generateCard()

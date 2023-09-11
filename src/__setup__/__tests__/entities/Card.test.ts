@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { generateCard } from '@helpers/generateCard.ts'
+import { generateCard } from '__setup__/helpers/generateCard.ts'
 
 describe('Card.ts', () => {
   it('should set the card column and reset card base', () => {

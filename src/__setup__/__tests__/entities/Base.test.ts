@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { getMockCards } from '@helpers/getMockCards.ts'
 import { Base } from '@entities/Base.ts'
+import { getMockCards } from '__setup__/helpers/getMockCards.ts'
 
 describe('Base.ts', () => {
   const base = new Base(3)
