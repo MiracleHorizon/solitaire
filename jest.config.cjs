@@ -8,6 +8,7 @@ module.exports = {
   cache: true,
   setupFiles: ['jest-localstorage-mock'],
   moduleNameMapper: {
+    '^__setup__(.*)$': '<rootDir>/src/__setup__$1',
     '^@stores(.*)$': '<rootDir>/src/stores$1',
     '^@shared(.*)$': '<rootDir>/src/shared$1',
     '^@utils(.*)$': '<rootDir>/src/shared/utils$1',
