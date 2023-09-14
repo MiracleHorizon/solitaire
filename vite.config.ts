@@ -46,8 +46,7 @@ export default defineConfig({
       include: ['src/**/*.{scss,vue}'],
       fix: true,
       dev: true,
-      build: true,
-      lintInWorker: true
+      build: false
     })
   ],
   resolve: {
