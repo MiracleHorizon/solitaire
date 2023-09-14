@@ -12,6 +12,7 @@ const aliases: Alias[] = [
   { find: '@', path: './' },
   { find: '@public', path: './public' },
   // Base
+  { find: '__setup__', path: './src/__setup__' },
   { find: '@router', path: './src/router' },
   { find: '@stores', path: './src/stores' },
   // Components

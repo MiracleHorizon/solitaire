@@ -54,13 +54,28 @@ export class Card implements ICard {
     this.base = null
   }
 
+  public removeColumn(): void {
+    this.column = null
+  }
+
   public setBase(base: number): void {
     this.base = base
     this.column = null
   }
 
+  public removeBase(): void {
+    this.base = null
+  }
+
   public deal(): void {
     this.wasDealt = true
+  }
+
+  public moveToReserve(): void {
+    this.removeBase()
+    this.removeColumn()
+    this.wasDealt = false
+    this.isFlipped = false
   }
 
   public flip(): void {

@@ -31,6 +31,20 @@ export class Solitaire {
     this.board.addCardToBase(baseId, cardId)
   }
 
+  public moveAllCardsToReserve(): void {
+    for (const base of this.bases) {
+      base.clearCards()
+    }
+
+    for (const column of this.columns) {
+      column.clearCards()
+    }
+
+    for (const card of this.cards) {
+      card.moveToReserve()
+    }
+  }
+
   public addCardsToColumn(columnId: number, card: Card): void {
     if (columnId === card.column) return
 
@@ -107,15 +121,12 @@ export class Solitaire {
         return card.rank === Rank.ACE
       }
 
-      const upperCard = base.getUpperCardOrNull()
-
       /**
-       * Additional verification is required for TypeScript.
+       * Disable verification is required here for TypeScript.
        * If the base is not empty, upper card cannot be null.
        */
-      if (!upperCard) {
-        return card.rank === Rank.KING
-      }
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const upperCard = base.getUpperCardOrNull()!
 
       /**
        * If there are already cards on the base, then according to the rules
@@ -142,15 +153,12 @@ export class Solitaire {
         return card.rank === Rank.KING
       }
 
-      const upperCard = column.getUpperCardOrNull()
-
       /**
-       * Additional verification is required for TypeScript.
+       * Disable verification is required here for TypeScript.
        * If the column is not empty, upper card cannot be null.
        */
-      if (!upperCard) {
-        return card.rank === Rank.KING
-      }
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const upperCard = column.getUpperCardOrNull()!
 
       /**
        * If there are already cards in the column, then according to the rules

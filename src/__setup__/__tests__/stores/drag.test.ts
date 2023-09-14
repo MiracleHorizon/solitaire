@@ -2,10 +2,10 @@ import { beforeEach, beforeAll, describe, expect, it } from '@jest/globals'
 import { createPinia, setActivePinia } from 'pinia'
 
 import { BASE_POSITION_VALUE, useDragStore } from '@stores/drag.ts'
-import { generateCard } from '@helpers/generateCard.ts'
+import { generateMockCard } from '__setup__/helpers/generateMockCard.ts'
 
 describe('drag.ts', () => {
-  const card = generateCard()
+  const card = generateMockCard()
 
   beforeAll(() => {
     Object.freeze(card)

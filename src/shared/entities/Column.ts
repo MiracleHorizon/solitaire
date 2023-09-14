@@ -41,6 +41,10 @@ export class Column implements IColumn, PlacementEntity {
   }
 
   public clearCards(): void {
+    for (const card of this.cards) {
+      card.removeColumn()
+    }
+
     this.cards.length = 0
   }
 

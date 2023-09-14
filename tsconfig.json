@@ -32,6 +32,8 @@
     /* Aliases */
     "paths": {
       "@public/*": ["public/*"],
+      // Setup
+      "__setup__/*": ["src/__setup__/*"],
       // Components
       "@pages/*": ["src/pages/*"],
       "@layouts/*": ["src/layouts/*"],
@@ -48,7 +50,6 @@
       // Shared
       "@shared/*": ["src/shared/*"],
       "@utils/*": ["src/shared/utils/*"],
-      "@helpers/*": ["src/shared/helpers/*"],
       "@entities/*": ["src/shared/entities/*"],
       "@app-types/*": ["src/shared/types/*"]
     }

@@ -1,11 +1,11 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { getMockCards } from '@helpers/getMockCards.ts'
 import { Base } from '@entities/Base.ts'
+import { generateMockCards } from '__setup__/helpers/generateMockCards.ts'
 
 describe('Base.ts', () => {
   const base = new Base(3)
-  const { spadesAce, spadesDeuce, diamondsKing } = getMockCards()
+  const { spadesAce, spadesDeuce, diamondsKing } = generateMockCards()
 
   it('should add a card to the base', () => {
     expect(base.suit).toBeNull()
