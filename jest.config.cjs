@@ -7,6 +7,7 @@ module.exports = {
   resetMocks: false,
   cache: true,
   setupFiles: ['jest-localstorage-mock'],
+  setupFilesAfterEnv: ['./src/__setup__/configs/jest.setup.cjs'],
   moduleNameMapper: {
     '^__setup__(.*)$': '<rootDir>/src/__setup__$1',
     '^@stores(.*)$': '<rootDir>/src/stores$1',
