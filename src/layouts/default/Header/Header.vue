@@ -38,10 +38,12 @@ const isGameRoute = computed(() => route.path === Routes.GAME)
 }
 
 // Buttons
+$small-screen-bp: 600px;
+
 .newGame {
   margin-left: 12px;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width <= $small-screen-bp) {
     margin-left: auto;
   }
 }
@@ -49,7 +51,7 @@ const isGameRoute = computed(() => route.path === Routes.GAME)
 .toggleSound {
   margin-left: auto;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width <= $small-screen-bp) {
     margin-left: 0;
   }
 }

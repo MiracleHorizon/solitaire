@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'url'
 import vue from '@vitejs/plugin-vue'
+import stylelint from 'vite-plugin-stylelint'
 
 interface Alias {
   find: string | RegExp
@@ -39,7 +40,15 @@ const createAlias = ({ find, path }: Alias) => ({
 })
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    stylelint({
+      include: ['src/**/*.{scss,vue}'],
+      fix: true,
+      dev: true,
+      build: false
+    })
+  ],
   resolve: {
     alias: aliases.map(alias => createAlias(alias))
   },

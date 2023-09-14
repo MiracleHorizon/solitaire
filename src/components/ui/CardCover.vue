@@ -15,10 +15,11 @@ import cardCover from '@images/cards/card_cover.png'
 .root {
   width: 100%;
   z-index: 0;
-  opacity: 0.4;
+  opacity: 40%;
 
   img {
     @include no-select;
+
     pointer-events: none;
   }
 }
