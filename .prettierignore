@@ -7,8 +7,5 @@
 
 .eslintrc
 .eslintignore
-vite.config.ts
-tsconfig.json
-tsconfig.node.json
-package.json
 *.log
+*.json
