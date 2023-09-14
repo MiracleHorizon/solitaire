@@ -34,3 +34,6 @@ jobs:
 
       - name: Lint project
         run: yarn lint
+
+      - name: Stylelint project
+        run: yarn lint:styles
