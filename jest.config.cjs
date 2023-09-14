@@ -16,6 +16,6 @@ module.exports = {
     '^@helpers(.*)$': '<rootDir>/src/shared/helpers$1',
     '^@entities(.*)$': '<rootDir>/src/shared/entities$1',
     '^@app-types(.*)$': '<rootDir>/src/shared/types$1',
-    '.+\\.(png|jpg|jpeg)$': 'identity-obj-proxy'
+    '.+\\.(png|jpg|jpeg|mp3)$': 'identity-obj-proxy'
   }
 }
