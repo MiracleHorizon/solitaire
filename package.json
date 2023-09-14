@@ -47,6 +47,7 @@
     "stylelint-config-standard-scss": "^11.0.0",
     "stylelint-scss": "^5.1.0",
     "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vite-plugin-stylelint": "^5.1.1",
