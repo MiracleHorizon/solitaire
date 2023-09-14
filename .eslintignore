@@ -1,5 +1,7 @@
 .eslintrc
 .prettierrc
 .prettierignore
-vite.config.ts
-jest.config.cjs
+*.config.js
+*.config.cjs
+*.config.ts
+*.config.json

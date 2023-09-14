@@ -23,7 +23,7 @@
   },
   "rules": {
     /* Basic */
-    "no-console": "error",
+    "no-console": "warn",
     "no-debugger": "error",
     "no-unused-vars": "error",
     "indent": [
