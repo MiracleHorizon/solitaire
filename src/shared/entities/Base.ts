@@ -48,7 +48,12 @@ export class Base implements IBase, PlacementEntity {
   }
 
   public clearCards(): void {
-    // TODO: Доделать. Удаление из карт данных об основании
+    for (const card of this.cards) {
+      card.removeBase()
+    }
+
+    this.suit = null
+    this.maxRank = null
     this.cards.length = 0
   }
 
