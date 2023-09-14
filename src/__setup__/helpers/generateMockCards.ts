@@ -1,16 +1,16 @@
-import { generateCard } from './generateCard.ts'
+import { generateMockCard } from './generateMockCard.ts'
 import { Rank, Suit } from '@app-types/card'
 
-export const getMockCards = () => {
-  const spadesAce = generateCard({
+export const generateMockCards = () => {
+  const spadesAce = generateMockCard({
     rank: Rank.ACE,
     suit: Suit.SPADES
   })
-  const spadesDeuce = generateCard({
+  const spadesDeuce = generateMockCard({
     rank: Rank.DEUCE,
     suit: Suit.SPADES
   })
-  const diamondsKing = generateCard({
+  const diamondsKing = generateMockCard({
     rank: Rank.KING,
     suit: Suit.DIAMONDS
   })

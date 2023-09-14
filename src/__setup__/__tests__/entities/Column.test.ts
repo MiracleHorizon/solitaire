@@ -1,14 +1,14 @@
 import { describe, expect, it, beforeAll } from '@jest/globals'
 
 import { Column } from '@entities/Column.ts'
-import { getMockCards } from '__setup__/helpers/getMockCards.ts'
+import { generateMockCards } from '__setup__/helpers/generateMockCards.ts'
 
 describe('Column.ts', () => {
   const column = new Column({
     id: 1,
     cards: []
   })
-  const { spadesAce, spadesDeuce, diamondsKing } = getMockCards()
+  const { spadesAce, spadesDeuce, diamondsKing } = generateMockCards()
 
   beforeAll(() => {
     expect(column.isEmpty).toBeTruthy()

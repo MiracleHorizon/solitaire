@@ -15,7 +15,7 @@ interface DynamicFields {
   base?: number | null
 }
 
-export const generateCard = (args?: Arguments): Card =>
+export const generateMockCard = (args?: Arguments): Card =>
   new Card({
     id: v4(),
     wasDealt: false,
@@ -25,6 +25,6 @@ export const generateCard = (args?: Arguments): Card =>
     rank: Rank.ACE,
     suit: Suit.SPADES,
     color: Color.RED,
-    image: 'spades ace image',
+    image: 'card image',
     ...args
   })

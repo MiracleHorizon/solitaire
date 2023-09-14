@@ -1,10 +1,10 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { generateCard } from '__setup__/helpers/generateCard.ts'
+import { generateMockCard } from '__setup__/helpers/generateMockCard.ts'
 
 describe('Card.ts', () => {
   it('should set the card column and reset card base', () => {
-    const card = generateCard({
+    const card = generateMockCard({
       base: 3
     })
     const columnId = 1
@@ -20,7 +20,7 @@ describe('Card.ts', () => {
   })
 
   it('should set the card base and reset card column', () => {
-    const card = generateCard({
+    const card = generateMockCard({
       column: 6
     })
     const baseId = 3
@@ -36,7 +36,7 @@ describe('Card.ts', () => {
   })
 
   it('should return is card on the base', () => {
-    const card = generateCard()
+    const card = generateMockCard()
     expect(card.onBase).toBeFalsy()
 
     card.setBase(3)
@@ -44,7 +44,7 @@ describe('Card.ts', () => {
   })
 
   it('should return is card in the column', () => {
-    const card = generateCard()
+    const card = generateMockCard()
     expect(card.inColumn).toBeFalsy()
 
     card.setColumn(4)
@@ -55,7 +55,7 @@ describe('Card.ts', () => {
   })
 
   it('should toggle is card flipped and return field value', () => {
-    const card = generateCard({
+    const card = generateMockCard({
       isFlipped: true
     })
     expect(card.isFlipped).toBeTruthy()
@@ -68,7 +68,7 @@ describe('Card.ts', () => {
   })
 
   it('should deal card and return field value', () => {
-    const card = generateCard()
+    const card = generateMockCard()
     expect(card.wasDealt).toBeFalsy()
 
     card.deal()
