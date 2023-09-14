@@ -19,7 +19,7 @@ const gameStore = useGameStore()
 @import '@styles/variables';
 
 .root {
-  height: -webkit-fill-available;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   column-gap: $card-x-gap;

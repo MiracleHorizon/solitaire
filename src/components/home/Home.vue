@@ -31,7 +31,4 @@ import PlayGame from '@components/home/PlayGame.vue'
     color: $white;
   }
 }
-
-.content {
-}
 </style>

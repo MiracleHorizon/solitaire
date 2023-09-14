@@ -16,6 +16,7 @@ const gameStore = useGameStore()
 
 .root {
   @include no-select;
+
   display: flex;
   align-items: center;
   justify-content: center;

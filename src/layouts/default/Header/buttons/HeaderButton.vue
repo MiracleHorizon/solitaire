@@ -12,6 +12,8 @@ defineProps<{ title: string }>()
 <style module lang="scss">
 @import '@styles/variables';
 
+$small-screen-bp: 600px;
+
 .root {
   cursor: pointer;
   width: max-content;
@@ -20,12 +22,12 @@ defineProps<{ title: string }>()
   justify-content: center;
   padding: 8px 12px;
   border-radius: 10px;
-  opacity: 0.8;
+  opacity: 80%;
   color: $white;
   transition: opacity 50ms ease-in-out;
 
   &:hover {
-    opacity: 1;
+    opacity: 100%;
   }
 }
 
@@ -34,7 +36,7 @@ defineProps<{ title: string }>()
   font-size: 17px;
   font-weight: 500;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width <= $small-screen-bp) {
     display: none;
   }
 }

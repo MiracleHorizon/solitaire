@@ -55,7 +55,9 @@ const draggingStyles = computed(() => {
     left,
     top,
     zIndex: gameStore.cards.length + 1,
-    transform: 'translateX(0)'
+    transform: 'translateX(0)',
+    boxShadow:
+      'rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px'
   } as StyleValue
 })
 
@@ -140,7 +142,7 @@ const handleColumnDrop = (columnId: number) => {
   gameStore.addCardsToColumn(columnId, dragStore.card)
 }
 
-const handleMouseOrAndTouchEnd = () => {
+const handleMouseUpOrTouchEnd = () => {
   const elementsBelow = document.elementsFromPoint(
     dragStore.moveOffsetX,
     dragStore.moveOffsetY
@@ -182,9 +184,9 @@ const handleMouseOrAndTouchEnd = () => {
         : { top: handleTopPosition(), position: handlePosition() }
     "
     @mousedown="handleMouseDown"
-    @mouseup="handleMouseOrAndTouchEnd"
+    @mouseup="handleMouseUpOrTouchEnd"
     @touchstart.passive="handleTouchStart"
-    @touchend="handleMouseOrAndTouchEnd"
+    @touchend="handleMouseUpOrTouchEnd"
     @touchcancel="dragStore.$reset()"
   >
     <img
@@ -213,12 +215,13 @@ const handleMouseOrAndTouchEnd = () => {
 
 .image {
   @include no-select;
+
   pointer-events: none;
 }
 
 .inColumn {
   box-shadow:
-    rgba(60, 64, 67, 0.3) 0 1px 2px 0,
-    rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
+    rgba(60 64 67 / 30%) 0 1px 2px 0,
+    rgba(60 64 67 / 15%) 0 1px 3px 1px;
 }
 </style>
