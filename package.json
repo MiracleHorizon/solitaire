@@ -12,9 +12,12 @@
     "lint:styles": "npx stylelint \"**/*.{scss,vue}\"",
     "format:eslint": "eslint --fix \"src/**/*.{ts,vue}\"",
     "format:stylelint": "npx stylelint --fix \"**/*.{scss,vue}\"",
-    "format": "yarn run format:eslint && yarn run format:stylelint"
+    "format": "yarn run format:eslint && yarn run format:stylelint",
+    "precommit": "yarn test && yarn lint && yarn lint:styles && yarn build"
   },
   "dependencies": {
+    "@vueuse/components": "^10.4.1",
+    "@vueuse/core": "^10.4.1",
     "lodash.shuffle": "^4.2.0",
     "pinia": "^2.1.6",
     "uuid": "^9.0.1",
