@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import SpeakerWave from '@ui/icons/SpeakerWave.vue'
-import SpeakerXMark from '@ui/icons/SpeakerXMark.vue'
+import SpeakerWave from '@ui/icons/SpeakerWaveIcon.vue'
+import SpeakerXMark from '@ui/icons/SpeakerXMarkIcon.vue'
 import HeaderButton from './HeaderButton.vue'
 import { useInterfaceStore } from '@stores/interface.ts'
 
 const interfaceStore = useInterfaceStore()
-const isSoundEnabled = computed(() => interfaceStore.isSoundEnabled) // TODO: Проверить необходимость computed
+const isSoundEnabled = computed(() => interfaceStore.isSoundEnabled)
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Card from '@components/game/Card.vue'
-import CardCover from '@ui/CardCover.vue'
+import BaseCard from '@ui/BaseCard.vue'
+import PlayCard from '@components/game/PlayCard.vue'
 import type { Column } from '@entities/Column.ts'
 
 defineProps<{ column: Column }>()
@@ -8,8 +8,8 @@ defineProps<{ column: Column }>()
 
 <template>
   <div :data-column-id="column.id" :data-droppable="true" :class="$style.root">
-    <CardCover :class="$style.cardCover" />
-    <Card v-if="column.cards.length > 0" :card="column.cards[0]" />
+    <BaseCard :class="$style.dropPlace" />
+    <PlayCard v-if="!column.isEmpty" :card="column.cards[0]" />
   </div>
 </template>
 
@@ -17,14 +17,18 @@ defineProps<{ column: Column }>()
 @import '@styles/variables';
 
 .root {
-  width: $card-width;
   position: relative;
+  width: $card-width;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
+
+  @media screen and (max-width: $small-content-max-width-bp) {
+    width: $small-card-width;
+  }
 }
 
-.cardCover {
+.dropPlace {
   position: absolute;
 }
 </style>

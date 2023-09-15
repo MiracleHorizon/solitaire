@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Column from './Column.vue'
+import CardsColumn from './CardsColumn.vue'
 import { useGameStore } from '@stores/game.ts'
 
 const gameStore = useGameStore()
@@ -7,7 +7,7 @@ const gameStore = useGameStore()
 
 <template>
   <section :class="$style.root">
-    <Column
+    <CardsColumn
       v-for="column in gameStore.columns"
       :key="column.id"
       :column="column"
@@ -23,10 +23,5 @@ const gameStore = useGameStore()
   display: flex;
   justify-content: space-between;
   column-gap: $card-x-gap;
-  margin-top: 20px;
-
-  @media screen and (max-width: $small-content-max-width-bp) {
-    margin-top: 10px;
-  }
 }
 </style>

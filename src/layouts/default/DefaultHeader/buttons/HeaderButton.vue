@@ -36,7 +36,7 @@ $small-screen-bp: 600px;
   font-size: 17px;
   font-weight: 500;
 
-  @media screen and (max-width <= $small-screen-bp) {
+  @media screen and (max-width: $small-screen-bp) {
     display: none;
   }
 }

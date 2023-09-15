@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PlayGame from '@components/home/PlayGame.vue'
+import PlayGameButton from '@components/home/PlayGameButton.vue'
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import PlayGame from '@components/home/PlayGame.vue'
       <h1>Пасьянс "Косынка"</h1>
     </header>
     <main :class="$style.content">
-      <PlayGame />
+      <PlayGameButton />
     </main>
   </div>
 </template>

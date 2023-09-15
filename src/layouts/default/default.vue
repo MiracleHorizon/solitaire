@@ -1,27 +1,10 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted } from 'vue'
-
-import Header from './Header/Header.vue'
-
-const handleKeydownPageReload = (ev: KeyboardEvent) => {
-  // Защита пользователя от случайных перезагрузок страницы и потери игрового прогресса.
-  if ((ev.code === 'KeyR' && ev.metaKey) || ev.code === 'F5') {
-    ev.preventDefault()
-  }
-}
-
-onMounted(() => {
-  window.addEventListener('keydown', handleKeydownPageReload)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('keydown', handleKeydownPageReload)
-})
+import DefaultHeader from './DefaultHeader/DefaultHeader.vue'
 </script>
 
 <template>
   <div :class="$style.root">
-    <Header />
+    <DefaultHeader />
     <slot />
   </div>
 </template>
