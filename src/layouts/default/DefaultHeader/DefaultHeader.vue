@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
 import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
 import GameInfo from './GameInfo.vue'
 import NewGameButton from './buttons/NewGameButton.vue'
@@ -29,8 +29,8 @@ const isGameRoute = computed(() => route.path === Routes.GAME)
   height: $header-height;
   display: flex;
   align-items: center;
-  background-color: $black;
   padding: 0 18px;
+  background-color: $black;
 
   @media screen and (max-width: $mobileLg) {
     padding: 0 12px;
@@ -43,7 +43,7 @@ $small-screen-bp: 600px;
 .newGame {
   margin-left: 12px;
 
-  @media screen and (max-width <= $small-screen-bp) {
+  @media screen and (max-width: $small-screen-bp) {
     margin-left: auto;
   }
 }
@@ -51,7 +51,7 @@ $small-screen-bp: 600px;
 .toggleSound {
   margin-left: auto;
 
-  @media screen and (max-width <= $small-screen-bp) {
+  @media screen and (max-width: $small-screen-bp) {
     margin-left: 0;
   }
 }

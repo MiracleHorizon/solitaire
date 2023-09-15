@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import MovesCount from './MovesCount.vue'
-import UserRecords from './UserRecords/UserRecords.vue'
+import UserRecordList from './UserRecords/UserRecordList.vue'
 </script>
 
 <template>
   <div :class="$style.root">
-    <UserRecords :class="$style.records" />
+    <UserRecordList :class="$style.userRecords" />
     <MovesCount />
   </div>
 </template>
 
 <style module lang="scss">
-@import '@styles/variables';
 @import '@styles/breakpoints';
 
 .root {
@@ -21,7 +20,7 @@ import UserRecords from './UserRecords/UserRecords.vue'
   justify-content: flex-start;
 }
 
-.records {
+.userRecords {
   margin-right: 20px;
 
   @media screen and (max-width: $tablet) {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Card from '@components/game/Card.vue'
-import CardCover from '@ui/CardCover.vue'
+import BaseCard from '@ui/BaseCard.vue'
+import PlayCard from '@components/game/PlayCard.vue'
 import type { Base } from '@entities/Base.ts'
 
 defineProps<{ base: Base }>()
@@ -8,8 +8,8 @@ defineProps<{ base: Base }>()
 
 <template>
   <div :data-base-id="base.id" :data-droppable="true" :class="$style.root">
-    <CardCover />
-    <Card
+    <BaseCard />
+    <PlayCard
       v-for="card in base.cards"
       :key="card.id"
       :card="card"
@@ -26,7 +26,7 @@ $small-width: $small-card-width;
 
 .root {
   position: relative;
-  width: $card-width;
+  width: $width;
 
   @media screen and (max-width: $small-content-max-width-bp) {
     width: $small-width;
@@ -35,5 +35,6 @@ $small-width: $small-card-width;
 
 .card {
   top: 0;
+  left: 0;
 }
 </style>

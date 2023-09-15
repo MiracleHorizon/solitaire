@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { computed, ref, type StyleValue } from 'vue'
+import { useCssVar } from '@vueuse/core'
 
-import Card from './Card.vue'
+import PlayCard from './PlayCard.vue'
+import BaseCard from '@ui/BaseCard.vue'
 import { useGameStore } from '@stores/game.ts'
 import { useDragStore } from '@stores/drag.ts'
-import type { Card as CardImpl } from '@entities/Card.ts'
-import cardBack from '@images/cards/card_back.png'
+import type { Card } from '@entities/Card.ts'
+import cardBackPng from '@images/cards/card_back.png'
 
-const props = defineProps<{ card: CardImpl; top?: string }>()
+const props = defineProps<{ card: Card; top?: string }>()
+const boxShadow = useCssVar('--box-shadow')
 const rootNodeRef = ref(null)
 
 const gameStore = useGameStore()
@@ -56,8 +59,7 @@ const draggingStyles = computed(() => {
     top,
     zIndex: gameStore.cards.length + 1,
     transform: 'translateX(0)',
-    boxShadow:
-      'rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px'
+    boxShadow: boxShadow.value
   } as StyleValue
 })
 
@@ -78,15 +80,18 @@ const handleTopPosition = () => {
     return props.top
   }
 
-  const card = props.card
-
   if (cardIndexInColumn.value < 0) return
 
-  if (card.column) {
-    const indexInFlippedCards =
-      gameStore.solitaire.getCardIndexInColumnFlippedCards(card.column, card.id)
+  const card = props.card
 
-    if (indexInFlippedCards === 0 && cardIndexInColumn.value > 0) {
+  if (card.column) {
+    if (
+      gameStore.solitaire.getCardIndexInColumnFlippedCards(
+        card.column,
+        card.id
+      ) === 0 &&
+      cardIndexInColumn.value > 0
+    ) {
       return '20%'
     }
   }
@@ -98,12 +103,31 @@ const handleTopPosition = () => {
   return
 }
 
+const getStyles = () => {
+  const card = props.card
+  const isDragging = dragStore.isCardDragging(card.id)
+
+  if (isDragging) {
+    return draggingStyles.value
+  }
+
+  const styles: StyleValue = {
+    top: handleTopPosition(),
+    position: handlePosition()
+  }
+
+  if (card.inColumn) {
+    styles.boxShadow = boxShadow.value
+  }
+
+  return styles
+}
+
 const handleStartAction = (x: number, y: number) => {
   if (dragStore.card) return // TODO: Посмотреть
-  const nodeRef = rootNodeRef.value as HTMLDivElement | null
-
-  if (!nodeRef) return
-  const nodeRect = nodeRef.getBoundingClientRect()
+  const rootNode = rootNodeRef.value as HTMLDivElement | null
+  if (!rootNode) return
+  const nodeRect = rootNode.getBoundingClientRect()
 
   dragStore.setMoveOffset(x, y)
   dragStore.setInitialCursorCoords(x, y)
@@ -112,20 +136,17 @@ const handleStartAction = (x: number, y: number) => {
 }
 
 const handleMouseDown = (ev: MouseEvent) => {
-  ev.stopPropagation()
-
   if (!props.card.isFlipped) return
-
   handleStartAction(ev.clientX, ev.clientY)
 }
 
 const handleTouchStart = (ev: TouchEvent) => {
-  ev.stopPropagation()
+  if (!props.card.isFlipped) return
 
   const touches = ev.touches
   const firstTouch = touches.item(0)
 
-  if (!props.card.isFlipped || !firstTouch) return
+  if (!firstTouch) return
 
   handleStartAction(firstTouch.clientX, firstTouch.clientY)
 }
@@ -174,27 +195,18 @@ const handleMouseUpOrTouchEnd = () => {
 <template>
   <div
     ref="rootNodeRef"
-    :class="{
-      [$style.root]: true,
-      [$style.inColumn]: card.inColumn
-    }"
-    :style="
-      dragStore.isCardDragging(card.id)
-        ? draggingStyles
-        : { top: handleTopPosition(), position: handlePosition() }
-    "
-    @mousedown="handleMouseDown"
+    :class="$style.root"
+    :style="getStyles()"
+    @mousedown.prevent="handleMouseDown"
     @mouseup="handleMouseUpOrTouchEnd"
     @touchstart.passive="handleTouchStart"
     @touchend="handleMouseUpOrTouchEnd"
-    @touchcancel="dragStore.$reset()"
+    @touchcancel="dragStore.$reset"
   >
-    <img
-      :src="card.isFlipped ? card.image : cardBack"
-      :class="$style.image"
-      alt="'Playing card'"
+    <BaseCard
+      :image-path="props.card.isFlipped ? props.card.image : cardBackPng"
     />
-    <Card v-if="nextCard" :key="nextCard.id" :card="nextCard" />
+    <PlayCard v-if="nextCard" :key="nextCard.id" :card="nextCard" />
   </div>
 </template>
 
@@ -211,17 +223,5 @@ const handleMouseUpOrTouchEnd = () => {
   @media screen and (max-width: $small-content-max-width-bp) {
     width: $small-card-width;
   }
-}
-
-.image {
-  @include no-select;
-
-  pointer-events: none;
-}
-
-.inColumn {
-  box-shadow:
-    rgba(60 64 67 / 30%) 0 1px 2px 0,
-    rgba(60 64 67 / 15%) 0 1px 3px 1px;
 }
 </style>

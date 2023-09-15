@@ -1,24 +1,23 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
-import Card from '@components/game/Card.vue'
-import CardCover from '@ui/CardCover.vue'
+import BaseCard from '@ui/BaseCard.vue'
+import PlayCard from '@components/game/PlayCard.vue'
 import { useGameStore } from '@stores/game.ts'
 
 const gameStore = useGameStore()
-const reserve = computed(() => gameStore.reserve)
 </script>
 
 <template>
   <div :class="$style.root">
-    <CardCover :class="$style.cardCover" @click="gameStore.flipReserve()" />
-    <CardCover :class="[$style.cardCover, $style.flippedCard]" />
-    <Card
-      v-for="(card, index) in reserve"
+    <BaseCard :class="$style.cardPlace" @click="gameStore.flipReserve" />
+    <BaseCard :class="[$style.cardPlace, $style.toRight]" />
+    <PlayCard
+      v-for="(card, index) in gameStore.reserve"
       :key="card.id"
       :card="card"
-      :style="{ zIndex: card.isFlipped ? reserve.length + 1 - index : 1 }"
-      :class="[card.isFlipped && $style.flippedCard]"
+      :style="{
+        zIndex: card.isFlipped ? gameStore.reserve.length + 1 - index : 1
+      }"
+      :class="card.isFlipped && $style.toRight"
       @click="gameStore.flipCard(card.id)"
     />
   </div>
@@ -40,7 +39,7 @@ $small-height: $small-card-height;
   }
 }
 
-.cardCover {
+.cardPlace {
   position: absolute;
   width: $card-width;
 
@@ -53,7 +52,7 @@ $small-height: $small-card-height;
   }
 }
 
-.flippedCard {
+.toRight {
   transform: translateX(calc($card-width + $card-x-gap));
 
   @media screen and (max-width: $small-content-max-width-bp) {

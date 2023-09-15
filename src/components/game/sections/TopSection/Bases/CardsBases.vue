@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Base from './Base.vue'
+import CardsBase from './CardsBase.vue'
 import { useGameStore } from '@stores/game.ts'
 
 const gameStore = useGameStore()
@@ -7,7 +7,7 @@ const gameStore = useGameStore()
 
 <template>
   <div :class="$style.root">
-    <Base v-for="base in gameStore.bases" :key="base.id" :base="base" />
+    <CardsBase v-for="base in gameStore.bases" :key="base.id" :base="base" />
   </div>
 </template>
 

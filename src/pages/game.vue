@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Game from '@components/game/Game.vue'
+import Game from '@components/game/GameScreen.vue'
 </script>
 
 <template>

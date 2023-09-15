@@ -87,9 +87,11 @@ onBeforeUnmount(() => {
 
   section {
     width: $large-screen-content-width;
+    margin-top: 20px;
 
     @media screen and (max-width: $small-content-max-width-bp) {
       width: $small-screen-content-width;
+      margin-top: 10px;
     }
   }
 }

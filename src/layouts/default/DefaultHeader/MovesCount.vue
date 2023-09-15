@@ -25,9 +25,9 @@ const gameStore = useGameStore()
 }
 
 .count {
+  margin-left: 6px;
   font-size: 20px;
   font-weight: 500;
-  margin-left: 6px;
   color: $white;
 }
 </style>

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import Reserve from './Reserve.vue'
-import Bases from './Bases/Bases.vue'
+import CardsReserve from './CardsReserve.vue'
+import CardsBases from './Bases/CardsBases.vue'
 </script>
 
 <template>
   <section :class="$style.root">
-    <Reserve />
-    <Bases />
+    <CardsReserve />
+    <CardsBases />
   </section>
 </template>
 
@@ -19,11 +19,9 @@ $height: $card-height;
   height: $height;
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
 
   @media screen and (max-width: $small-content-max-width-bp) {
     height: $small-card-height;
-    margin-top: 10px;
   }
 }
 </style>
