@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
+import BackHome from './BackHome.vue'
 import GameInfo from './GameInfo.vue'
 import NewGameButton from './buttons/NewGameButton.vue'
 import ToggleSoundButton from './buttons/ToggleSoundButton.vue'
@@ -9,11 +10,13 @@ import { Routes } from '@router/routes.ts'
 
 const route = useRoute()
 
+const isHomeRoute = computed(() => route.path === Routes.HOME)
 const isGameRoute = computed(() => route.path === Routes.GAME)
 </script>
 
 <template>
   <header :class="$style.root">
+    <BackHome v-if="!isHomeRoute" :class="$style.backHome" />
     <GameInfo v-if="isGameRoute" />
     <NewGameButton v-if="isGameRoute" :class="$style.newGame" />
     <ToggleSoundButton :class="$style.toggleSound" />
@@ -39,6 +42,10 @@ const isGameRoute = computed(() => route.path === Routes.GAME)
 
 // Buttons
 $small-screen-bp: 600px;
+
+.backHome {
+  margin-right: 14px;
+}
 
 .newGame {
   margin-left: 12px;
