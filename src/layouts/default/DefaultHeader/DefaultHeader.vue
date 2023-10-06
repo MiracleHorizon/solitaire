@@ -12,6 +12,7 @@ const route = useRoute()
 
 const isHomeRoute = computed(() => route.path === Routes.HOME)
 const isGameRoute = computed(() => route.path === Routes.GAME)
+const isSettingsRoute = computed(() => route.path === Routes.SETTINGS)
 </script>
 
 <template>
@@ -19,7 +20,7 @@ const isGameRoute = computed(() => route.path === Routes.GAME)
     <BackHome v-if="!isHomeRoute" :class="$style.backHome" />
     <GameInfo v-if="isGameRoute" />
     <NewGameButton v-if="isGameRoute" :class="$style.newGame" />
-    <ToggleSoundButton :class="$style.toggleSound" />
+    <ToggleSoundButton v-if="!isSettingsRoute" :class="$style.toggleSound" />
   </header>
 </template>
 
