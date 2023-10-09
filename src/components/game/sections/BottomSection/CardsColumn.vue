@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import BaseCard from '@ui/BaseCard.vue'
-import PlayCard from '@components/game/PlayCard.vue'
+import BasicCard from '@ui/BasicCard.vue'
+import GameCard from '@components/game/GameCard/GameCard.vue'
 import type { Column } from '@entities/Column.ts'
 
-defineProps<{ column: Column }>()
+defineProps<{
+  column: Column
+}>()
 </script>
 
 <template>
   <div :data-column-id="column.id" :data-droppable="true" :class="$style.root">
-    <BaseCard :class="$style.dropPlace" />
-    <PlayCard v-if="!column.isEmpty" :card="column.cards[0]" />
+    <BasicCard :class="$style.dropPlace" />
+    <GameCard v-if="!column.isEmpty" :card="column.cards[0]" />
   </div>
 </template>
 

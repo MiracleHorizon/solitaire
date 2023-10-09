@@ -9,7 +9,9 @@ export const winSolitaire = (solitaire: Solitaire): void => {
   const diamonds = solitaire.cards.filter(card => card.suit === Suit.DIAMONDS)
   const hearts = solitaire.cards.filter(card => card.suit === Suit.HEARTS)
 
-  const cards = [spades, clubs, diamonds, hearts]
+  const cards = [spades, clubs, diamonds, hearts].map(cardsSet =>
+    cardsSet.sort((a, b) => a.rank - b.rank)
+  )
 
   for (let i = 0; i < solitaire.bases.length; i++) {
     const base = solitaire.bases[i]

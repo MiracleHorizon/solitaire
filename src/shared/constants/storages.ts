@@ -1,2 +1,3 @@
-export const RECORD_FIELD_NAME = 'record'
-export const SOUND_FIELD_NAME = 'sound'
+export const RECORD_KEY = 'record'
+export const SOUND_KEY = 'sound'
+export const GAME_CARD_STYLE_KEY = 'gameCardStyle'

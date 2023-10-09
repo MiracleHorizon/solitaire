@@ -39,7 +39,7 @@
       "@layouts/*": ["src/layouts/*"],
       "@components/*": ["src/components/*"],
       "@ui/*": ["src/components/ui/*"],
-      // Base
+      // Basic
       "@router/*": ["src/router/*"],
       "@stores/*": ["src/stores/*"],
       // Assets
@@ -50,6 +50,7 @@
       // Shared
       "@shared/*": ["src/shared/*"],
       "@utils/*": ["src/shared/utils/*"],
+      "@helpers/*": ["src/shared/helpers/*"],
       "@entities/*": ["src/shared/entities/*"],
       "@app-types/*": ["src/shared/types/*"]
     }

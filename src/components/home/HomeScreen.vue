@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import PlayGameButton from '@components/home/PlayGameButton.vue'
+import PlayGameButton from './PlayGameButton.vue'
+import LinkSettings from './LinkSettings.vue'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import PlayGameButton from '@components/home/PlayGameButton.vue'
     <main :class="$style.content">
       <PlayGameButton />
     </main>
+    <LinkSettings />
   </div>
 </template>
 

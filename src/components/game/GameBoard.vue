@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted } from 'vue'
+import { useEventListener } from '@vueuse/core'
 
 import TopSection from './sections/TopSection/TopSection.vue'
 import BottomSection from './sections/BottomSection/BottomSection.vue'
@@ -50,16 +50,10 @@ const handleTouchMove = (ev: TouchEvent) => {
   handleMove(firstTouch.clientX, firstTouch.clientY)
 }
 
-const handleMouseUpOutsideOfViewport = () => {
-  if (dragStore.card) dragStore.$reset()
-}
-
-onMounted(() => {
-  window.addEventListener('mouseup', handleMouseUpOutsideOfViewport)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('mouseup', handleMouseUpOutsideOfViewport)
+useEventListener('mouseup', () => {
+  if (dragStore.card) {
+    dragStore.$reset()
+  }
 })
 </script>
 

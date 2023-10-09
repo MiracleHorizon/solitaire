@@ -5,7 +5,9 @@ import LoadingSpinner from '@ui/LoadingSpinner.vue'
 import cardPlacePng from '@images/cards/card_place.png'
 import cardBackPng from '@images/cards/card_back.png'
 
-defineProps<{ imagePath?: string }>()
+defineProps<{
+  imagePath?: string
+}>()
 </script>
 
 <template>

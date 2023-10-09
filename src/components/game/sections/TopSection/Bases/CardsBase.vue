@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import BaseCard from '@ui/BaseCard.vue'
-import PlayCard from '@components/game/PlayCard.vue'
+import BasicCard from '@ui/BasicCard.vue'
+import GameCard from '@components/game/GameCard/GameCard.vue'
 import type { Base } from '@entities/Base.ts'
 
-defineProps<{ base: Base }>()
+defineProps<{
+  base: Base
+}>()
 </script>
 
 <template>
   <div :data-base-id="base.id" :data-droppable="true" :class="$style.root">
-    <BaseCard />
-    <PlayCard
+    <BasicCard />
+    <GameCard
       v-for="card in base.cards"
       :key="card.id"
       :card="card"
