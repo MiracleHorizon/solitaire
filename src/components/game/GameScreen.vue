@@ -1,22 +1,14 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted } from 'vue'
+import { useEventListener } from '@vueuse/core'
 
 import GameBoard from './GameBoard.vue'
 
-const handleKeydownPageReload = (ev: KeyboardEvent) => {
+useEventListener('keydown', (ev: KeyboardEvent) => {
   if (import.meta.env.DEV) return
   // Защита пользователя от случайных перезагрузок страницы и потери игрового прогресса.
   if ((ev.code === 'KeyR' && ev.metaKey) || ev.code === 'F5') {
     ev.preventDefault()
   }
-}
-
-onMounted(() => {
-  window.addEventListener('keydown', handleKeydownPageReload)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('keydown', handleKeydownPageReload)
 })
 </script>
 

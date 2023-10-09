@@ -14,7 +14,7 @@ describe('Solitaire.ts (bases)', () => {
     const { spadesAce: card } = getCardsFromReserve(solitaire)
     const base = solitaire.bases[0]
 
-    solitaire.addCardToBase(base.id, card.id)
+    solitaire.addCardToBase(base.id, card)
     expect(base.cards).toContainEqual(card)
     expect(card.base).toBe(base.id)
   })
@@ -28,7 +28,7 @@ describe('Solitaire.ts (bases)', () => {
     expect(baseFrom.cards).toContainEqual(card)
     expect(card.base).toBe(baseFrom.id)
 
-    solitaire.addCardToBase(baseTo.id, card.id)
+    solitaire.addCardToBase(baseTo.id, card)
     expect(baseTo.cards).toContainEqual(card)
     expect(card.base).toBe(baseTo.id)
     expect(baseFrom.cards).not.toContainEqual(card)
@@ -44,7 +44,7 @@ describe('Solitaire.ts (bases)', () => {
     expect(card.column).toBe(column.id)
     expect(card.base).toBeNull()
 
-    solitaire.addCardToBase(base.id, card.id)
+    solitaire.addCardToBase(base.id, card)
     expect(base.cards).toContainEqual(card)
     expect(card.base).toBe(base.id)
     expect(column.cards).not.toContainEqual(card)
@@ -67,7 +67,7 @@ describe('Solitaire.ts (bases)', () => {
       getCardsFromReserve(solitaire)
     const base = solitaire.bases[0]
 
-    solitaire.addCardToBase(base.id, spadesAce.id)
+    solitaire.addCardToBase(base.id, spadesAce)
     expect(base.cards).toContainEqual(spadesAce)
     expect(base.getUpperCardOrNull()).toStrictEqual(spadesAce)
     expect(solitaire.isDropToBaseAvailable(base.id, spadesDeuce)).toBeTruthy()
@@ -76,7 +76,7 @@ describe('Solitaire.ts (bases)', () => {
 
     solitaire.moveAllCardsToReserve()
 
-    solitaire.addCardToBase(base.id, diamondsAce.id)
+    solitaire.addCardToBase(base.id, diamondsAce)
     expect(base.cards).toContainEqual(diamondsAce)
     expect(base.getUpperCardOrNull()).toStrictEqual(diamondsAce)
     expect(solitaire.isDropToBaseAvailable(base.id, spadesAce)).toBeFalsy()

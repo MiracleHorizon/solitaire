@@ -27,10 +27,6 @@ export class Solitaire {
     this.board = new Board()
   }
 
-  public addCardToBase(baseId: number, cardId: string): void {
-    this.board.addCardToBase(baseId, cardId)
-  }
-
   public moveAllCardsToReserve(): void {
     for (const base of this.bases) {
       base.clearCards()
@@ -45,40 +41,8 @@ export class Solitaire {
     }
   }
 
-  public addCardsToColumn(columnId: number, card: Card): void {
-    if (columnId === card.column) return
-
-    const cardId = card.id
-    const cardColumn = card.column
-
-    /**
-     * Only one card can be transferred from the reserve or base.
-     */
-    if (!cardColumn) {
-      return this.board.addOneCardToColumn(columnId, cardId)
-    }
-
-    /**
-     * When transferred from another column, several cards can be transferred.
-     * Based on this, a check is made to see if this is the last flipped card
-     */
-    const isLastFlipped = this.isCardLastFlippedInColumn(cardColumn, cardId)
-
-    /**
-     * If the card is not the last one, then all next cards are taken
-     * and moved to the column.
-     */
-    if (!isLastFlipped) {
-      const nextCards = this.getNextFlippedCardsInColumn(cardColumn, cardId)
-      const nextCardsIds = nextCards.map(card => card.id)
-
-      this.board.addManyCardsToColumn(columnId, nextCardsIds)
-    } else {
-      /**
-       * Otherwise the map is transferred from one column to another.
-       */
-      this.board.addOneCardToColumn(columnId, cardId)
-    }
+  public addCardToBase(baseId: number, card: Card): void {
+    this.board.addCardToBase(baseId, card.id)
   }
 
   public isDropToBaseAvailable(baseId: number, card: Card): boolean {
@@ -90,11 +54,11 @@ export class Solitaire {
         if (column.id !== card.column) continue
 
         const flippedCards = column.cards.filter(card => card.isFlipped)
-        const isFirstFlipped = this.isCardFirstFlippedInColumn(
+        const isFirstFlipped = this.isFirstFlippedCardInColumn(
           card.column,
           card.id
         )
-        const isLastFlipped = this.isCardLastFlippedInColumn(
+        const isLastFlipped = this.isLastFlippedCardInColumn(
           card.column,
           card.id
         )
@@ -139,6 +103,42 @@ export class Solitaire {
     }
 
     return false
+  }
+
+  public addCardsToColumn(columnId: number, card: Card): void {
+    if (columnId === card.column) return
+
+    const cardId = card.id
+    const cardColumn = card.column
+
+    /**
+     * Only one card can be transferred from the reserve or base.
+     */
+    if (!cardColumn) {
+      return this.board.addOneCardToColumn(columnId, cardId)
+    }
+
+    /**
+     * When transferred from another column, several cards can be transferred.
+     * Based on this, a check is made to see if this is the last flipped card
+     */
+    const isLastFlipped = this.isLastFlippedCardInColumn(cardColumn, cardId)
+
+    /**
+     * If the card is not the last one, then all next cards are taken
+     * and moved to the column.
+     */
+    if (!isLastFlipped) {
+      const nextCards = this.getNextFlippedCardsInColumn(cardColumn, cardId)
+      const nextCardsIds = nextCards.map(card => card.id)
+
+      this.board.addManyCardsToColumn(columnId, nextCardsIds)
+    } else {
+      /**
+       * Otherwise the map is transferred from one column to another.
+       */
+      this.board.addOneCardToColumn(columnId, cardId)
+    }
   }
 
   public isDropToColumnAvailable(columnId: number, card: Card): boolean {
@@ -238,7 +238,7 @@ export class Solitaire {
     return []
   }
 
-  private isCardLastFlippedInColumn(columnId: number, cardId: string): boolean {
+  private isLastFlippedCardInColumn(columnId: number, cardId: string): boolean {
     for (const column of this.columns) {
       if (column.id !== columnId) continue
 
@@ -254,10 +254,7 @@ export class Solitaire {
     return false
   }
 
-  private isCardFirstFlippedInColumn(
-    columnId: number,
-    cardId: string
-  ): boolean {
+  public isFirstFlippedCardInColumn(columnId: number, cardId: string): boolean {
     for (const column of this.columns) {
       if (column.id !== columnId) continue
 

@@ -1,8 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import GameCardStylePicker from './GameCardStylePicker.vue'
+</script>
 
 <template>
   <div :class="$style.root">
-    <main></main>
+    <main>
+      <GameCardStylePicker />
+    </main>
   </div>
 </template>
 

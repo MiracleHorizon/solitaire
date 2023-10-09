@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BaseCard from '@ui/BaseCard.vue'
-import PlayCard from '@components/game/PlayCard.vue'
+import BasicCard from '@ui/BasicCard.vue'
+import GameCard from '@components/game/GameCard/GameCard.vue'
 import { useGameStore } from '@stores/game.ts'
 
 const gameStore = useGameStore()
@@ -8,9 +8,9 @@ const gameStore = useGameStore()
 
 <template>
   <div :class="$style.root">
-    <BaseCard :class="$style.cardPlace" @click="gameStore.flipReserve" />
-    <BaseCard :class="[$style.cardPlace, $style.toRight]" />
-    <PlayCard
+    <BasicCard :class="$style.cardPlace" @click="gameStore.flipReserve" />
+    <BasicCard :class="[$style.cardPlace, $style.toRight]" />
+    <GameCard
       v-for="(card, index) in gameStore.reserve"
       :key="card.id"
       :card="card"

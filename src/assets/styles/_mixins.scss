@@ -4,3 +4,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
 }
+
+@mixin with-box-shadow {
+  box-shadow: var(--box-shadow);
+}
