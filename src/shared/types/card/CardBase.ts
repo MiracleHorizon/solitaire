@@ -6,5 +6,4 @@ export interface ICardBase {
   rank: Rank
   suit: Suit
   color: Color
-  image: string
 }

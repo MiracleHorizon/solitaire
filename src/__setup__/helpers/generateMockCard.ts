@@ -25,6 +25,5 @@ export const generateMockCard = (args?: Arguments): Card =>
     rank: Rank.ACE,
     suit: Suit.SPADES,
     color: Color.RED,
-    image: 'card image',
     ...args
   })
