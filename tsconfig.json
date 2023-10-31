@@ -45,7 +45,6 @@
       // Assets
       "@assets/*": ["src/assets/*"],
       "@audio/*": ["src/assets/audio/*"],
-      "@images/*": ["src/assets/images/*"],
       "@styles/*": ["src/assets/styles/*"],
       // Shared
       "@shared/*": ["src/shared/*"],

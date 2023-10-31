@@ -7,8 +7,8 @@ import { useGameStore } from '@stores/game.ts'
 import { useDragStore } from '@stores/drag.ts'
 import { useInterfaceStore } from '@stores/interface.ts'
 import { computeGameCardStyles } from './computeGameCardStyles.ts'
+import { getCardImagePath } from '@helpers/getCardImagePath.ts'
 import type { Card } from '@entities/Card.ts'
-import cardBackPng from '@images/cards/card_back.png'
 
 const props = defineProps<{
   card: Card
@@ -115,8 +115,8 @@ const handleMouseUpOrTouchEnd = () => {
     <BasicCard
       :image-path="
         card.isFlipped
-          ? `${card.image}_v${interfaceStore.gameCardStyle}.png`
-          : cardBackPng
+          ? getCardImagePath(card.suit, card.rank, interfaceStore.gameCardStyle)
+          : '/images/cards/card_back.png'
       "
     />
     <GameCard v-if="nextCard" :card="nextCard" />

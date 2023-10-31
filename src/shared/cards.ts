@@ -1,5 +1,4 @@
 import { Color, Rank, Suit } from '@app-types/card'
-import { getBasicCardImagePath } from '@shared/helpers/getBasicCardImagePath.ts'
 
 const heartsCard = {
   suit: Suit.HEARTS,
@@ -21,287 +20,235 @@ const spadesCard = {
 const aces = [
   {
     ...heartsCard,
-    rank: Rank.ACE,
-    image: getBasicCardImagePath(Suit.HEARTS, Rank.ACE)
+    rank: Rank.ACE
   },
   {
     ...diamondsCard,
-    rank: Rank.ACE,
-    image: getBasicCardImagePath(Suit.DIAMONDS, Rank.ACE)
+    rank: Rank.ACE
   },
   {
     ...clubsCard,
-    rank: Rank.ACE,
-    image: getBasicCardImagePath(Suit.CLUBS, Rank.ACE)
+    rank: Rank.ACE
   },
   {
     ...spadesCard,
-    rank: Rank.ACE,
-    image: getBasicCardImagePath(Suit.SPADES, Rank.ACE)
+    rank: Rank.ACE
   }
 ]
 const kings = [
   {
     ...heartsCard,
-    rank: Rank.KING,
-    image: getBasicCardImagePath(Suit.HEARTS, Rank.KING)
+    rank: Rank.KING
   },
   {
     ...diamondsCard,
-    rank: Rank.KING,
-    image: getBasicCardImagePath(Suit.DIAMONDS, Rank.KING)
+    rank: Rank.KING
   },
   {
     ...clubsCard,
-    rank: Rank.KING,
-    image: getBasicCardImagePath(Suit.CLUBS, Rank.KING)
+    rank: Rank.KING
   },
   {
     ...spadesCard,
-    rank: Rank.KING,
-    image: getBasicCardImagePath(Suit.SPADES, Rank.KING)
+    rank: Rank.KING
   }
 ]
 const queens = [
   {
     ...heartsCard,
-    rank: Rank.QUEEN,
-    image: getBasicCardImagePath(Suit.HEARTS, Rank.QUEEN)
+    rank: Rank.QUEEN
   },
   {
     ...diamondsCard,
-    rank: Rank.QUEEN,
-    image: getBasicCardImagePath(Suit.DIAMONDS, Rank.QUEEN)
+    rank: Rank.QUEEN
   },
   {
     ...clubsCard,
-    rank: Rank.QUEEN,
-    image: getBasicCardImagePath(Suit.CLUBS, Rank.QUEEN)
+    rank: Rank.QUEEN
   },
   {
     ...spadesCard,
-    rank: Rank.QUEEN,
-    image: getBasicCardImagePath(Suit.SPADES, Rank.QUEEN)
+    rank: Rank.QUEEN
   }
 ]
 const jacks = [
   {
     ...heartsCard,
-    rank: Rank.JACK,
-    image: getBasicCardImagePath(Suit.HEARTS, Rank.JACK)
+    rank: Rank.JACK
   },
   {
     ...diamondsCard,
-    rank: Rank.JACK,
-    image: getBasicCardImagePath(Suit.DIAMONDS, Rank.JACK)
+    rank: Rank.JACK
   },
   {
     ...clubsCard,
-    rank: Rank.JACK,
-    image: getBasicCardImagePath(Suit.CLUBS, Rank.JACK)
+    rank: Rank.JACK
   },
   {
     ...spadesCard,
-    rank: Rank.JACK,
-    image: getBasicCardImagePath(Suit.SPADES, Rank.JACK)
+    rank: Rank.JACK
   }
 ]
 const tens = [
   {
     ...heartsCard,
-    rank: Rank.TEN,
-    image: getBasicCardImagePath(Suit.HEARTS, Rank.TEN)
+    rank: Rank.TEN
   },
   {
     ...diamondsCard,
-    rank: Rank.TEN,
-    image: getBasicCardImagePath(Suit.DIAMONDS, Rank.TEN)
+    rank: Rank.TEN
   },
   {
     ...clubsCard,
-    rank: Rank.TEN,
-    image: getBasicCardImagePath(Suit.CLUBS, Rank.TEN)
+    rank: Rank.TEN
   },
   {
     ...spadesCard,
-    rank: Rank.TEN,
-    image: getBasicCardImagePath(Suit.SPADES, Rank.TEN)
+    rank: Rank.TEN
   }
 ]
 const nines = [
   {
     ...heartsCard,
-    rank: Rank.NINE,
-    image: getBasicCardImagePath(Suit.HEARTS, Rank.NINE)
+    rank: Rank.NINE
   },
   {
     ...diamondsCard,
-    rank: Rank.NINE,
-    image: getBasicCardImagePath(Suit.DIAMONDS, Rank.NINE)
+    rank: Rank.NINE
   },
   {
     ...clubsCard,
-    rank: Rank.NINE,
-    image: getBasicCardImagePath(Suit.CLUBS, Rank.NINE)
+    rank: Rank.NINE
   },
   {
     ...spadesCard,
-    rank: Rank.NINE,
-    image: getBasicCardImagePath(Suit.SPADES, Rank.NINE)
+    rank: Rank.NINE
   }
 ]
 const eights = [
   {
     ...heartsCard,
-    rank: Rank.EIGHT,
-    image: getBasicCardImagePath(Suit.HEARTS, Rank.EIGHT)
+    rank: Rank.EIGHT
   },
   {
     ...diamondsCard,
-    rank: Rank.EIGHT,
-    image: getBasicCardImagePath(Suit.DIAMONDS, Rank.EIGHT)
+    rank: Rank.EIGHT
   },
   {
     ...clubsCard,
-    rank: Rank.EIGHT,
-    image: getBasicCardImagePath(Suit.CLUBS, Rank.EIGHT)
+    rank: Rank.EIGHT
   },
   {
     ...spadesCard,
-    rank: Rank.EIGHT,
-    image: getBasicCardImagePath(Suit.SPADES, Rank.EIGHT)
+    rank: Rank.EIGHT
   }
 ]
 const sevens = [
   {
     ...heartsCard,
-    rank: Rank.SEVEN,
-    image: getBasicCardImagePath(Suit.HEARTS, Rank.SEVEN)
+    rank: Rank.SEVEN
   },
   {
     ...diamondsCard,
-    rank: Rank.SEVEN,
-    image: getBasicCardImagePath(Suit.DIAMONDS, Rank.SEVEN)
+    rank: Rank.SEVEN
   },
   {
     ...clubsCard,
-    rank: Rank.SEVEN,
-    image: getBasicCardImagePath(Suit.CLUBS, Rank.SEVEN)
+    rank: Rank.SEVEN
   },
   {
     ...spadesCard,
-    rank: Rank.SEVEN,
-    image: getBasicCardImagePath(Suit.SPADES, Rank.SEVEN)
+    rank: Rank.SEVEN
   }
 ]
 const sixes = [
   {
     ...heartsCard,
-    rank: Rank.SIX,
-    image: getBasicCardImagePath(Suit.HEARTS, Rank.SIX)
+    rank: Rank.SIX
   },
   {
     ...diamondsCard,
-    rank: Rank.SIX,
-    image: getBasicCardImagePath(Suit.DIAMONDS, Rank.SIX)
+    rank: Rank.SIX
   },
   {
     ...clubsCard,
-    rank: Rank.SIX,
-    image: getBasicCardImagePath(Suit.CLUBS, Rank.SIX)
+    rank: Rank.SIX
   },
   {
     ...spadesCard,
-    rank: Rank.SIX,
-    image: getBasicCardImagePath(Suit.SPADES, Rank.SIX)
+    rank: Rank.SIX
   }
 ]
 const fives = [
   {
     ...heartsCard,
-    rank: Rank.FIVE,
-    image: getBasicCardImagePath(Suit.HEARTS, Rank.FIVE)
+    rank: Rank.FIVE
   },
   {
     ...diamondsCard,
-    rank: Rank.FIVE,
-    image: getBasicCardImagePath(Suit.DIAMONDS, Rank.FIVE)
+    rank: Rank.FIVE
   },
   {
     ...clubsCard,
-    rank: Rank.FIVE,
-    image: getBasicCardImagePath(Suit.CLUBS, Rank.FIVE)
+    rank: Rank.FIVE
   },
   {
     ...spadesCard,
-    rank: Rank.FIVE,
-    image: getBasicCardImagePath(Suit.SPADES, Rank.FIVE)
+    rank: Rank.FIVE
   }
 ]
 const fours = [
   {
     ...heartsCard,
-    rank: Rank.FOUR,
-    image: getBasicCardImagePath(Suit.HEARTS, Rank.FOUR)
+    rank: Rank.FOUR
   },
   {
     ...diamondsCard,
-    rank: Rank.FOUR,
-    image: getBasicCardImagePath(Suit.DIAMONDS, Rank.FOUR)
+    rank: Rank.FOUR
   },
   {
     ...clubsCard,
-    rank: Rank.FOUR,
-    image: getBasicCardImagePath(Suit.CLUBS, Rank.FOUR)
+    rank: Rank.FOUR
   },
   {
     ...spadesCard,
-    rank: Rank.FOUR,
-    image: getBasicCardImagePath(Suit.SPADES, Rank.FOUR)
+    rank: Rank.FOUR
   }
 ]
 const triplets = [
   {
     ...heartsCard,
-    rank: Rank.THREE,
-    image: getBasicCardImagePath(Suit.HEARTS, Rank.THREE)
+    rank: Rank.THREE
   },
   {
     ...diamondsCard,
-    rank: Rank.THREE,
-    image: getBasicCardImagePath(Suit.DIAMONDS, Rank.THREE)
+    rank: Rank.THREE
   },
   {
     ...clubsCard,
-    rank: Rank.THREE,
-    image: getBasicCardImagePath(Suit.CLUBS, Rank.THREE)
+    rank: Rank.THREE
   },
   {
     ...spadesCard,
-    rank: Rank.THREE,
-    image: getBasicCardImagePath(Suit.SPADES, Rank.THREE)
+    rank: Rank.THREE
   }
 ]
 const deuces = [
   {
     ...heartsCard,
-    rank: Rank.DEUCE,
-    image: getBasicCardImagePath(Suit.HEARTS, Rank.DEUCE)
+    rank: Rank.DEUCE
   },
   {
     ...diamondsCard,
-    rank: Rank.DEUCE,
-    image: getBasicCardImagePath(Suit.DIAMONDS, Rank.DEUCE)
+    rank: Rank.DEUCE
   },
   {
     ...clubsCard,
-    rank: Rank.DEUCE,
-    image: getBasicCardImagePath(Suit.CLUBS, Rank.DEUCE)
+    rank: Rank.DEUCE
   },
   {
     ...spadesCard,
-    rank: Rank.DEUCE,
-    image: getBasicCardImagePath(Suit.SPADES, Rank.DEUCE)
+    rank: Rank.DEUCE
   }
 ]
 

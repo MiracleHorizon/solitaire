@@ -13,7 +13,6 @@ export class Card implements ICard {
   public readonly suit: Suit
   public readonly rank: Rank
   public readonly color: Color
-  public readonly image: string
   public column: number | null
   public base: number | null
   public wasDealt: boolean
@@ -32,7 +31,6 @@ export class Card implements ICard {
     suit,
     rank,
     color,
-    image,
     wasDealt,
     isFlipped,
     base,
@@ -42,7 +40,6 @@ export class Card implements ICard {
     this.suit = suit
     this.rank = rank
     this.color = color
-    this.image = image
     this.wasDealt = wasDealt
     this.isFlipped = isFlipped
     this.base = base
