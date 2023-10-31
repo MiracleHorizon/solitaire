@@ -1,22 +1,21 @@
 <script setup lang="ts">
 import { GameCardStyle, useInterfaceStore } from '@stores/interface.ts'
-import heartsAceV1Png from '@images/cards/hearts/hearts_ace_v1.png'
-import heartsAceV2Png from '@images/cards/hearts/hearts_ace_v2.png'
-import heartsAceV3Png from '@images/cards/hearts/hearts_ace_v3.png'
+import { Rank, Suit } from '@app-types/card'
+import { getCardImagePath } from '@helpers/getCardImagePath.ts'
 
 const interfaceStore = useInterfaceStore()
 const styleVariants = [
   {
     value: GameCardStyle.V1,
-    imagePath: heartsAceV1Png
+    imagePath: getCardImagePath(Suit.HEARTS, Rank.ACE, GameCardStyle.V1)
   },
   {
     value: GameCardStyle.V2,
-    imagePath: heartsAceV2Png
+    imagePath: getCardImagePath(Suit.HEARTS, Rank.ACE, GameCardStyle.V2)
   },
   {
     value: GameCardStyle.V3,
-    imagePath: heartsAceV3Png
+    imagePath: getCardImagePath(Suit.HEARTS, Rank.ACE, GameCardStyle.V3)
   }
 ]
 </script>

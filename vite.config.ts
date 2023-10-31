@@ -23,7 +23,6 @@ const aliases: Alias[] = [
   { find: '@ui', path: './src/components/ui' },
   // Assets
   { find: '@assets', path: './src/assets' },
-  { find: '@images', path: './src/assets/images' },
   { find: '@audio', path: './src/assets/images' },
   { find: '@styles', path: './src/assets/styles' },
   // Shared
