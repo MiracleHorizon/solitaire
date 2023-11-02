@@ -1,5 +1,5 @@
 /* eslint no-unused-vars: 0 */
-export enum Color {
+export const enum Color {
   RED = 'red',
   BLACK = 'black'
 }

@@ -4,7 +4,7 @@ import HomePage from '@pages/home.vue'
 import GamePage from '@pages/game.vue'
 import SettingsPage from '@pages/settings.vue'
 
-export enum Routes {
+export const enum Routes {
   /* eslint no-unused-vars: 0 */
   HOME = '/',
   GAME = '/game',

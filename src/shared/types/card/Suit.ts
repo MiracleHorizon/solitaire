@@ -1,5 +1,5 @@
 /* eslint no-unused-vars: 0 */
-export enum Suit {
+export const enum Suit {
   HEARTS = 'hearts',
   DIAMONDS = 'diamonds',
   CLUBS = 'clubs',

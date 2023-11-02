@@ -9,7 +9,7 @@ interface State {
   gameCardStyle: GameCardStyle
 }
 
-export enum GameCardStyle {
+export const enum GameCardStyle {
   /* eslint no-unused-vars: 0 */
   V1 = 1,
   V2 = 2,
