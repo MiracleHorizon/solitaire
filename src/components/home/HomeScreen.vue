@@ -6,7 +6,9 @@ import LinkSettings from './LinkSettings.vue'
 <template>
   <div :class="$style.root">
     <header :class="$style.header">
-      <h1>Пасьянс "Косынка"</h1>
+      <article :class="$style.titleArticle">
+        <h1>Пасьянс "Косынка"</h1>
+      </article>
     </header>
     <main :class="$style.content">
       <PlayGameButton />
@@ -26,11 +28,22 @@ import LinkSettings from './LinkSettings.vue'
   width: 100%;
   padding-top: 24px;
   text-align: center;
+}
+
+.titleArticle {
+  margin-bottom: 24px;
 
   h1 {
     font-size: 38px;
     font-weight: 500;
     color: $white;
   }
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 </style>
