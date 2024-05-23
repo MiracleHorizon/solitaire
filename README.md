@@ -1,15 +1,12 @@
-# solitaire
-A simple card game, classic solitaire.
-
 [![Product Screen Shot][preview-screenshot]][project-github]
 
 ## Technologies
 - Vue 3 (Composition API)
 - Pinia
 - Vite
-- CSS-Modules (SCSS)
+- SCSS-Modules
 - Typescript
-- jest, @pinia/testing
+- Jest
 
 ## P.S.
 
