@@ -18,7 +18,7 @@ const aliases: Alias[] = [
   { find: '@stores', path: './src/stores' },
   // Components
   { find: '@pages', path: './src/pages' },
-  { find: '@layouts', path: './src/layouts' },
+  { find: '@modules', path: './src/modules' },
   { find: '@components', path: './src/components' },
   { find: '@ui', path: './src/components/ui' },
   // Assets
@@ -52,8 +52,7 @@ export default defineConfig({
     alias: aliases.map(alias => createAlias(alias))
   },
   server: {
-    port: 3000,
-    strictPort: false
+    port: 3000
   },
   css: {
     preprocessorOptions: {

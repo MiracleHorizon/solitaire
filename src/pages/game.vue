@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Game from '@components/game/GameScreen.vue'
+import GameScreen from '@modules/game'
 </script>
 
 <template>
-  <Game />
+  <GameScreen />
 </template>
