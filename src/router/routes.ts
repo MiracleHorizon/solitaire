@@ -19,5 +19,11 @@ export const routes: readonly RouteRecordRaw[] = [
   {
     path: Route.SETTINGS,
     component: () => import('@pages/settings.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: () => ({
+      path: Route.HOME
+    })
   }
 ]
