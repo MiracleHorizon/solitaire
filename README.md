@@ -6,7 +6,7 @@
 - Vite
 - SCSS-Modules
 - Typescript
-- Jest
+- Jest, ESLint, Stylelint, Yarn
 
 ## P.S.
 
