@@ -16,9 +16,6 @@ $size: 32px;
 
 .root {
   cursor: pointer;
-  position: fixed;
-  left: 16px;
-  bottom: 16px;
   width: $size;
   height: $size;
   color: $white;

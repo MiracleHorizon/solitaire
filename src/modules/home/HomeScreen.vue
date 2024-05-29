@@ -5,38 +5,46 @@ import LinkSettings from './LinkSettings.vue'
 
 <template>
   <div :class="$style.root">
-    <header :class="$style.header">
-      <article :class="$style.titleArticle">
-        <h1>Пасьянс "Косынка"</h1>
-      </article>
-    </header>
+    <article :class="$style.titleArticle">
+      <h1 :class="$style.title">Пасьянс "Косынка"</h1>
+    </article>
+
     <main :class="$style.content">
       <ButtonPlayGame />
     </main>
-    <LinkSettings />
   </div>
+
+  <LinkSettings :class="$style.linkSettings" />
 </template>
 
 <style module lang="scss">
 @import '@styles/variables';
 
 .root {
+  height: calc(100dvh - $header-height);
   width: 100%;
-}
-
-.header {
-  width: 100%;
-  padding-top: 24px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  padding-top: 20dvh;
+  flex-direction: column;
 }
 
 .titleArticle {
+  width: 100%;
+  padding-top: 24px;
   margin-bottom: 24px;
+  text-align: center;
+}
 
-  h1 {
-    font-size: 38px;
-    font-weight: 500;
-    color: $white;
+.title {
+  font-size: 38px;
+  font-weight: 500;
+  color: $white;
+}
+
+@media screen and (width <= 768px) {
+  .title {
+    font-size: 28px;
   }
 }
 
@@ -45,5 +53,11 @@ import LinkSettings from './LinkSettings.vue'
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.linkSettings {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
 }
 </style>
