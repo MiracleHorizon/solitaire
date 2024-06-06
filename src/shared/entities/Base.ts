@@ -1,6 +1,6 @@
 import { Rank, Suit } from '@app-types/card'
-import type { PlacementEntity } from '@app-types/PlacementEntity.ts'
-import type { Card } from './Card.ts'
+import type { PlacementEntity } from '@app-types/PlacementEntity'
+import type { Card } from './Card'
 
 export interface IBase {
   id: number

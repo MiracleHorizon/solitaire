@@ -13,6 +13,7 @@ const jestConfig: Config = {
     '^__setup__(.*)$': '<rootDir>/src/__setup__$1',
     '^@stores(.*)$': '<rootDir>/src/stores$1',
     '^@shared(.*)$': '<rootDir>/src/shared$1',
+    '^@site(.*)$': '<rootDir>/src/site$1',
     '^@utils(.*)$': '<rootDir>/src/shared/utils$1',
     '^@helpers(.*)$': '<rootDir>/src/shared/helpers$1',
     '^@entities(.*)$': '<rootDir>/src/shared/entities$1',

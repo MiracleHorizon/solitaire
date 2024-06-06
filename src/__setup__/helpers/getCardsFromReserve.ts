@@ -1,6 +1,6 @@
 import { Rank, Suit } from '@app-types/card'
-import type { Card } from '@entities/Card.ts'
-import type { Solitaire } from '@entities/Solitaire.ts'
+import type { Card } from '@entities/Card'
+import type { Solitaire } from '@entities/Solitaire'
 
 export const getCardsFromReserve = (solitaire: Solitaire) => {
   solitaire.moveAllCardsToReserve()

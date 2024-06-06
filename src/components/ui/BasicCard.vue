@@ -2,28 +2,42 @@
 import { UseImage } from '@vueuse/components'
 
 import LoadingSpinner from '@ui/LoadingSpinner.vue'
+import { IMAGES_ASSETS_PATH, pathForAssets } from '@site/config'
+import { Rank, Suit } from '@app-types/card'
 
 defineProps<{
+  suit?: Suit
+  rank?: Rank
   imagePath?: string
 }>()
+
+const cardFallbackPath = pathForAssets(`${IMAGES_ASSETS_PATH}/card_place.png`)
 </script>
 
 <template>
   <div :class="$style.root">
     <UseImage
-      :src="imagePath ?? '/images/cards/card_place.png'"
+      :src="imagePath ?? cardFallbackPath"
       :class="$style.image"
-      alt="Playing card"
+      :alt="`${suit ?? '' + rank ?? ''} image`"
     >
       <template #loading>
         <div :class="$style.loading">
           <img
-            :src="'/images/cards/card_back.png'"
+            :src="pathForAssets(`${IMAGES_ASSETS_PATH}/card_back.png`)"
             :class="$style.loadingImage"
             alt="Loading..."
           />
           <LoadingSpinner :class="$style.spinner" />
         </div>
+      </template>
+
+      <template #error>
+        <img
+          :src="cardFallbackPath"
+          :class="$style.image"
+          :alt="`${rank} ${suit}`"
+        />
       </template>
     </UseImage>
   </div>

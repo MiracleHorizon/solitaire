@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-export const enum Routes {
+export const enum Route {
   /* eslint no-unused-vars: 0 */
   HOME = '/',
   GAME = '/game',
@@ -8,7 +8,22 @@ export const enum Routes {
 }
 
 export const routes: readonly RouteRecordRaw[] = [
-  { path: Routes.HOME, component: () => import('@pages/home.vue') },
-  { path: Routes.GAME, component: () => import('@pages/game.vue') },
-  { path: Routes.SETTINGS, component: () => import('@pages/settings.vue') }
+  {
+    path: Route.HOME,
+    component: () => import('@pages/home.vue')
+  },
+  {
+    path: Route.GAME,
+    component: () => import('@pages/game.vue')
+  },
+  {
+    path: Route.SETTINGS,
+    component: () => import('@pages/settings.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: () => ({
+      path: Route.HOME
+    })
+  }
 ]

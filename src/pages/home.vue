@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Home from '@components/home/HomeScreen.vue'
+import HomeScreen from '@modules/home'
 </script>
 
 <template>
-  <Home />
+  <HomeScreen />
 </template>

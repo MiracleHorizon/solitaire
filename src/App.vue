@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import DefaultLayout from '@layouts/default/default.vue'
+import Layout from '@components/layout'
 </script>
 
 <template>
-  <DefaultLayout>
+  <Layout>
     <RouterView />
-  </DefaultLayout>
+  </Layout>
 </template>

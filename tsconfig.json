@@ -1,9 +1,31 @@
 {
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.vue"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "strictPropertyInitialization": false,
     "useDefineForClassFields": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -31,33 +53,65 @@
     "isolatedModules": true,
     /* Aliases */
     "paths": {
-      "@public/*": ["public/*"],
-      // Setup
-      "__setup__/*": ["src/__setup__/*"],
-      // Components
-      "@pages/*": ["src/pages/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@components/*": ["src/components/*"],
-      "@ui/*": ["src/components/ui/*"],
+      "@public/*": [
+        "public/*"
+      ],
+      "@site/*": [
+        "src/site/*"
+      ],
       // Basic
-      "@router/*": ["src/router/*"],
-      "@stores/*": ["src/stores/*"],
+      "@router/*": [
+        "src/router/*"
+      ],
+      "@stores/*": [
+        "src/stores/*"
+      ],
+      // Setup
+      "__setup__/*": [
+        "src/__setup__/*"
+      ],
+      // Components
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@modules/*": [
+        "src/modules/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@ui/*": [
+        "src/components/ui/*"
+      ],
       // Assets
-      "@assets/*": ["src/assets/*"],
-      "@audio/*": ["src/assets/audio/*"],
-      "@styles/*": ["src/assets/styles/*"],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@images/*": [
+        "src/assets/images/*"
+      ],
+      "@audio/*": [
+        "src/assets/audio/*"
+      ],
+      "@styles/*": [
+        "src/assets/styles/*"
+      ],
       // Shared
-      "@shared/*": ["src/shared/*"],
-      "@utils/*": ["src/shared/utils/*"],
-      "@helpers/*": ["src/shared/helpers/*"],
-      "@entities/*": ["src/shared/entities/*"],
-      "@app-types/*": ["src/shared/types/*"]
+      "@shared/*": [
+        "src/shared/*"
+      ],
+      "@utils/*": [
+        "src/shared/utils/*"
+      ],
+      "@helpers/*": [
+        "src/shared/helpers/*"
+      ],
+      "@entities/*": [
+        "src/shared/entities/*"
+      ],
+      "@app-types/*": [
+        "src/shared/types/*"
+      ]
     }
-  },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+  }
 }

@@ -1,19 +1,27 @@
 import { Rank, type Suit } from '@app-types/card'
-import type { GameCardStyle } from '@stores/interface.ts'
+import { IMAGES_ASSETS_PATH, pathForAssets } from '@site/config'
+import type { GameCardStyle } from '@stores/interface'
 
-export const PUBLIC_IMAGES_PATH = '/images/cards'
-
-export const getCardImagePath = (
-  suit: Suit,
-  rank: Rank,
+interface Parameters {
+  suit: Suit
+  rank: Rank
   styleVariant: GameCardStyle
-): string => {
+}
+
+export const getCardImagePath = ({
+  suit,
+  rank,
+  styleVariant
+}: Parameters): string => {
   const rankPathEntry = Object.entries(Rank)
     .filter(([key]) => isNaN(Number(key)))
     .map(([key, value]) => [key.toLowerCase(), value])
     .find(([, value]) => value === rank)
 
-  const basePath = `${PUBLIC_IMAGES_PATH}/${suit}/${suit}_${rankPathEntry![0]}`
+  const imagesPath = pathForAssets(IMAGES_ASSETS_PATH)
+  const cardPath = `${suit}/${suit}_${rankPathEntry![0]}`
+  const variantPath = `v${styleVariant}`
+  const imageType = 'png'
 
-  return `${basePath}_v${styleVariant}.png`.toLowerCase()
+  return `${imagesPath}/${cardPath}_${variantPath}.${imageType}`.toLowerCase()
 }
