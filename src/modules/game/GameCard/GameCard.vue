@@ -96,6 +96,20 @@ const handleMouseUpOrTouchEnd = () => {
 
   dragStore.$reset()
 }
+
+const getImagePath = () => {
+  const card = props.card
+
+  if (!card.isFlipped) {
+    return pathForAssets(`${IMAGES_ASSETS_PATH}/card_back.png`)
+  }
+
+  return getCardImagePath({
+    suit: card.suit,
+    rank: card.rank,
+    styleVariant: interfaceStore.gameCardStyle
+  })
+}
 </script>
 
 <template>
@@ -116,15 +130,7 @@ const handleMouseUpOrTouchEnd = () => {
     <BasicCard
       :rank="card.rank"
       :suit="card.suit"
-      :image-path="
-        card.isFlipped
-          ? getCardImagePath({
-              suit: card.suit,
-              rank: card.rank,
-              styleVariant: interfaceStore.gameCardStyle
-            })
-          : pathForAssets(`${IMAGES_ASSETS_PATH}/card_back.png`)
-      "
+      :image-path="getImagePath()"
     />
     <GameCard v-if="nextCard" :card="nextCard" />
   </div>
