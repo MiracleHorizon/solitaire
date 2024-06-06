@@ -17,7 +17,7 @@ const cardFallbackPath = pathForAssets(`${IMAGES_ASSETS_PATH}/card_place.png`)
 <template>
   <div :class="$style.root">
     <UseImage
-      :src="imagePath + 'zxc' ?? cardFallbackPath"
+      :src="imagePath ?? cardFallbackPath"
       :class="$style.image"
       :alt="`${rank} ${suit} image`"
     >
