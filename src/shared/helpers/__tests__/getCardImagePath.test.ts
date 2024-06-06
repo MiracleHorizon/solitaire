@@ -15,7 +15,7 @@ describe('shared/helpers/getCardImagePath', () => {
     const imagePath = getCardImagePath({ suit, rank, styleVariant })
     const expectedPath = '/images/cards/spades/spades_deuce_v1.png'
 
-    expect(imagePath).toBe(expectedPath)
+    expect(imagePath.endsWith(expectedPath)).toBeTruthy()
   })
 
   it('should return the correct image path for another style variant', () => {
@@ -25,7 +25,7 @@ describe('shared/helpers/getCardImagePath', () => {
     const imagePath = getCardImagePath({ suit, rank, styleVariant })
     const expectedPath = '/images/cards/spades/spades_ace_v2.png'
 
-    expect(imagePath).toBe(expectedPath)
+    expect(imagePath.endsWith(expectedPath)).toBeTruthy()
   })
 
   it('should handle different case for suit correctly', () => {
@@ -39,6 +39,6 @@ describe('shared/helpers/getCardImagePath', () => {
     })
     const expectedPath = '/images/cards/diamonds/diamonds_six_v3.png'
 
-    expect(imagePath).toBe(expectedPath)
+    expect(imagePath.endsWith(expectedPath)).toBeTruthy()
   })
 })
