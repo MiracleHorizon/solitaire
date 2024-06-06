@@ -2,6 +2,7 @@
 import { UseImage } from '@vueuse/components'
 
 import LoadingSpinner from '@ui/LoadingSpinner.vue'
+import { IMAGES_ASSETS_PATH, pathForAssets } from '@site/config'
 
 defineProps<{
   imagePath?: string
@@ -10,22 +11,27 @@ defineProps<{
 
 <template>
   <div :class="$style.root">
-    <UseImage
-      :src="imagePath ?? '/images/cards/card_place.png'"
+    <img
+      :src="imagePath ?? pathForAssets(`${IMAGES_ASSETS_PATH}/card_place.png`)"
       :class="$style.image"
       alt="Playing card"
-    >
-      <template #loading>
-        <div :class="$style.loading">
-          <img
-            :src="'/images/cards/card_back.png'"
-            :class="$style.loadingImage"
-            alt="Loading..."
-          />
-          <LoadingSpinner :class="$style.spinner" />
-        </div>
-      </template>
-    </UseImage>
+    />
+    <!--    <UseImage-->
+    <!--      :src="imagePath ?? pathForAssets(`${IMAGES_ASSETS_PATH}/card_place.png`)"-->
+    <!--      :class="$style.image"-->
+    <!--      alt="Playing card"-->
+    <!--    >-->
+    <!--      <template #loading>-->
+    <!--        <div :class="$style.loading">-->
+    <!--          <img-->
+    <!--            :src="pathForAssets(`${IMAGES_ASSETS_PATH}/card_back.png`)"-->
+    <!--            :class="$style.loadingImage"-->
+    <!--            alt="Loading..."-->
+    <!--          />-->
+    <!--          <LoadingSpinner :class="$style.spinner" />-->
+    <!--        </div>-->
+    <!--      </template>-->
+    <!--    </UseImage>-->
   </div>
 </template>
 

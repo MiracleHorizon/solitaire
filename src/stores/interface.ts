@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 
-import { localStorageProvider } from '@utils/storages/LocalStorageProvider.ts'
-import { GAME_CARD_STYLE_KEY, SOUND_KEY } from '@shared/constants/storages.ts'
-import type { ExtractedStorageItem } from '@app-types/ExtractedStorageItem.ts'
+import { localStorageProvider } from '@utils/storages/LocalStorageProvider'
+import { GAME_CARD_STYLE_KEY, SOUND_KEY } from '@shared/constants/storages'
+import type { ExtractedStorageItem } from '@app-types/ExtractedStorageItem'
 
 interface State {
   isSoundEnabled: boolean

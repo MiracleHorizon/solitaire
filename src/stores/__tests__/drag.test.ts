@@ -1,10 +1,10 @@
 import { beforeEach, beforeAll, describe, expect, it } from '@jest/globals'
 import { createPinia, setActivePinia } from 'pinia'
 
-import { BASE_POSITION_VALUE, useDragStore } from '@stores/drag.ts'
-import { generateMockCard } from '__setup__/helpers/generateMockCard.ts'
+import { BASE_POSITION_VALUE, useDragStore } from '@stores/drag'
+import { generateMockCard } from '__setup__/helpers/generateMockCard'
 
-describe('drag.ts', () => {
+describe('stores/drag', () => {
   const card = generateMockCard()
 
   beforeAll(() => {

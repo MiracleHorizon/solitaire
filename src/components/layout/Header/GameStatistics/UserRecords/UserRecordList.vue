@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 import UserRecordItem from './UserRecordItem.vue'
-import { useGameStore } from '@stores/game.ts'
+import { useGameStore } from '@stores/game'
 
 const gameStore = useGameStore()
 

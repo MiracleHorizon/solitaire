@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-import type { Card } from '@entities/Card.ts'
+import type { Card } from '@entities/Card'
 
 interface State {
   card: Card | null

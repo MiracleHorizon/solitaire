@@ -1,9 +1,9 @@
 import { afterEach, describe, expect, it } from '@jest/globals'
 
-import { Solitaire } from '@entities/Solitaire.ts'
-import { winSolitaire } from '__setup__/helpers/winSolitaire.ts'
+import { Solitaire } from '@entities/Solitaire'
+import { winSolitaire } from '__setup__/helpers/winSolitaire'
 
-describe('Solitaire.ts (root)', () => {
+describe('shared/entities/Solitaire (root)', () => {
   const solitaire = new Solitaire()
 
   afterEach(() => {

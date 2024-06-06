@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it } from '@jest/globals'
 
-import { Solitaire } from '@entities/Solitaire.ts'
-import { getCardsFromReserve } from '__setup__/helpers/getCardsFromReserve.ts'
+import { Solitaire } from '@entities/Solitaire'
+import { getCardsFromReserve } from '__setup__/helpers/getCardsFromReserve'
 
-describe('Solitaire.ts (columns)', () => {
+describe('shared/entities/Solitaire (columns)', () => {
   const solitaire = new Solitaire()
 
   beforeEach(() => {
@@ -113,7 +113,7 @@ describe('Solitaire.ts (columns)', () => {
   })
 })
 
-describe('Solitaire.ts (work with card indexes)', () => {
+describe('shared/entities/Solitaire (work with card indexes)', () => {
   const solitaire = new Solitaire()
   const { spadesDeuce, diamondsAce, diamondsKing } =
     getCardsFromReserve(solitaire)

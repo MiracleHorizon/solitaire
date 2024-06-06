@@ -1,8 +1,8 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { Deck } from '@entities/Deck.ts'
+import { Deck } from '@entities/Deck'
 
-describe('Deck.ts', () => {
+describe('shared/entities/Deck', () => {
   const deck = new Deck()
 
   it('should create an array of cards', () => {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import IconArrowLeft from '@ui/icons/IconArrowLeft.vue'
-import { Route } from '@router/routes.ts'
+import { Route } from '@router/routes'
 </script>
 
 <template>

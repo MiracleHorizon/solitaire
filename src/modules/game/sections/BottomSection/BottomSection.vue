@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import CardsColumn from './CardsColumn.vue'
-import { useGameStore } from '@stores/game.ts'
+import { useGameStore } from '@stores/game'
 
 const gameStore = useGameStore()
 </script>

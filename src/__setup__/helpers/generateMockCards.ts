@@ -1,4 +1,4 @@
-import { generateMockCard } from './generateMockCard.ts'
+import { generateMockCard } from './generateMockCard'
 import { Rank, Suit } from '@app-types/card'
 
 export const generateMockCards = () => {

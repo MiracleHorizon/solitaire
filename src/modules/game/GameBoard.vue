@@ -3,7 +3,7 @@ import { useEventListener } from '@vueuse/core'
 
 import TopSection from './sections/TopSection'
 import BottomSection from './sections/BottomSection'
-import { useDragStore } from '@stores/drag.ts'
+import { useDragStore } from '@stores/drag'
 
 const dragStore = useDragStore()
 

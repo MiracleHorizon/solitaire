@@ -1,8 +1,8 @@
 import { computed, type StyleValue } from 'vue'
 
-import { useGameStore } from '@stores/game.ts'
-import { useDragStore } from '@stores/drag.ts'
-import { Card } from '@entities/Card.ts'
+import { useGameStore } from '@stores/game'
+import { useDragStore } from '@stores/drag'
+import { Card } from '@entities/Card'
 
 export const computeGameCardStyles = (card: Card) => {
   const gameStore = useGameStore()

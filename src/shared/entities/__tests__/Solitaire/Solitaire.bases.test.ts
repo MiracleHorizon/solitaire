@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it } from '@jest/globals'
 
-import { Solitaire } from '@entities/Solitaire.ts'
-import { getCardsFromReserve } from '__setup__/helpers/getCardsFromReserve.ts'
+import { Solitaire } from '@entities/Solitaire'
+import { getCardsFromReserve } from '__setup__/helpers/getCardsFromReserve'
 
-describe('Solitaire.ts (bases)', () => {
+describe('shared/entities/Solitaire (bases)', () => {
   const solitaire = new Solitaire()
 
   beforeEach(() => {

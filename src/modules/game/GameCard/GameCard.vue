@@ -3,12 +3,13 @@ import { computed, ref } from 'vue'
 
 import GameCard from './GameCard.vue'
 import BasicCard from '@ui/BasicCard.vue'
-import { useGameStore } from '@stores/game.ts'
-import { useDragStore } from '@stores/drag.ts'
-import { useInterfaceStore } from '@stores/interface.ts'
-import { computeGameCardStyles } from './computeGameCardStyles.ts'
-import { getCardImagePath } from '@helpers/getCardImagePath.ts'
-import type { Card } from '@entities/Card.ts'
+import { useGameStore } from '@stores/game'
+import { useDragStore } from '@stores/drag'
+import { useInterfaceStore } from '@stores/interface'
+import { computeGameCardStyles } from './computeGameCardStyles'
+import { getCardImagePath } from '@helpers/getCardImagePath'
+import { IMAGES_ASSETS_PATH, pathForAssets } from '@site/config'
+import type { Card } from '@entities/Card'
 
 const props = defineProps<{
   card: Card
@@ -115,8 +116,12 @@ const handleMouseUpOrTouchEnd = () => {
     <BasicCard
       :image-path="
         card.isFlipped
-          ? getCardImagePath(card.suit, card.rank, interfaceStore.gameCardStyle)
-          : '/images/cards/card_back.png'
+          ? getCardImagePath({
+              suit: card.suit,
+              rank: card.rank,
+              styleVariant: interfaceStore.gameCardStyle
+            })
+          : pathForAssets(`${IMAGES_ASSETS_PATH}/card_back.png`)
       "
     />
     <GameCard v-if="nextCard" :card="nextCard" />

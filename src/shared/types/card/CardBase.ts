@@ -1,6 +1,6 @@
-import { Rank } from './Rank.ts'
-import { Suit } from './Suit.ts'
-import { Color } from './Color.ts'
+import { Rank } from './Rank'
+import { Suit } from './Suit'
+import { Color } from './Color'
 
 export interface ICardBase {
   rank: Rank

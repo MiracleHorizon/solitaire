@@ -1,5 +1,5 @@
 import { Suit } from '@app-types/card'
-import type { Solitaire } from '@entities/Solitaire.ts'
+import type { Solitaire } from '@entities/Solitaire'
 
 export const winSolitaire = (solitaire: Solitaire): void => {
   solitaire.moveAllCardsToReserve()

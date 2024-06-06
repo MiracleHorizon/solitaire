@@ -1,9 +1,9 @@
 import { describe, expect, it, beforeAll } from '@jest/globals'
 
-import { Column } from '@entities/Column.ts'
-import { generateMockCards } from '__setup__/helpers/generateMockCards.ts'
+import { Column } from '@entities/Column'
+import { generateMockCards } from '__setup__/helpers/generateMockCards'
 
-describe('Column.ts', () => {
+describe('shared/entities/Column', () => {
   const column = new Column({
     id: 1,
     cards: []

@@ -1,4 +1,4 @@
-import type { Card } from '@entities/Card.ts'
+import type { Card } from '@entities/Card'
 
 /* eslint no-unused-vars: 0 */
 export interface PlacementEntity {

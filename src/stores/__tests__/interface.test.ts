@@ -6,11 +6,11 @@ import {
   DEFAULT_SOUND_STATUS,
   DEFAULT_CARD_STYLE,
   GameCardStyle
-} from '@stores/interface.ts'
-import { localStorageProvider } from '@utils/storages/LocalStorageProvider.ts'
-import { GAME_CARD_STYLE_KEY, SOUND_KEY } from '@shared/constants/storages.ts'
+} from '@stores/interface'
+import { localStorageProvider } from '@utils/storages/LocalStorageProvider'
+import { GAME_CARD_STYLE_KEY, SOUND_KEY } from '@shared/constants/storages'
 
-describe('interface.ts', () => {
+describe('stores/interface', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
     localStorageProvider.clear()

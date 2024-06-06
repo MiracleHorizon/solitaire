@@ -1,4 +1,14 @@
 {
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.vue"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "target": "ESNext",
@@ -8,6 +18,14 @@
       "DOM",
       "DOM.Iterable"
     ],
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "strictPropertyInitialization": false,
     "useDefineForClassFields": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -38,6 +56,16 @@
       "@public/*": [
         "public/*"
       ],
+      "@site/*": [
+        "src/site/*"
+      ],
+      // Basic
+      "@router/*": [
+        "src/router/*"
+      ],
+      "@stores/*": [
+        "src/stores/*"
+      ],
       // Setup
       "__setup__/*": [
         "src/__setup__/*"
@@ -55,16 +83,12 @@
       "@ui/*": [
         "src/components/ui/*"
       ],
-      // Basic
-      "@router/*": [
-        "src/router/*"
-      ],
-      "@stores/*": [
-        "src/stores/*"
-      ],
       // Assets
       "@assets/*": [
         "src/assets/*"
+      ],
+      "@images/*": [
+        "src/assets/images/*"
       ],
       "@audio/*": [
         "src/assets/audio/*"
@@ -89,15 +113,5 @@
         "src/shared/types/*"
       ]
     }
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.vue"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+  }
 }

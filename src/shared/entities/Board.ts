@@ -1,9 +1,9 @@
 import shuffle from 'lodash.shuffle'
 
-import { Deck } from './Deck.ts'
-import { Column } from './Column.ts'
-import { Base } from './Base.ts'
-import type { Card } from './Card.ts'
+import { Deck } from './Deck'
+import { Column } from './Column'
+import { Base } from './Base'
+import type { Card } from './Card'
 
 export class Board {
   private readonly TOTAL_BASES: number = 4

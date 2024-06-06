@@ -1,8 +1,8 @@
 import { describe, expect, it, beforeEach } from '@jest/globals'
 
-import { Board } from '@entities/Board.ts'
+import { Board } from '@entities/Board'
 
-describe('Board.ts', () => {
+describe('shared/entities/Board', () => {
   let board = new Board()
 
   beforeEach(() => {

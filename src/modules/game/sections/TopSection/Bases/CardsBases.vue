@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import CardsBase from './CardsBase.vue'
-import { useGameStore } from '@stores/game.ts'
+import { useGameStore } from '@stores/game'
 
 const gameStore = useGameStore()
 </script>

@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import SpeakerWave from '@ui/icons/SpeakerWaveIcon.vue'
 import SpeakerXMark from '@ui/icons/SpeakerXMarkIcon.vue'
 import HeaderButton from './ButtonHeader.vue'
-import { useInterfaceStore } from '@stores/interface.ts'
+import { useInterfaceStore } from '@stores/interface'
 
 const interfaceStore = useInterfaceStore()
 const isSoundEnabled = computed(() => interfaceStore.isSoundEnabled)

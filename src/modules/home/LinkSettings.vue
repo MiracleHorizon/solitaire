@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import IconCog from '@ui/icons/IconCog.vue'
-import { Route } from '@router/routes.ts'
+import { Route } from '@router/routes'
 </script>
 
 <template>

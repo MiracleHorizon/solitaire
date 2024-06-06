@@ -1,4 +1,4 @@
-import { BrowserStorageProvider } from './BrowserStorageProvider.ts'
+import { BrowserStorageProvider } from './BrowserStorageProvider'
 
 class LocalStorageProvider extends BrowserStorageProvider {
   constructor() {

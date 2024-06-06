@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router'
 import LinkBackHome from '@components/LinkBackHome.vue'
 import ButtonNewGame from './buttons/ButtonNewGame.vue'
 import GameStatistics from './GameStatistics'
-import { Route } from '@router/routes.ts'
+import { Route } from '@router/routes'
 
 const route = useRoute()
 

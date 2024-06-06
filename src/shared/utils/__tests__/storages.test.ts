@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from '@jest/globals'
 
-import { BrowserStorageProvider } from '@utils/storages/BrowserStorageProvider.ts'
-import { localStorageProvider } from '@utils/storages/LocalStorageProvider.ts'
-import { sessionStorageProvider } from '@utils/storages/SessionStorageProvider.ts'
+import { BrowserStorageProvider } from '@utils/storages/BrowserStorageProvider'
+import { localStorageProvider } from '@utils/storages/LocalStorageProvider'
+import { sessionStorageProvider } from '@utils/storages/SessionStorageProvider'
 
 const createTests = (storage: Storage, provider: BrowserStorageProvider) => {
   const KEY = 'foo'

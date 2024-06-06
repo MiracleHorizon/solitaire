@@ -1,8 +1,8 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { generateMockCard } from '__setup__/helpers/generateMockCard.ts'
+import { generateMockCard } from '__setup__/helpers/generateMockCard'
 
-describe('Card.ts', () => {
+describe('shared/entities/Card', () => {
   it('should set the card column and reset card base', () => {
     const card = generateMockCard({
       base: 3

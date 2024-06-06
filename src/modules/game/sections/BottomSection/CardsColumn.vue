@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import BasicCard from '@ui/BasicCard.vue'
 import GameCard from '@modules/game/GameCard'
-import type { Column } from '@entities/Column.ts'
-
+import type { Column } from '@entities/Column'
+;``
 defineProps<{
   column: Column
 }>()

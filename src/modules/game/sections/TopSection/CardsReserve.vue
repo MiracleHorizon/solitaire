@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BasicCard from '@ui/BasicCard.vue'
 import GameCard from '@modules/game/GameCard'
-import { useGameStore } from '@stores/game.ts'
+import { useGameStore } from '@stores/game'
 
 const gameStore = useGameStore()
 </script>

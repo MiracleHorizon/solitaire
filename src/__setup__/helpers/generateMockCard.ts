@@ -1,6 +1,6 @@
 import { v4 } from 'uuid'
 
-import { Card } from '@entities/Card.ts'
+import { Card } from '@entities/Card'
 import { Color, Rank, Suit } from '@app-types/card'
 
 interface Arguments extends DynamicFields {

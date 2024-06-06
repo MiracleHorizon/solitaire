@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
 
-import { sessionStorageProvider } from '@utils/storages/SessionStorageProvider.ts'
-import { localStorageProvider } from '@utils/storages/LocalStorageProvider.ts'
-import { RECORD_KEY } from '@shared/constants/storages.ts'
+import { sessionStorageProvider } from '@utils/storages/SessionStorageProvider'
+import { localStorageProvider } from '@utils/storages/LocalStorageProvider'
+import { RECORD_KEY } from '@shared/constants/storages'
 
-import { Solitaire } from '@entities/Solitaire.ts'
-import type { Card } from '@entities/Card.ts'
-import type { Column } from '@entities/Column.ts'
-import type { Base } from '@entities/Base.ts'
+import { Solitaire } from '@entities/Solitaire'
+import type { Card } from '@entities/Card'
+import type { Column } from '@entities/Column'
+import type { Base } from '@entities/Base'
 
 interface State {
   solitaire: Solitaire

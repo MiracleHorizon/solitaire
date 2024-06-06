@@ -1,9 +1,9 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { Base } from '@entities/Base.ts'
-import { generateMockCards } from '__setup__/helpers/generateMockCards.ts'
+import { Base } from '@entities/Base'
+import { generateMockCards } from '__setup__/helpers/generateMockCards'
 
-describe('Base.ts', () => {
+describe('shared/entities/Base', () => {
   const base = new Base(3)
   const { spadesAce, spadesDeuce, diamondsKing } = generateMockCards()
 

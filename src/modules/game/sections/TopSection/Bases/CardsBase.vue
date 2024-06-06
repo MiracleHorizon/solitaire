@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BasicCard from '@ui/BasicCard.vue'
 import GameCard from '@modules/game/GameCard'
-import type { Base } from '@entities/Base.ts'
+import type { Base } from '@entities/Base'
 
 defineProps<{
   base: Base

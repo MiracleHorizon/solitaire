@@ -1,7 +1,7 @@
-import { Board } from '@entities/Board.ts'
-import type { Card } from '@entities/Card.ts'
-import type { Column } from '@entities/Column.ts'
-import type { Base } from '@entities/Base.ts'
+import { Board } from '@entities/Board'
+import type { Card } from '@entities/Card'
+import type { Column } from '@entities/Column'
+import type { Base } from '@entities/Base'
 import { Rank } from '@app-types/card'
 
 export class Solitaire {
