@@ -114,6 +114,8 @@ const handleMouseUpOrTouchEnd = () => {
     @touchcancel="dragStore.$reset"
   >
     <BasicCard
+      :rank="card.rank"
+      :suit="card.suit"
       :image-path="
         card.isFlipped
           ? getCardImagePath({
