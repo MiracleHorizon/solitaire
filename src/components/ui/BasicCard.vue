@@ -6,8 +6,8 @@ import { IMAGES_ASSETS_PATH, pathForAssets } from '@site/config'
 import { Rank, Suit } from '@app-types/card'
 
 defineProps<{
-  suit: Suit
-  rank: Rank
+  suit?: Suit
+  rank?: Rank
   imagePath?: string
 }>()
 
@@ -19,7 +19,7 @@ const cardFallbackPath = pathForAssets(`${IMAGES_ASSETS_PATH}/card_place.png`)
     <UseImage
       :src="imagePath ?? cardFallbackPath"
       :class="$style.image"
-      :alt="`${rank} ${suit} image`"
+      :alt="`${suit ?? '' + rank ?? ''} image`"
     >
       <template #loading>
         <div :class="$style.loading">
