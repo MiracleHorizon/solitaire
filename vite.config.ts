@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'url'
+import { VitePWA } from 'vite-plugin-pwa'
 import vue from '@vitejs/plugin-vue'
 import stylelint from 'vite-plugin-stylelint'
 
@@ -42,6 +43,26 @@ const createAlias = ({ find, path }: Alias) => ({
 export default defineConfig({
   plugins: [
     vue(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: ({ request, url }) =>
+              ['document', 'script', 'style', 'image', 'font'].includes(request.destination) ||
+              url.pathname.includes('/assets/images/cards/'),
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'assets-cache',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days.
+              }
+            }
+          }
+        ]
+      }
+    }),
     stylelint({
       include: ['src/**/*.{scss,vue}'],
       fix: true,
@@ -50,9 +71,12 @@ export default defineConfig({
     })
   ],
   resolve: {
-    alias: aliases.map(alias => createAlias(alias))
+    alias: aliases.map(createAlias)
   },
   server: {
+    port: 3000
+  },
+  preview: {
     port: 3000
   },
   css: {

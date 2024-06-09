@@ -5,7 +5,7 @@ import GameBoard from './GameBoard.vue'
 
 useEventListener('keydown', (ev: KeyboardEvent) => {
   if (import.meta.env.DEV) return
-  // Защита пользователя от случайных перезагрузок страницы и потери игрового прогресса.
+  // Protecting the user from accidental page reloads and loss of game progress.
   if ((ev.code === 'KeyR' && ev.metaKey) || ev.code === 'F5') {
     ev.preventDefault()
   }

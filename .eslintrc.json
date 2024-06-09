@@ -10,9 +10,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:vue/vue3-recommended",
-    "@vue/typescript/recommended",
-    "@vue/eslint-config-prettier",
-    "prettier"
+    "@vue/typescript/recommended"
   ],
   "plugins": [
     "import"
@@ -23,7 +21,6 @@
   },
   "rules": {
     /* Basic */
-    "no-console": "warn",
     "no-debugger": "error",
     "no-unused-vars": "error",
     "indent": [
@@ -48,6 +45,12 @@
     "no-dupe-class-members": "error",
     "no-constructor-return": "error",
     "no-this-before-super": "error",
+    "max-len": [
+      "warn",
+      {
+        "code": 120
+      }
+    ],
     "no-unused-private-class-members": "error",
     "accessor-pairs": [
       "error",
@@ -216,6 +219,12 @@
     "vue/valid-v-on": "error",
     "vue/valid-v-once": "error",
     "vue/valid-v-show": "error",
-    "vue/valid-v-text": "error"
+    "vue/valid-v-text": "error",
+    "vue/max-attributes-per-line": [
+      "warn",
+      {
+        "singleline": 3
+      }
+    ]
   }
 }

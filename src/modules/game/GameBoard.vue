@@ -58,11 +58,7 @@ useEventListener('mouseup', () => {
 </script>
 
 <template>
-  <main
-    :class="$style.root"
-    @mousemove="handleMouseMove"
-    @touchmove.passive="handleTouchMove"
-  >
+  <main :class="$style.root" @mousemove="handleMouseMove" @touchmove.passive="handleTouchMove">
     <TopSection />
     <BottomSection />
   </main>
